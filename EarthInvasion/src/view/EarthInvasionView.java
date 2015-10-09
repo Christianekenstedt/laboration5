@@ -3,6 +3,8 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import model.EarthInvasionModel;
 
@@ -11,13 +13,17 @@ import model.EarthInvasionModel;
  * @author Chrille
  */
 public class EarthInvasionView extends VBox {
-    
+    private Image image;
     private Label l;
     private final EarthInvasionModel model;
     public EarthInvasionView(EarthInvasionModel model){
         this.model = model;
         EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
+        image = new Image("resources/bg.jpg");
+        ImageView img = new ImageView(image);
+        img.setVisible(true);
+        this.getChildren().add(img);
 
     }
     /**
@@ -48,6 +54,7 @@ public class EarthInvasionView extends VBox {
         return menuBar;
     }
     
+  
     
     
 }
