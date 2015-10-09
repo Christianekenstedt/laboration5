@@ -16,25 +16,22 @@ public class EarthInvasionView extends VBox {
     private final EarthInvasionModel model;
     public EarthInvasionView(EarthInvasionModel model){
         this.model = model;
-        EarthInvasionController controller = new EarthInvasionController(model, this);
-        // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
 
     }
-    
-    /*private Menu createMenu(){
-        
-        return ;
-    }*/
-    
+    /**
+     * 
+     */
     private void initView(){
         this.setPadding(new Insets(0, 0, 0, 0));
         MenuBar menuBar = createMenu();
-        this.getChildren().addAll(menuBar); // Creates the menu at the top.
-        
-        
+        this.getChildren().addAll(menuBar); // Creates the menu at the top. 
     }
-    
+    /**
+     * 
+     * @return 
+     */
     private MenuBar createMenu(){
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
@@ -42,14 +39,15 @@ public class EarthInvasionView extends VBox {
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
         MenuItem highscoreItem = new MenuItem("Highscore");
-        fileMenu.getItems().addAll(newGameItem,highscoreItem,quitItem);
+        fileMenu.getItems().addAll(newGameItem,highscoreItem,new SeparatorMenuItem(),quitItem);
         
         MenuItem rulesItem = new MenuItem("Rules");
         helpMenu.getItems().addAll(rulesItem);
         
-        menuBar.getMenus().addAll(fileMenu,helpMenu);
-        
+        menuBar.getMenus().addAll(fileMenu,helpMenu); //Adds all menus to the menu bar.
         return menuBar;
     }
+    
+    
     
 }
