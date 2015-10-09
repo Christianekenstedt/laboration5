@@ -20,7 +20,7 @@ public class EarthInvasionView extends VBox {
         this.model = model;
         EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
-        image = new Image("resources/bg.jpg");
+        image = new Image("resources/bg1.jpg");
         ImageView img = new ImageView(image);
         img.setVisible(true);
         this.getChildren().add(img);
@@ -42,6 +42,7 @@ public class EarthInvasionView extends VBox {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         Menu helpMenu = new Menu("Help");
+        MenuItem chrille = new MenuItem("Christian");
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
         MenuItem highscoreItem = new MenuItem("Highscore");

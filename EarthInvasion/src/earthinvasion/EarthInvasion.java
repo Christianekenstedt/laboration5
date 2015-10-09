@@ -24,7 +24,7 @@ public class EarthInvasion extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        // skapa EarthInvasionModel och skicka som argument till EarthInvasionView
+        
         EarthInvasionModel model = new EarthInvasionModel();
         EarthInvasionView root = new EarthInvasionView(model);
         
