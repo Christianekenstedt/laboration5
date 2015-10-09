@@ -12,6 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.EarthInvasionModel;
+
+import view.EarthInvasionView;
 
 /**
  *
@@ -21,22 +24,12 @@ public class EarthInvasion extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello!!!!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
+        // skapa EarthInvasionModel och skicka som argument till EarthInvasionView
+        EarthInvationModel model = new EarthInvasionModel();
+        EarthInvasionView root = new EarthInvasionView(model);
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
