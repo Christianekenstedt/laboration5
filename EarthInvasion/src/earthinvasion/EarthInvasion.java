@@ -25,12 +25,14 @@ public class EarthInvasion extends Application {
     @Override
     public void start(Stage primaryStage) {
         // skapa EarthInvasionModel och skicka som argument till EarthInvasionView
-        EarthInvationModel model = new EarthInvasionModel();
+        EarthInvasionModel model = new EarthInvasionModel();
         EarthInvasionView root = new EarthInvasionView(model);
-        Scene scene = new Scene(root, 300, 250);
+        
+        Scene scene = new Scene(root, 640,480);
         
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
