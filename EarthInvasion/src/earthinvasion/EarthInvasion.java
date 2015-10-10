@@ -28,7 +28,7 @@ public class EarthInvasion extends Application {
         EarthInvasionModel model = new EarthInvasionModel();
         EarthInvasionView root = new EarthInvasionView(model);
         
-        Scene scene = new Scene(root, 640,480);
+        Scene scene = new Scene(root, 640,720);
         
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);

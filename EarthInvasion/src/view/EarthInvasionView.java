@@ -14,7 +14,6 @@ import model.EarthInvasionModel;
  */
 public class EarthInvasionView extends VBox {
     private Image image;
-    private Label l;
     private final EarthInvasionModel model;
     public EarthInvasionView(EarthInvasionModel model){
         this.model = model;
