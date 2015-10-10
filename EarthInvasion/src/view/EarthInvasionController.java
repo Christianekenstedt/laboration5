@@ -9,7 +9,6 @@ import model.EarthInvasionModel;
 public class EarthInvasionController {
 
     EarthInvasionController(EarthInvasionModel model, EarthInvasionView aThis) {
-        
+        System.out.println("Heeej Christian =)");
     }
-    
 }

@@ -16,7 +16,6 @@ import model.EarthInvasionModel;
  */
 public class EarthInvasionView extends VBox {
     private Image image;
-    private Label l;
     private final EarthInvasionModel model;
     private GraphicsContext gc;
     private Canvas canvas;
@@ -67,6 +66,7 @@ public class EarthInvasionView extends VBox {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         Menu helpMenu = new Menu("Help");
+        MenuItem chrille = new MenuItem("Christian");
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
         MenuItem highscoreItem = new MenuItem("Highscore");
