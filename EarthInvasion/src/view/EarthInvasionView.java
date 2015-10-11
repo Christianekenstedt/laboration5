@@ -1,5 +1,6 @@
 package view;
 
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,43 +11,89 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.EarthInvasionModel;
+import model.Player;
 
 /**
  *
  * @author Chrille
  */
 public class EarthInvasionView extends VBox {
+    private AnimationTimer timer;
     private Image image;
     private final EarthInvasionModel model;
     private GraphicsContext gc;
     private Canvas canvas;
+    private Player player;
     
     public EarthInvasionView(EarthInvasionModel model){
+
         this.model = model;
         EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
-        //image = new Image("resources/bg.jpg");
-        //ImageView img = new ImageView(image);
-        //img.setVisible(true);
-        //this.getChildren().add(img);
-        
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        //GraphicsContext gc = canvas.getGraphicsContext2D();
+       
         this.getChildren().add(canvas);
+ 
+        
+        
+        
+        
+        
+        
+        
+        
+        graphicsStart();
+    }
 
+    protected class run extends AnimationTimer {
         
-        drawImage(gc);
-        draw(gc);
+        private long previousNs = 0;
         
+        @Override
+        public void handle(long nowNs) {
+            if (previousNs == 0) {
+                previousNs = nowNs;
+            }
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            // paint the background
+            drawBackground(gc);
+
+            // paint the player
+            drawPlayer(gc);
+
+            // paint the balls
+            
+            model.setPlayerX();
+        }
         
     }
+    
+    
+    public void graphicsStart() {
+        timer = new run();
+        timer.start();
+    }
+    
+    
+    
+    
+    
     /**
      * 
-     */
-    private void drawImage(GraphicsContext gc) {
-        image = new Image("resources/bg.jpg");
+     */  
+    public void drawPlayer(GraphicsContext gc) {
+        image = new Image("resources/ship.png");
+        System.out.println("Image X: "+model.getPlayerX()+" Y: "+model.getPlayerY());
+        gc.drawImage(image, model.getPlayerX(), model.getPlayerY());
+    }
+    
+    
+    public void drawBackground(GraphicsContext gc) {
+        image = new Image("resources/bg1.jpg");
         gc.drawImage(image, 0, 0);
     }
+    
     
     private void draw(GraphicsContext gc) {
         gc.setLineWidth(10);
