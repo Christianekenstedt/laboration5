@@ -7,6 +7,7 @@ import model.EarthInvasionModel;
  * @author Chrille
  */
 public class EarthInvasionController {
+
     private final EarthInvasionModel model;
     private final EarthInvasionView view;
     EarthInvasionController(EarthInvasionModel model, EarthInvasionView view) {
@@ -15,7 +16,7 @@ public class EarthInvasionController {
     }
     
     public void handleShip(){
-        
+
     }
 }
 

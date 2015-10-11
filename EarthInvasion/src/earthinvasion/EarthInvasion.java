@@ -8,10 +8,12 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.EarthInvasionModel;
+import model.Player;
 
 import view.EarthInvasionView;
 
@@ -21,32 +23,23 @@ import view.EarthInvasionView;
  */
 public class EarthInvasion extends Application {
     
-    private AnimationTimer timer;
-    
-    protected class BounceTimer extends AnimationTimer {
-        
-        private long previousNs = 0;
-        
-        @Override
-        public void handle(long nowNs) {
-            if (previousNs == 0) {
-                previousNs = nowNs;
-            }
-        }
-        
-    }
+    private Canvas canvas;
 
     @Override
     public void start(Stage primaryStage) {
         // skapa EarthInvasionModel och skicka som argument till EarthInvasionView
+        
+        
+        
         EarthInvasionModel model = new EarthInvasionModel();
         EarthInvasionView root = new EarthInvasionView(model);
         
         Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());
-        
-        
-        timer = new BounceTimer();
-        timer.start();
+
+          
+        //timer = new BounceTimer();
+        //timer.start();
+
  
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);
