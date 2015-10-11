@@ -1,6 +1,7 @@
 package view;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,33 +21,23 @@ import model.Player;
  */
 public class EarthInvasionView extends VBox {
     private AnimationTimer timer;
-    private Image image;
+    private Image image, shipImage;
     private final EarthInvasionModel model;
     private GraphicsContext gc;
     private Canvas canvas;
     private Player player;
-    
+    private double x,y;
     public EarthInvasionView(EarthInvasionModel model){
 
         this.model = model;
-        x = 215;
-        y = 600;
-        System.out.println("x="+x + "y=" + y);
         EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
+        canvas.setOnKeyPressed(new ShipKeyHandler());
         //GraphicsContext gc = canvas.getGraphicsContext2D();
-       
+        
         this.getChildren().add(canvas);
- 
-        
-        
-        
-        
-        
-        
-        
-        
+
         graphicsStart();
     }
 
@@ -60,6 +51,7 @@ public class EarthInvasionView extends VBox {
                 previousNs = nowNs;
             }
             GraphicsContext gc = canvas.getGraphicsContext2D();
+            
             // paint the background
             drawBackground(gc);
 
@@ -67,7 +59,6 @@ public class EarthInvasionView extends VBox {
             drawPlayer(gc);
 
             // paint the balls
-            
             model.setPlayerX();
         }
         
@@ -87,9 +78,9 @@ public class EarthInvasionView extends VBox {
      * 
      */  
     public void drawPlayer(GraphicsContext gc) {
-        image = new Image("resources/ship.png");
+        shipImage = new Image("resources/ship.png");
         System.out.println("Image X: "+model.getPlayerX()+" Y: "+model.getPlayerY());
-        gc.drawImage(image, model.getPlayerX(), model.getPlayerY());
+        gc.drawImage(shipImage, model.getPlayerX(), model.getPlayerY());
     }
     
     
@@ -145,14 +136,17 @@ public class EarthInvasionView extends VBox {
                     y = y + 1.0;
                     break;
                 case LEFT:
+                    
+                   
                     x = x - 1.0;
                     break;
                 case RIGHT:
+                    
                     x = x + 1.0;
                     break;
                 default:
             }
-            drawShip(gc);
+            drawPlayer(gc);
         }
     }  
 }

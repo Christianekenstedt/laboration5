@@ -15,8 +15,8 @@ import javafx.scene.image.Image;
 public class Player {
     
     private int hp;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private Image image;
     
     public Player(int hp, int x, int y){
@@ -25,20 +25,21 @@ public class Player {
         this.y = y;
     }
     
-    public int getX() {
+    public double getX() {
         return x;
     }
     
-    public int getY() {
+    public double getY() {
         return y;
     }
     
     public void setX() {
-        x+=1;
+        x += 1.0;
+        //this.x = x;
     }
     
     public void setY(int y) {
-        y+=1;
+        y+=1.0;
     }
     
     public void playerDraw(GraphicsContext gc) {
