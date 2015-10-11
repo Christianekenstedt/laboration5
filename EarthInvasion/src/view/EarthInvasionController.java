@@ -7,8 +7,15 @@ import model.EarthInvasionModel;
  * @author Chrille
  */
 public class EarthInvasionController {
-
-    EarthInvasionController(EarthInvasionModel model, EarthInvasionView aThis) {
-        System.out.println("Heeej Christian =)");
+    private final EarthInvasionModel model;
+    private final EarthInvasionView view;
+    EarthInvasionController(EarthInvasionModel model, EarthInvasionView view) {
+        this.model = model;
+        this.view = view;
+    }
+    
+    public void handleShip(){
+        
     }
 }
+
