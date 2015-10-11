@@ -33,7 +33,7 @@ public class EarthInvasionView extends VBox {
         EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
-        canvas.setOnKeyPressed(new ShipKeyHandler());
+        canvas.setOnKeyPressed(new ShipKeyHandler()); // WHY U NO WORK?!?!
         //GraphicsContext gc = canvas.getGraphicsContext2D();
         
         this.getChildren().add(canvas);
@@ -50,7 +50,7 @@ public class EarthInvasionView extends VBox {
             if (previousNs == 0) {
                 previousNs = nowNs;
             }
-            GraphicsContext gc = canvas.getGraphicsContext2D();
+            gc = canvas.getGraphicsContext2D();
             
             // paint the background
             drawBackground(gc);
@@ -76,6 +76,7 @@ public class EarthInvasionView extends VBox {
     
     /**
      * 
+     * @param gc
      */  
     public void drawPlayer(GraphicsContext gc) {
         shipImage = new Image("resources/ship.png");
@@ -124,6 +125,9 @@ public class EarthInvasionView extends VBox {
     
    
     private class ShipKeyHandler implements EventHandler<KeyEvent> {
+        public ShipKeyHandler(){
+            System.out.println("created keyHandler");
+        }
         @Override
         public void handle(KeyEvent event) {
             System.out.println("u clicked!");
@@ -136,16 +140,18 @@ public class EarthInvasionView extends VBox {
                     y = y + 1.0;
                     break;
                 case LEFT:
-                    
-                   
-                    x = x - 1.0;
+                    System.out.println("left");
+                   //model.setPlayerX(model.getPlayerX() -1.0);
+                    //x = x - 1.0;
                     break;
                 case RIGHT:
-                    
-                    x = x + 1.0;
+                    System.out.println("right");
+                    //model.setPlayerX(model.getPlayerX() +1.0);
+                    //x = x + 1.0;
                     break;
                 default:
             }
+            //gc.drawImage(shipImage, x, y);
             drawPlayer(gc);
         }
     }  
