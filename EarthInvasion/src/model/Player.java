@@ -47,7 +47,7 @@ public class Player {
         y+=1.0;
     }
     
-    public void playerDraw(GraphicsContext gc) {
+    public void drawPlayer(GraphicsContext gc) {
         image = new Image(path);
         gc.drawImage(image, x, y, height,width);
     }

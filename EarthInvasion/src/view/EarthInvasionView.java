@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import model.Alien;
 import model.Block;
 import model.EarthInvasionModel;
 import model.Player;
@@ -69,11 +70,13 @@ public class EarthInvasionView extends VBox {
             }
             // paint the player
             for(Player p: controller.getPlayers()){
-                p.playerDraw(gc);
+                p.drawPlayer(gc);
             }
             
             // paint the aliens
-
+            for(Alien a: controller.getAliens()){
+                a.drawAlien(gc);
+            }
         }
         
     }
