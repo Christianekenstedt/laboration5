@@ -17,12 +17,17 @@ public class Player {
     private int hp;
     private double x;
     private double y;
+    private double width, height;
     private Image image;
+    private String path;
     
-    public Player(int hp, int x, int y){
+    public Player(int hp, int x, int y, String path){
         this.hp = hp;
         this.x = x;
         this.y = y;
+        width = 75;
+        height = 150;
+        this.path = path;
     }
     
     public double getX() {
@@ -43,7 +48,7 @@ public class Player {
     }
     
     public void playerDraw(GraphicsContext gc) {
-        image = new Image("resources/ship.png");
-        gc.drawImage(image, x, y);
+        image = new Image(path);
+        gc.drawImage(image, x, y, height,width);
     }
 }
