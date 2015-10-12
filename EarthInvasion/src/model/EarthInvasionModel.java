@@ -26,7 +26,6 @@ public class EarthInvasionModel {
 
     
     public EarthInvasionModel() {
-
         players = new ArrayList<Player>();
         blocks = new ArrayList<Block>();
         aliens = new ArrayList<Alien>();
