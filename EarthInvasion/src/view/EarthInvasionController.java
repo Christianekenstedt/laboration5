@@ -27,10 +27,10 @@ public class EarthInvasionController {
     public void keyPressed(KeyEvent event) {
         switch (event.getCode()) {
                 case LEFT:
-                   model.setVelX(-4);
+                   model.setVelX(-4,1);
                     break;
                 case RIGHT:
-                    model.setVelX(4);
+                    model.setVelX(4,1);
                     break;
                 case SPACE:
                     System.out.println("PANG!");
@@ -42,10 +42,10 @@ public class EarthInvasionController {
         switch (event.getCode()) {
                 
                 case LEFT:
-                   model.setVelX(0);
+                   model.setVelX(0,1);
                     break;
                 case RIGHT:
-                    model.setVelX(0);
+                    model.setVelX(0,1);
                     break;
                 case SPACE:
                     //System.out.println("PANG!");
