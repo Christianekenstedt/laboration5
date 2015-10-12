@@ -26,10 +26,10 @@ public class EarthInvasionController {
         
             switch (event.getCode()) {
                 case LEFT:
-                   model.setPlayerX(model.getPlayerX() - 3.0);
+                   model.setPlayerX((model.getPlayerX(1) - 3.0),1);
                     break;
                 case RIGHT:
-                    model.setPlayerX(model.getPlayerX() + 3.0);
+                    model.setPlayerX((model.getPlayerX(1) + 3.0),1);
                     break;
                 case SPACE:
                     System.out.println("PANG!");
@@ -38,10 +38,22 @@ public class EarthInvasionController {
             }
     }
     
+    public void handleNewGame(ActionEvent event){
+        System.out.println("START NEW GAME!!");
+    }
+    
+    public void handleHighscore(ActionEvent event){
+        System.out.println("HIGHSCORE!");
+    }
+    
+    public void handleRules(ActionEvent event){
+        System.out.println("RULES!!");
+    }
+    
     public void handleQuit(ActionEvent event){
         System.exit(0);
         
-        
+    
     }
     public ArrayList<Player> getPlayers(){
         return (ArrayList)model.getPlayer().clone();
