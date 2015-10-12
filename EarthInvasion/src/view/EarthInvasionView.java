@@ -16,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.EarthInvasionModel;
 import model.Player;
+import view.EarthInvasionController;
 
 /**
  *
@@ -25,33 +26,26 @@ public class EarthInvasionView extends VBox {
     private AnimationTimer timer;
     private Image image, shipImage;
     private final EarthInvasionModel model;
+    private final EarthInvasionController controller;
     private GraphicsContext gc;
     private Canvas canvas;
-    private Player player;
-    private double x,y;
+    private EventHandler shipHandler,menuQuitItem, menuRulesItem, menuNewGameItem, menuHighscoreItem;
     public EarthInvasionView(EarthInvasionModel model){
 
         this.model = model;
-        EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        //Creates the window, menu bar and so on
         initView();
-        canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
-        canvas.setOnKeyPressed(new ShipKeyHandler()); // WHY U NO WORK?!?!
-        //GraphicsContext gc = canvas.getGraphicsContext2D();
-        
-        this.getChildren().add(canvas);
-
+        // Add all the event handlers
+        addEventHandlers();
+        // Start the graphics
         graphicsStart();
-        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent me) {
-                        System.out.println("You pressed me!");
-                        model.setPlayerX(me.getX());
-                    }
-                });
+        
+        
     }
 
     protected class run extends AnimationTimer {
-        
+
         private long previousNs = 0;
         
         @Override
@@ -65,10 +59,12 @@ public class EarthInvasionView extends VBox {
             drawBackground(gc);
 
             // paint the player
-            drawPlayer(gc);
+            //drawPlayer(gc);
+            for(Player p: controller.getPlayers()){
+                p.playerDraw(gc);
+            }
+            // paint the aliens
 
-            // paint the balls
-            //model.setPlayerX();
         }
         
     }
@@ -78,18 +74,13 @@ public class EarthInvasionView extends VBox {
         timer = new run();
         timer.start();
     }
-    
-    
-    
-    
-    
     /**
      * 
      * @param gc
      */  
     public void drawPlayer(GraphicsContext gc) {
         shipImage = new Image("resources/ship.png");
-        System.out.println("Image X: "+model.getPlayerX()+" Y: "+model.getPlayerY());
+        //System.out.println("Image X: "+model.getPlayerX()+" Y: "+model.getPlayerY());
         gc.drawImage(shipImage, model.getPlayerX(), model.getPlayerY());
     }
     
@@ -99,17 +90,15 @@ public class EarthInvasionView extends VBox {
         gc.drawImage(image, 0, 0);
     }
     
-    
-    private void draw(GraphicsContext gc) {
-        gc.setLineWidth(10);
-        gc.setFill(Color.RED);
-        gc.fillOval(50, 50, 10, 10);
-    }
-    
     private void initView(){
         this.setPadding(new Insets(0, 0, 0, 0));
+
         MenuBar menuBar = createMenu();
-        this.getChildren().addAll(menuBar); // Creates the menu at the top. 
+        this.getChildren().addAll(menuBar); // Creates the menu at the top.
+        canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
+        canvas.setFocusTraversable(true);
+        canvas.requestFocus();
+        this.getChildren().add(canvas);
     }
 
     /**
@@ -122,46 +111,55 @@ public class EarthInvasionView extends VBox {
         Menu helpMenu = new Menu("Help");
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
+        
         MenuItem highscoreItem = new MenuItem("Highscore");
         fileMenu.getItems().addAll(newGameItem,highscoreItem,new SeparatorMenuItem(),quitItem);
         
         MenuItem rulesItem = new MenuItem("Rules");
         helpMenu.getItems().addAll(rulesItem);
         
+        quitItem.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("quit!");
+                controller.handleQuit(event);
+            }
+            
+        });
+        newGameItem.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("NEW GAME!");
+            }
+            
+        });
+        rulesItem.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("RULES!");
+            }
+            
+        });
+        highscoreItem.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("HIGHSCORE!!");
+                
+            }
+            
+        });
         menuBar.getMenus().addAll(fileMenu,helpMenu); //Adds all menus to the menu bar.
         return menuBar;
     }
-    
-   
-    private class ShipKeyHandler implements EventHandler<KeyEvent> {
-        public ShipKeyHandler(){
-            System.out.println("created keyHandler");
-        }
-        @Override
-        public void handle(KeyEvent event) {
-            System.out.println("u clicked!");
-            switch (event.getCode()) {
-                case UP:
-                    System.out.println("upp!");
-                    y = y - 1.0;
-                    break;
-                case DOWN:
-                    y = y + 1.0;
-                    break;
-                case LEFT:
-                    System.out.println("left");
-                   //model.setPlayerX(model.getPlayerX() -1.0);
-                    //x = x - 1.0;
-                    break;
-                case RIGHT:
-                    System.out.println("right");
-                    //model.setPlayerX(model.getPlayerX() +1.0);
-                    //x = x + 1.0;
-                    break;
-                default:
+    private void addEventHandlers(){
+        
+        shipHandler = new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event) {
+                controller.handleShip(event);   
             }
-            //gc.drawImage(shipImage, x, y);
-            //drawPlayer(gc);
-        }
-    }  
+        };
+        canvas.setOnKeyPressed(shipHandler);
+        
+    }
 }

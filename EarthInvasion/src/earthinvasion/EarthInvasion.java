@@ -40,10 +40,11 @@ public class EarthInvasion extends Application {
         //timer = new BounceTimer();
         //timer.start();
 
- 
+        
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        
         primaryStage.show();
     }
     

@@ -1,6 +1,11 @@
 package view;
 
+import com.sun.glass.events.WindowEvent;
+import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
+import model.Player;
 
 /**
  *
@@ -15,8 +20,29 @@ public class EarthInvasionController {
         this.view = view;
     }
     
-    public void handleShip(){
-
+    public void handleShip(KeyEvent event){
+        
+            switch (event.getCode()) {
+                case LEFT:
+                   model.setPlayerX(model.getPlayerX() - 3.0);
+                    break;
+                case RIGHT:
+                    model.setPlayerX(model.getPlayerX() + 3.0);
+                    break;
+                case SPACE:
+                    System.out.println("PANG!");
+                    break;
+                default:
+            }
+    }
+    
+    public void handleQuit(ActionEvent event){
+        System.exit(0);
+        
+        
+    }
+    public ArrayList<Player> getPlayers(){
+        return (ArrayList)model.getPlayer().clone();
     }
 }
 
