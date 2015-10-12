@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import model.Block;
 import model.EarthInvasionModel;
 import model.Player;
 import view.EarthInvasionController;
@@ -57,7 +58,10 @@ public class EarthInvasionView extends VBox {
             
             // paint the background
             drawBackground(gc);
-
+            // paint the blocks
+            for(Block b: controller.getBlocks()){
+                b.drawBlock(gc);
+            }
             // paint the player
             for(Player p: controller.getPlayers()){
                 p.playerDraw(gc);

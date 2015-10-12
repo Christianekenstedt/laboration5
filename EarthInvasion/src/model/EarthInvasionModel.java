@@ -19,13 +19,16 @@ public class EarthInvasionModel {
 
     private AnimationTimer timer;
     private ArrayList<Player> players;
+    private ArrayList<Block> blocks;
     
     private Canvas canvas;
 
     
     public EarthInvasionModel() {
         players = new ArrayList<Player>();
+        blocks = new ArrayList<Block>();
         players.add(new Player(100, 250, 620, "resources/ship.png"));
+        blocks.add(new Block(100.0,100.0));
     }
 
     public double getPlayerX() {
@@ -52,6 +55,9 @@ public class EarthInvasionModel {
     
     public ArrayList<Player> getPlayer(){
         return (ArrayList)players.clone();
+    }
+    public ArrayList<Player> getBlocks(){
+        return (ArrayList)blocks.clone();
     }
 
 }
