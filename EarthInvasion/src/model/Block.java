@@ -41,8 +41,6 @@ public class Block {
     }
     
     public void drawBlock(GraphicsContext gc){
-        
-        
         if(hp > 75){
             gc.drawImage(images.get(0), x, y);
         }else if (hp < 76 && hp > 25){
