@@ -59,9 +59,11 @@ public class EarthInvasionView extends VBox {
                 previousNs = nowNs;
             }
             gc = canvas.getGraphicsContext2D();
-            model.tick();
+            model.tick(1);
             // paint the background
             drawBackground(gc);
+            // paint info
+            drawInfo(gc);
             // paint the blocks
             for(Block b: controller.getBlocks()){
                 b.drawBlock(gc);
@@ -75,7 +77,6 @@ public class EarthInvasionView extends VBox {
                 a.drawAlien(gc);
             }
         }
-        
     }
     
     
@@ -98,7 +99,12 @@ public class EarthInvasionView extends VBox {
         image = new Image("resources/bg1.jpg");
         gc.drawImage(image, 0, 0);
     }
-    
+    private void drawInfo(GraphicsContext gc) {
+        gc.setStroke(Color.RED);
+        gc.setFill(Color.RED);
+        gc.setFont(new Font("Calibri",20));
+        gc.strokeText("Score: " + model.getScore(), 500, 20);
+    }
     private void initView(){
         this.setPadding(new Insets(0, 0, 0, 0));
 

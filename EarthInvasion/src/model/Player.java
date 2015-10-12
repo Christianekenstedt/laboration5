@@ -7,6 +7,8 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -14,7 +16,7 @@ import javafx.scene.image.Image;
  */
 public class Player {
     
-    private int hp;
+    private int hp,score;
     private double x;
     private double y;
     private double width, height;
@@ -26,6 +28,7 @@ public class Player {
     
     public Player(int hp, int x, int y, String path){
         this.hp = hp;
+        score = 0;
         this.x = x;
         this.y = y;
         width = 75;
@@ -45,7 +48,7 @@ public class Player {
 /*
     public void setVelY(double velY) {
         this.velY = velY;
-    }
+    } 
   */  
     public double getX() {
         return x;
@@ -63,9 +66,15 @@ public class Player {
     public void setY(int y) {
         y+=1.0;
     }
-    
+    public int getScore(){
+        return score;
+    }
     public void drawPlayer(GraphicsContext gc) {
         image = new Image(path);
+        gc.setStroke(Color.RED);
+        gc.setFill(Color.RED);
+        gc.setFont(new Font("Calibri",20));
+        gc.strokeText("Health: " + hp, 10, 20);
         gc.drawImage(image, x, y, height,width);
     }
 }

@@ -29,7 +29,7 @@ public class EarthInvasionModel {
         players = new ArrayList<Player>();
         blocks = new ArrayList<Block>();
         aliens = new ArrayList<Alien>();
-        addPlayers(1);
+        addPlayers(2);
         addAliens();
         addBlocks();
     }
@@ -122,12 +122,12 @@ public class EarthInvasionModel {
         blocks.add(new Block(483.25,500.0));
     }
     
-    public void setVelX(double velX) {
-        players.get(0).setVelX(velX);
+    public void setVelX(double velX, int player) {
+        players.get(player-1).setVelX(velX);
     }
     
-    public void tick() {
-        players.get(0).tick();
+    public void tick(int player) {
+        players.get(player-1).tick();
     }
     
     public int getScreenHeight(){
@@ -137,7 +137,9 @@ public class EarthInvasionModel {
     public int getScreenWidth(){
         return screenWidth;
     }   
-    
+    public int getScore(){
+        return players.get(0).getScore();
+    }
     public ArrayList<Player> getPlayer(){
         return (ArrayList)players.clone();
     }
