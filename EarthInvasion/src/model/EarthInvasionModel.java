@@ -81,7 +81,14 @@ public class EarthInvasionModel {
     
     public int getScreenWidth(){
         return screenWidth;
-    }   
+    }
+    
+    public void move(){
+        for(Alien a: getAliens()){
+            a.setX(1);
+        }
+    }
+    
     public int getScore(){
         return players.get(0).getScore();
     }

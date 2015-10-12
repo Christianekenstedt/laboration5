@@ -62,8 +62,6 @@ public class EarthInvasionController {
                     model.setVelX(0,2);
                 default:
             }
-    
-        //model.setVelX(0);
         }
     
     public void handleNewGame(ActionEvent event){

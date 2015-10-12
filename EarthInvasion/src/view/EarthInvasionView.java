@@ -76,7 +76,14 @@ public class EarthInvasionView extends VBox {
             // paint the aliens
             for(Alien a: controller.getAliens()){
                 a.drawAlien(gc);
+                
             }
+            
+            for(Alien a: controller.getAliens()){
+                a.setX(1);
+                
+            }
+            
         }
     }
     
