@@ -1,11 +1,8 @@
 package view;
 
-import com.sun.glass.events.WindowEvent;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
-import javafx.scene.input.KeyEvent;
 import model.Alien;
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
 import model.Player;
