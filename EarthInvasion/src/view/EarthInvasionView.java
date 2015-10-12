@@ -70,7 +70,6 @@ public class EarthInvasionView extends VBox {
             for(Player p: controller.getPlayers()){
                 p.drawPlayer(gc);
             }
-            
             // paint the aliens
             for(Alien a: controller.getAliens()){
                 a.drawAlien(gc);
@@ -88,11 +87,11 @@ public class EarthInvasionView extends VBox {
      * 
      * @param gc
      */  
-    public void drawPlayer(GraphicsContext gc) {
+    /*public void drawPlayer(GraphicsContext gc) {
         shipImage = new Image("resources/ship.png");
         //System.out.println("Image X: "+model.getPlayerX()+" Y: "+model.getPlayerY());
         gc.drawImage(shipImage, model.getPlayerX(), model.getPlayerY());
-    }
+    }*/
     
     
     public void drawBackground(GraphicsContext gc) {
@@ -131,7 +130,6 @@ public class EarthInvasionView extends VBox {
         quitItem.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("quit!");
                 controller.handleQuit(event);
             }
             
@@ -139,21 +137,21 @@ public class EarthInvasionView extends VBox {
         newGameItem.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("NEW GAME!");
+                controller.handleNewGame(event);
             }
             
         });
         rulesItem.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("RULES!");
+                controller.handleRules(event);
             }
             
         });
         highscoreItem.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("HIGHSCORE!!");
+                controller.handleHighscore(event);
                 
             }
             

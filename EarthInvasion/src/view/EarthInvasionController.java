@@ -56,10 +56,22 @@ public class EarthInvasionController {
         //model.setVelX(0);
         }
     
+    public void handleNewGame(ActionEvent event){
+        System.out.println("START NEW GAME!!");
+    }
+    
+    public void handleHighscore(ActionEvent event){
+        System.out.println("HIGHSCORE!");
+    }
+    
+    public void handleRules(ActionEvent event){
+        System.out.println("RULES!!");
+    }
+    
     public void handleQuit(ActionEvent event){
         System.exit(0);
         
-        
+    
     }
     public ArrayList<Player> getPlayers(){
         return (ArrayList)model.getPlayer().clone();

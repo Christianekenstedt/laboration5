@@ -34,16 +34,16 @@ public class EarthInvasionModel {
         addBlocks();
     }
 
-    public double getPlayerX() {
-        return players.get(0).getX();
+    public double getPlayerX(int player) {
+        return players.get(player-1).getX();
     }
     
-    public double getPlayerY() {
-        return players.get(0).getY();
+    public double getPlayerY(int player) {
+        return players.get(player-1).getY();
     }
     
-    public void setPlayerX(double x) {
-        players.get(0).setX(x);
+    public void setPlayerX(double x,int player) {
+        players.get(player-1).setX(x);
     }
     private void addPlayers(int noOfPlayers){
         if(noOfPlayers == 2){
