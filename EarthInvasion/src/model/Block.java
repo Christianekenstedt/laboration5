@@ -45,7 +45,7 @@ public class Block {
         
         if(hp > 75){
             gc.drawImage(images.get(0), x, y);
-        }else if (hp > 76 && hp > 25){
+        }else if (hp < 76 && hp > 25){
             gc.drawImage(images.get(1), x, y);
         }else if(hp < 26 && hp > 0){
             gc.drawImage(images.get(2), x, y);
