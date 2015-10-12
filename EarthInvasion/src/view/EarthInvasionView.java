@@ -60,6 +60,7 @@ public class EarthInvasionView extends VBox {
             }
             gc = canvas.getGraphicsContext2D();
             model.tick(1);
+            model.tick(2);
             // paint the background
             drawBackground(gc);
             // paint info
@@ -109,6 +110,7 @@ public class EarthInvasionView extends VBox {
         this.setPadding(new Insets(0, 0, 0, 0));
 
         MenuBar menuBar = createMenu();
+        System.out.println();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
         canvas.setFocusTraversable(true);

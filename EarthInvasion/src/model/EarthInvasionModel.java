@@ -15,7 +15,7 @@ import view.EarthInvasionView;
 public class EarthInvasionModel {
     
     private int screenWidth = 640;
-    private int screenHeight = 720;
+    private int screenHeight = 720+15;
 
     private AnimationTimer timer;
     private ArrayList<Player> players;
