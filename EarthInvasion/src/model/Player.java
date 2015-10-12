@@ -33,9 +33,9 @@ public class Player {
         return y;
     }
     
-    public void setX() {
-        x += 1.0;
-        //this.x = x;
+    public void setX(double x) {
+        //x += 1.0;
+        this.x = x;
     }
     
     public void setY(int y) {

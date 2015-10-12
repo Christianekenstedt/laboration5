@@ -35,8 +35,8 @@ public class EarthInvasionModel {
         return player.getY();
     }
     
-    public void setPlayerX() {
-        player.setX();
+    public void setPlayerX(double x) {
+        player.setX(x);
     }
     
     

@@ -10,6 +10,7 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.EarthInvasionModel;
@@ -39,6 +40,13 @@ public class EarthInvasionView extends VBox {
         this.getChildren().add(canvas);
 
         graphicsStart();
+        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent me) {
+                        model.setPlayerX(me.getX());
+                    }
+                });
     }
 
     protected class run extends AnimationTimer {
@@ -59,7 +67,7 @@ public class EarthInvasionView extends VBox {
             drawPlayer(gc);
 
             // paint the balls
-            model.setPlayerX();
+            //model.setPlayerX();
         }
         
     }
@@ -152,7 +160,7 @@ public class EarthInvasionView extends VBox {
                 default:
             }
             //gc.drawImage(shipImage, x, y);
-            drawPlayer(gc);
+            //drawPlayer(gc);
         }
     }  
 }
