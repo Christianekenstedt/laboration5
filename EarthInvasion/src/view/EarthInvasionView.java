@@ -60,6 +60,7 @@ public class EarthInvasionView extends VBox {
             }
             gc = canvas.getGraphicsContext2D();
             model.tick(1);
+            model.tick(2);
             // paint the background
             drawBackground(gc);
             // paint info

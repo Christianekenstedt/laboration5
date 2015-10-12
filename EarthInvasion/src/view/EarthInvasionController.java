@@ -35,6 +35,11 @@ public class EarthInvasionController {
                 case SPACE:
                     System.out.println("PANG!");
                     break;
+                case A:
+                    model.setVelX(-4,2);
+                    break;
+                case D:
+                    model.setVelX(4,2);
                 default:
             }
     }
@@ -50,6 +55,11 @@ public class EarthInvasionController {
                 case SPACE:
                     //System.out.println("PANG!");
                     break;
+                case A:
+                    model.setVelX(0,2);
+                    break;
+                case D:
+                    model.setVelX(0,2);
                 default:
             }
     
