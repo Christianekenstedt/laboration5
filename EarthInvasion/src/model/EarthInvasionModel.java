@@ -53,64 +53,10 @@ public class EarthInvasionModel {
     }
     
     private void addAliens(){
-        /*
-        for(int i = 0; i < 8; i++){
-            if(i == 0){
-                aliens.add(new Alien(56.0*(i+1),40));
-                aliens.add(new Alien(56.0*(i+1),40*2+20));
-                aliens.add(new Alien(56.0*(i+1),40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1),40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1),40*5+20*4));
-            }else if (i == 1){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }else if(i == 2){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }else if(i == 3){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }else if(i == 4){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }else if (i == 5){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }else if (i == 6){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }else if (i == 7){
-                aliens.add(new Alien(56.0*(i+1)+8*i,40));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*2+20));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*3+20*2));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*4+20*3));
-                aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
-            }
-            
-        }
-        */
-        
+
         for(int i=0; i<5; i++){
             for(int j=0; j<8; j++){
-                aliens.add(new Alien(j*56, i+40*(i+1)));
+                aliens.add(new Alien((j*75), 60*(i+1)));
             }
         }
         
