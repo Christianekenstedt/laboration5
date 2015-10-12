@@ -28,7 +28,9 @@ public class EarthInvasionModel {
         players = new ArrayList<Player>();
         blocks = new ArrayList<Block>();
         players.add(new Player(100, 250, 620, "resources/ship.png"));
-        blocks.add(new Block(100.0,100.0));
+        blocks.add(new Block(56.65,500.0));
+        blocks.add(new Block(269.95,500.0));
+        blocks.add(new Block(483.25,500.0));
     }
 
     public double getPlayerX() {
