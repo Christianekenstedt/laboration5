@@ -53,6 +53,7 @@ public class EarthInvasionModel {
     }
     
     private void addAliens(){
+        /*
         for(int i = 0; i < 8; i++){
             if(i == 0){
                 aliens.add(new Alien(56.0*(i+1),40));
@@ -104,6 +105,13 @@ public class EarthInvasionModel {
                 aliens.add(new Alien(56.0*(i+1)+8*i,40*5+20*4));
             }
             
+        }
+        */
+        
+        for(int i=0; i<5; i++){
+            for(int j=0; j<8; j++){
+                aliens.add(new Alien(j*56, i+40*(i+1)));
+            }
         }
         
     }
