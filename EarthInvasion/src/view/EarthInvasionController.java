@@ -3,6 +3,8 @@ package view;
 import com.sun.glass.events.WindowEvent;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
+import model.Alien;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
@@ -65,5 +67,7 @@ public class EarthInvasionController {
     public ArrayList<Block> getBlocks(){
         return (ArrayList)model.getBlocks().clone();
     }
+    public ArrayList<Alien> getAliens(){
+        return (ArrayList)model.getAliens().clone();
+    }
 }
-

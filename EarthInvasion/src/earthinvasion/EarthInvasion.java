@@ -25,9 +25,6 @@ public class EarthInvasion extends Application {
     
     private Canvas canvas;
 
-    
-
-
     @Override
     public void start(Stage primaryStage) {
         // skapa EarthInvasionModel och skicka som argument till EarthInvasionView

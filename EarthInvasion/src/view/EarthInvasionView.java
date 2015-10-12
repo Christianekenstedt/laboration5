@@ -14,6 +14,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import model.Alien;
 import model.Block;
 import model.EarthInvasionModel;
 import model.Player;
@@ -64,10 +68,13 @@ public class EarthInvasionView extends VBox {
             }
             // paint the player
             for(Player p: controller.getPlayers()){
-                p.playerDraw(gc);
+                p.drawPlayer(gc);
             }
+            
             // paint the aliens
-
+            for(Alien a: controller.getAliens()){
+                a.drawAlien(gc);
+            }
         }
         
     }
@@ -101,7 +108,7 @@ public class EarthInvasionView extends VBox {
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
         canvas.setFocusTraversable(true);
         canvas.requestFocus();
-        this.getChildren().add(canvas);
+        this.getChildren().addAll(canvas);
     }
 
     /**

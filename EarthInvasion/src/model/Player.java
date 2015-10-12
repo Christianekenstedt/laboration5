@@ -24,7 +24,6 @@ public class Player {
     private double velX=0;
     private double velY=0;
     
-    
     public Player(int hp, int x, int y, String path){
         this.hp = hp;
         this.x = x;
@@ -65,7 +64,7 @@ public class Player {
         y+=1.0;
     }
     
-    public void playerDraw(GraphicsContext gc) {
+    public void drawPlayer(GraphicsContext gc) {
         image = new Image(path);
         gc.drawImage(image, x, y, height,width);
     }
