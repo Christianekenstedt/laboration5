@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.KeyEvent;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
@@ -11,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.EarthInvasionModel;
-import model.Player;
 
 /**
  *
@@ -23,7 +23,6 @@ public class EarthInvasionView extends VBox {
     private final EarthInvasionModel model;
     private GraphicsContext gc;
     private Canvas canvas;
-    private Player player;
     
     public EarthInvasionView(EarthInvasionModel model){
 
@@ -34,12 +33,6 @@ public class EarthInvasionView extends VBox {
         //GraphicsContext gc = canvas.getGraphicsContext2D();
        
         this.getChildren().add(canvas);
- 
-        
-        
-        
-        
-        
         
         
         

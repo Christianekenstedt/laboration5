@@ -40,9 +40,4 @@ public class Player {
     public void setY(int y) {
         y+=1;
     }
-    
-    public void playerDraw(GraphicsContext gc) {
-        image = new Image("resources/ship.png");
-        gc.drawImage(image, x, y);
-    }
 }
