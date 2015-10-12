@@ -26,6 +26,15 @@ public class Alien {
         hp = 1; // hur mkt hp?
         this.x = x;
         this.y = y;
+        width = 50;
+        height = 50;
+    }
+    
+    public double getWidth(){
+        return (int)width;
+    }
+    public double getHeight(){
+        return (int)height;
     }
     
     private void loadImage(){
@@ -33,6 +42,6 @@ public class Alien {
     }
     
     public void drawAlien(GraphicsContext gc){
-        gc.drawImage(image, x, y, 50,50);
+        gc.drawImage(image, x, y, width,height);
     }
 }
