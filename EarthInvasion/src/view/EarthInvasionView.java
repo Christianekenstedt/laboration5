@@ -59,7 +59,6 @@ public class EarthInvasionView extends VBox {
             drawBackground(gc);
 
             // paint the player
-            //drawPlayer(gc);
             for(Player p: controller.getPlayers()){
                 p.playerDraw(gc);
             }
