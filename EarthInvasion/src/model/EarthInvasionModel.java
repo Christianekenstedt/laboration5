@@ -24,7 +24,7 @@ public class EarthInvasionModel {
 
     
     public EarthInvasionModel() {
-        player = new Player(100, 210, 600);
+        player = new Player(100, 215, 580);
     }
 
     public double getPlayerX() {

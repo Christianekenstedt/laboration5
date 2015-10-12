@@ -33,7 +33,6 @@ public class EarthInvasionView extends VBox {
         EarthInvasionController controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         initView();
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
-        canvas.setOnKeyPressed(new ShipKeyHandler()); // WHY U NO WORK?!?!
         //GraphicsContext gc = canvas.getGraphicsContext2D();
         
         this.getChildren().add(canvas);
@@ -58,7 +57,7 @@ public class EarthInvasionView extends VBox {
             // paint the player
             drawPlayer(gc);
 
-            // paint the balls
+            // paint the aliens
             model.setPlayerX();
         }
         
