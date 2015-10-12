@@ -85,7 +85,7 @@ public class EarthInvasionModel {
     
     public void move(){
         for(Alien a: getAliens()){
-            a.setX(1);
+            a.setX();
         }
     }
     

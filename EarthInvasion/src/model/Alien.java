@@ -32,9 +32,9 @@ public class Alien {
         return y;
     }
     
-    public void setX(double x) {
-        //x += 1.0;
-        this.x += 1;
+    public void setX() {
+        
+        this.x += 0.2;
     }
     
     public void setY(int y) {
