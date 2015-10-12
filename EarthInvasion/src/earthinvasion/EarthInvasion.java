@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package earthinvasion;
 
 import javafx.animation.AnimationTimer;
@@ -43,11 +38,16 @@ public class EarthInvasion extends Application {
         EarthInvasionView root = new EarthInvasionView(model);
         
         Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());
+
+          
+        //timer = new BounceTimer();
+        //timer.start();
+
         
- 
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        
         primaryStage.show();
     }
     

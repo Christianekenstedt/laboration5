@@ -16,28 +16,40 @@ public class EarthInvasionModel {
     
     private int screenWidth = 640;
     private int screenHeight = 720;
+
     private AnimationTimer timer;
-    private Player player;
-    
-    private Canvas canvas;
+    private ArrayList<Player> players;
+    private ArrayList<Block> blocks;
     
     public EarthInvasionModel() {
-        player = new Player(100, -50, 500);
-    }
-
-    public int getPlayerX() {
-        return player.getX();
-    }
-    
-    public int getPlayerY() {
-        return player.getY();
+        players = new ArrayList<Player>();
+        blocks = new ArrayList<Block>();
+        players.add(new Player(100, 250, 620, "resources/ship.png"));
+        blocks.add(new Block(56.65,500.0));
+        blocks.add(new Block(269.95,500.0));
+        blocks.add(new Block(483.25,500.0));
     }
     
-    public void setPlayerX() {
-        player.setX();
+    public double getPlayerX() {
+        return players.get(0).getX();
+    }
+    
+    public double getPlayerY() {
+        return players.get(0).getY();
+    }
+    
+    public void setPlayerX(double x) {
+        players.get(0).setX(x);
     }
     
     
+    public void setVelX(double velX) {
+        players.get(0).setVelX(velX);
+    }
+    
+    public void tick() {
+        players.get(0).tick();
+    }
     
     public int getScreenHeight(){
         return screenHeight;
@@ -46,6 +58,12 @@ public class EarthInvasionModel {
     public int getScreenWidth(){
         return screenWidth;
     }   
-
+    
+    public ArrayList<Player> getPlayer(){
+        return (ArrayList)players.clone();
+    }
+    public ArrayList<Player> getBlocks(){
+        return (ArrayList)blocks.clone();
+    }
 
 }
