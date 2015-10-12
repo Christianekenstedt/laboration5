@@ -33,7 +33,7 @@ public class Block {
     }
     
     private void loadImages(){
-        Image temp = new Image("resources/block.png");
+        Image temp = new Image("resources/newBlock.png");
         PixelReader reader = temp.getPixelReader();
         images.add(new WritableImage(reader, 0, 0, 100, 40));
         images.add(new WritableImage(reader, 100, 0, 100, 40));
