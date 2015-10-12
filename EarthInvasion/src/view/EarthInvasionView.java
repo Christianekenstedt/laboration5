@@ -109,6 +109,7 @@ public class EarthInvasionView extends VBox {
         this.setPadding(new Insets(0, 0, 0, 0));
 
         MenuBar menuBar = createMenu();
+        System.out.println();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
         canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
         canvas.setFocusTraversable(true);
