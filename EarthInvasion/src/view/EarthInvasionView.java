@@ -1,6 +1,7 @@
 package view;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
@@ -40,10 +41,10 @@ public class EarthInvasionView extends VBox {
         this.getChildren().add(canvas);
 
         graphicsStart();
-        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED,
-                new EventHandler<MouseEvent>() {
+        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent me) {
+                        System.out.println("You pressed me!");
                         model.setPlayerX(me.getX());
                     }
                 });
