@@ -58,7 +58,7 @@ public class EarthInvasionView extends VBox {
             if (previousNs == 0) {
                 previousNs = nowNs;
             }
-            gc = canvas.getGraphicsContext2D();
+            gc = canvas.getGraphicsContext2D(); 
             model.tick(1);
             model.tick(2);
             // paint the background
@@ -99,7 +99,8 @@ public class EarthInvasionView extends VBox {
     
     public void drawBackground(GraphicsContext gc) {
         image = new Image("resources/bg1.jpg");
-        gc.drawImage(image, 0, 0);
+        //gc.drawImage(image, 0, 0);
+        gc.drawImage(image, 0, 0, model.getScreenWidth()+10, model.getScreenHeight());
     }
     private void drawInfo(GraphicsContext gc) {
         gc.setStroke(Color.RED);
@@ -113,7 +114,7 @@ public class EarthInvasionView extends VBox {
         MenuBar menuBar = createMenu();
         System.out.println();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
-        canvas = new Canvas(model.getScreenWidth(), model.getScreenHeight());
+        canvas = new Canvas(model.getScreenWidth()+10, model.getScreenHeight());
         canvas.setFocusTraversable(true);
         canvas.requestFocus();
         this.getChildren().addAll(canvas);
@@ -124,6 +125,7 @@ public class EarthInvasionView extends VBox {
      * @return 
      */
     private MenuBar createMenu(){
+        
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         Menu helpMenu = new Menu("Help");
@@ -167,6 +169,7 @@ public class EarthInvasionView extends VBox {
         });
         menuBar.getMenus().addAll(fileMenu,helpMenu); //Adds all menus to the menu bar.
         return menuBar;
+        
     }
     private void addEventHandlers(){
         
