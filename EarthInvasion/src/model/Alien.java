@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -11,16 +10,24 @@ import javafx.scene.image.Image;
 public class Alien extends GameObject{
     private int hp;
     private Image image;
+    private static double velocity;
+    private static boolean movingRight;
     
     public Alien(double x, double y, double width, double height){
         super(x, y, width, height);
         loadImage();
         hp = 1; // hur mkt hp?
+        velocity = 0.2;
+        movingRight = true;
         
     }
    
     public void moveAlien(){
-       setX(getX()+0.2);
+        if(movingRight){
+            velocity = 0.2;
+        }else velocity = -0.2;
+        
+       setX(getX()+velocity);
     }
     
     private void loadImage(){
@@ -34,6 +41,14 @@ public class Alien extends GameObject{
 
     @Override
     public void constrain() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(getX() < 0){
+            setX(0);
+            
+            movingRight = true;
+        }else if(getX()> 640 - getWidth()){
+            setX(640-getWidth());
+            
+            movingRight = false;
+        }
     }
 }
