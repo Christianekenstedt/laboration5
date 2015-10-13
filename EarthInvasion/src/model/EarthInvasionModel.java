@@ -27,6 +27,10 @@ public class EarthInvasionModel {
             objects.add(new Shot(objects.get(player-1).getX()+20, objects.get(player-1).getY(), 25, 25, true));
         }
     }
+    
+    public void collision(){
+        
+    }
 
     public double getPlayerX(int player) {
         if(objects.get(player-1) instanceof Player){
