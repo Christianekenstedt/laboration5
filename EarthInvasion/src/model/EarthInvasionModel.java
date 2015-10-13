@@ -158,6 +158,9 @@ public class EarthInvasionModel {
                                                          objects.get(i).getHeight())){
                         System.out.println("Collision with brick");
                         ((Block)objects.get(i)).setHp(((Block)objects.get(i)).getHp() - ((Shot)objects.get(index)).getDamage());
+                        if(((Block)objects.get(i)).getHp() <= 0){
+                            objects.remove(i);
+                        }
                         objects.remove(index);
                     }
                     
