@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import model.Alien;
 import model.EarthInvasionModel;
 import model.GameObject;
 import model.Player;
@@ -62,6 +63,8 @@ public class EarthInvasionView extends VBox {
             // paint the objects
             for(GameObject go: controller.getObjects()){
                 if(go instanceof Player){
+                    go.constrain();
+                }else if(go instanceof Alien){
                     go.constrain();
                 }
             }
