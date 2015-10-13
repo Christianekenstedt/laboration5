@@ -59,6 +59,7 @@ public class EarthInvasionController {
                     break;
                 case D:
                     model.setVelX(0,2);
+                    break;
                 case SPACE:
                     
                     break;
