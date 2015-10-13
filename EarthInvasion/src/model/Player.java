@@ -68,7 +68,7 @@ public class Player {
         image = new Image(path);
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
-        gc.setFont(new Font("Calibri",20));
+        gc.setFont(new Font("LLPixel",20));
         gc.strokeText("Health: " + hp, 10, 20);
         gc.drawImage(image, x, y, height,width);
     }
