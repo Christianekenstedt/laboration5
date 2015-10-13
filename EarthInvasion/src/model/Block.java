@@ -13,22 +13,17 @@ import javafx.scene.text.Font;
  *
  * @author Chrille
  */
-public class Block {
+public class Block extends GameObject{
     private int hp;
-    private double x;
-    private double y;
-    private int width;
-    private int height;
     private ArrayList<Image> images;
     
-    public Block(double x,double y){
+    public Block(double x,double y, double width, double height){
+        super(x, y, width, height);
         images = new ArrayList<Image>();
         hp = 100;
         loadImages();
-        this.x = x;
-        this.y = y;
-        width = 100;
-        height = 40;
+
+
         
     }
     
@@ -40,13 +35,14 @@ public class Block {
         images.add(new WritableImage(reader, 200, 0, 100, 40));
     }
     
-    public void drawBlock(GraphicsContext gc){
+    @Override
+    public void drawObject(GraphicsContext gc) {
         if(hp > 75){
-            gc.drawImage(images.get(0), x, y);
+            gc.drawImage(images.get(0), getX(), getY());
         }else if (hp < 76 && hp > 25){
-            gc.drawImage(images.get(1), x, y);
+            gc.drawImage(images.get(1), getX(), getY());
         }else if(hp < 26 && hp > 0){
-            gc.drawImage(images.get(2), x, y);
+            gc.drawImage(images.get(2), getX(), getY());
         }else System.out.println("dead");
     }
 }
