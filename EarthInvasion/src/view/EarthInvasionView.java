@@ -56,6 +56,7 @@ public class EarthInvasionView extends VBox {
             model.tick(1);
             model.tick(2);
             model.moveAlien();
+            model.moveShot();
             // paint the background
             drawBackground(gc);
             // paint info
