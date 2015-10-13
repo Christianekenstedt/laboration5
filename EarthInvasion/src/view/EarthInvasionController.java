@@ -2,11 +2,8 @@ package view;
 
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
-import model.Alien;
 import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
-import model.Player;
-import model.Block;
 import model.GameObject;
 
 /**

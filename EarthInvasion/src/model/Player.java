@@ -13,10 +13,10 @@ public class Player extends GameObject{
     
     private int hp;
     private Image image;
-    private String path;
+    private final String path;
     
-    private double velX=0;
-    private double velY=0;
+    private double velX;
+    private double velY;
     
     /**
      * 
@@ -31,6 +31,8 @@ public class Player extends GameObject{
         super(x, y, width, height);
         this.hp = hp;
         this.path = path;
+        velX = 0;
+        velY = 0;
         
     } 
     

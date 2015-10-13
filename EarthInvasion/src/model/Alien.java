@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

@@ -7,22 +7,14 @@ import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import model.Alien;
-import model.Block;
 import model.EarthInvasionModel;
 import model.GameObject;
 import model.Player;
-import view.EarthInvasionController;
 
 /**
  *
@@ -89,12 +81,12 @@ public class EarthInvasionView extends VBox {
     public void drawBackground(GraphicsContext gc) {
         image = new Image("resources/bg1.jpg");
         //gc.drawImage(image, 0, 0);
-        gc.drawImage(image, 0, 0, model.getScreenWidth()+10, model.getScreenHeight());
+        gc.drawImage(image, 0, 0, model.getScreenWidth()+12, model.getScreenHeight());
     }
     private void drawInfo(GraphicsContext gc) {
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
-        gc.setFont(new Font("LLPixel.ttf",20));
+        gc.setFont(new Font("LLPixel",20));
         gc.strokeText("Score: " + 1337, 500, 20);
     }
     private void initView(){
@@ -103,7 +95,7 @@ public class EarthInvasionView extends VBox {
         MenuBar menuBar = createMenu();
         System.out.println();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
-        canvas = new Canvas(model.getScreenWidth()+10, model.getScreenHeight());
+        canvas = new Canvas(model.getScreenWidth()+12, model.getScreenHeight());
         canvas.setFocusTraversable(true);
         canvas.requestFocus();
         this.getChildren().addAll(canvas);
