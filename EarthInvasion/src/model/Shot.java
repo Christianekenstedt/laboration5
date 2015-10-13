@@ -31,7 +31,7 @@ public class Shot extends GameObject {
     }
     
     private void loadImage(){
-        image = new Image("resources/shot.png");
+        image = new Image("resources/newShot.png");
     }
     @Override
     public void drawObject(GraphicsContext gc) {
