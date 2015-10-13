@@ -31,4 +31,9 @@ public class Alien extends GameObject{
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
     }
+
+    @Override
+    public void constrain() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

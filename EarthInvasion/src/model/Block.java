@@ -45,4 +45,9 @@ public class Block extends GameObject{
             gc.drawImage(images.get(2), getX(), getY());
         }else System.out.println("dead");
     }
+
+    @Override
+    public void constrain() {
+        
+    }
 }

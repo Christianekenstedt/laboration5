@@ -30,12 +30,12 @@ import view.EarthInvasionController;
  */
 public class EarthInvasionView extends VBox {
     private AnimationTimer timer;
-    private Image image, shipImage;
+    private Image image;
     private final EarthInvasionModel model;
     private final EarthInvasionController controller;
     private GraphicsContext gc;
     private Canvas canvas;
-    private EventHandler shipHandler,menuQuitItem, menuRulesItem, menuNewGameItem, menuHighscoreItem;
+    private EventHandler shipHandler;
     public EarthInvasionView(EarthInvasionModel model){
 
         this.model = model;
@@ -68,7 +68,11 @@ public class EarthInvasionView extends VBox {
             // paint info
             drawInfo(gc);
             // paint the objects
-            
+            for(GameObject go: controller.getObjects()){
+                if(go instanceof Player){
+                    go.constrain();
+                }
+            }
             for(GameObject go: controller.getObjects()){
                 go.drawObject(gc);
             }
@@ -82,17 +86,6 @@ public class EarthInvasionView extends VBox {
         timer = new run();
         timer.start();
     }
-    /**
-     * 
-     * @param gc
-     */  
-    /*public void drawPlayer(GraphicsContext gc) {
-        shipImage = new Image("resources/ship.png");
-        //System.out.println("Image X: "+model.getPlayerX()+" Y: "+model.getPlayerY());
-        gc.drawImage(shipImage, model.getPlayerX(), model.getPlayerY());
-    }*/
-    
-    
     public void drawBackground(GraphicsContext gc) {
         image = new Image("resources/bg1.jpg");
         //gc.drawImage(image, 0, 0);
@@ -165,7 +158,6 @@ public class EarthInvasionView extends VBox {
         });
         menuBar.getMenus().addAll(fileMenu,helpMenu); //Adds all menus to the menu bar.
         return menuBar;
-        
     }
     private void addEventHandlers(){
         
@@ -177,14 +169,9 @@ public class EarthInvasionView extends VBox {
                 //controller.handleShip(event); 
                     controller.keyPressed(event);
                 }
-   
                 else if(event.getEventType() == KeyEvent.KEY_RELEASED) {
                     controller.keyReleased(event);
                 }
-                
-                
-                
-                
             }
         };
         canvas.setOnKeyPressed(shipHandler);

@@ -64,8 +64,8 @@ public class EarthInvasionModel {
             //players.add(new Player(100, 250, 620, "resources/ship.png"));
             //players.add(new Player(100, 250, 620, "resources/ship2.png"));
             
-            objects.add(new Player(250, 620, 75, 150, 100, "resources/ship.png"));
-            objects.add(new Player(250, 620, 75, 150, 100, "resources/ship2.png"));
+            objects.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship.png"));
+            objects.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship2.png"));
             
         }else objects.add(new Player(250, 620, 75, 150, 100, "resources/ship.png"));
     }

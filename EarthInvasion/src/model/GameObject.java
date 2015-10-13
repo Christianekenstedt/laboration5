@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package model;
-
+import view.EarthInvasionView;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -55,7 +55,15 @@ abstract public class GameObject {
         this.height = height;
     }
     
+    /*public boolean intersectArea(){
+        
+        if(x < width && x)
+        
+        
+    }*/
+    
     abstract public void drawObject(GraphicsContext gc);
+    abstract public void constrain();
     
     
     
