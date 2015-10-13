@@ -21,6 +21,12 @@ public class EarthInvasionModel {
         addAliens();
         addBlocks();
     }
+    
+    public void PlayerShot(int player){
+        if(objects.get(player-1) instanceof Player){
+            objects.add(new Shot(objects.get(player-1).getX()+20, objects.get(player-1).getY(), 25, 25, true));
+        }
+    }
 
     public double getPlayerX(int player) {
         if(objects.get(player-1) instanceof Player){
@@ -89,6 +95,14 @@ public class EarthInvasionModel {
         for (GameObject object : objects) {
             if(object instanceof Alien){
                 ((Alien)object).moveAlien();
+            }
+        }
+    }
+    
+    public void moveShot(){
+        for(GameObject object: objects) {
+            if(object instanceof Shot){
+                ((Shot)object).moveShot(); 
             }
         }
     }

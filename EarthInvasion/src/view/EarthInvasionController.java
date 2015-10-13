@@ -29,6 +29,7 @@ public class EarthInvasionController {
                     break;
                 case SPACE:
                     System.out.println("PANG!");
+                    model.PlayerShot(1);
                     break;
                 case A:
                     model.setVelX(-4,2);
