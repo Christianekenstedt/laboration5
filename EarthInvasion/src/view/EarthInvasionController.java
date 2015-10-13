@@ -35,6 +35,7 @@ public class EarthInvasionController {
                     break;
                 case D:
                     model.setVelX(4,2);
+                    break;
                 case SPACE:
                     model.PlayerShot(2);
                     break;
@@ -58,6 +59,7 @@ public class EarthInvasionController {
                     break;
                 case D:
                     model.setVelX(0,2);
+                    break;
                 case SPACE:
                     
                     break;

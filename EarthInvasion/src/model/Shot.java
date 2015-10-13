@@ -40,5 +40,6 @@ public class Shot extends GameObject {
 
     @Override
     public void constrain() {
+
     }
 }
