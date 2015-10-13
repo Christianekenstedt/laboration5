@@ -17,9 +17,25 @@ public class Alien extends GameObject{
         super(x, y, width, height);
         loadImage();
         hp = 1; // hur mkt hp?
-        velocity = 0.2;
+        setVelocity(0.2);
         movingRight = true;
         
+    }
+
+    public static double getVelocity() {
+        return velocity;
+    }
+
+    public static void setVelocity(double velocity) {
+        Alien.velocity = velocity;
+    }
+
+    public static boolean isMovingRight() {
+        return movingRight;
+    }
+
+    public static void setMovingRight(boolean movingRight) {
+        Alien.movingRight = movingRight;
     }
    
     public void moveAlien(){
@@ -43,12 +59,10 @@ public class Alien extends GameObject{
     public void constrain() {
         if(getX() < 0){
             setX(0);
-            
-            movingRight = true;
+            setMovingRight(true);
         }else if(getX()> 640 - getWidth()){
             setX(640-getWidth());
-            
-            movingRight = false;
+            setMovingRight(false);
         }
     }
 }
