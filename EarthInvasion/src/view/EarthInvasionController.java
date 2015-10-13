@@ -27,8 +27,7 @@ public class EarthInvasionController {
                 case RIGHT:
                     model.setVelX(4,1);
                     break;
-                case SPACE:
-                    System.out.println("PANG!");
+                case COMMA:
                     model.PlayerShot(1);
                     break;
                 case A:
@@ -36,6 +35,9 @@ public class EarthInvasionController {
                     break;
                 case D:
                     model.setVelX(4,2);
+                case SPACE:
+                    model.PlayerShot(2);
+                    break;
                 default:
             }
     }
@@ -48,7 +50,7 @@ public class EarthInvasionController {
                 case RIGHT:
                     model.setVelX(0,1);
                     break;
-                case SPACE:
+                case COMMA:
                     //System.out.println("PANG!");
                     break;
                 case A:
@@ -56,6 +58,9 @@ public class EarthInvasionController {
                     break;
                 case D:
                     model.setVelX(0,2);
+                case SPACE:
+                    
+                    break;
                 default:
             }
         }
