@@ -63,8 +63,34 @@ abstract public class GameObject {
     }*/
     
     abstract public void drawObject(GraphicsContext gc);
-    abstract public void constrain();
+    //abstract public void constrain();
     
+    public boolean intersectsArea(double rectX, double rectY, double rectWidth, double rectHeight) {
+
+        // Find the closest point to the circle's center within 
+        // the rectangle
+        double closestX = clamp(x, rectX, rectX + rectWidth);
+        double closestY = clamp(y, rectY, rectY + rectHeight);
+
+        // Calculate the distance between the circle's center and the
+        // rectangles closest point
+        double distanceX = x - closestX;
+        double distanceY = y - closestY;
+
+        // If the distance is less than the circle's radius, an 
+        // intersection occurs (Pythagoras theorem)
+        return (distanceX * distanceX) + (distanceY * distanceY)
+                < (width * width);
+    }
     
+    private double clamp(double value, double lower, double upper) {
+        if (value < lower) {
+            return lower;
+        }
+        if (value > upper) {
+            return upper;
+        }
+        return value;
+    }
     
 }

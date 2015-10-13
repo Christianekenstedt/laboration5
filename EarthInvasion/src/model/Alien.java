@@ -34,7 +34,7 @@ public class Alien extends GameObject{
         return movingRight;
     }
 
-    public static void setMovingRight(boolean movingRight) {
+    public void setMovingRight(boolean movingRight) {
         Alien.movingRight = movingRight;
     }
    
@@ -55,14 +55,5 @@ public class Alien extends GameObject{
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
     }
 
-    @Override
-    public void constrain() {
-        if(getX() < 0){
-            setX(0);
-            setMovingRight(true);
-        }else if(getX()> 640 - getWidth()){
-            setX(640-getWidth());
-            setMovingRight(false);
-        }
-    }
+    
 }

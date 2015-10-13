@@ -116,15 +116,59 @@ public class EarthInvasionModel {
         return (ArrayList)objects.clone();
     }
     
-    /*
-    public ArrayList<Player> getPlayer(){
-        return (ArrayList)players.clone();
+    public void constrain(int index) {
+        
+        if(objects.get(index) instanceof Player){
+            if(objects.get(index).getX() < 0){
+                objects.get(index).setX(0);
+            }else if(objects.get(index).getX() > 640 - objects.get(index).getWidth()+12){
+                objects.get(index).setX(640-objects.get(index).getWidth()+12);
+            }
+        }
+        
+        else if(objects.get(index) instanceof Alien){
+            if(objects.get(index).getX() < 0){
+                objects.get(index).setX(0);
+                ((Alien)objects.get(index)).setMovingRight(true);
+            }else if(objects.get(index).getX() > 640 - objects.get(index).getWidth()){
+                objects.get(index).setX(640 - objects.get(index).getWidth());
+                ((Alien)objects.get(index)).setMovingRight(false);
+            }
+        }
+        
+        else if(objects.get(index) instanceof Shot){
+            if(objects.get(index).getY() <= 0){
+                objects.remove(index);
+                System.out.println("Removing shot");
+            }else if(objects.get(index).getY() >= screenHeight - objects.get(index).getHeight()){
+                objects.remove(index);
+                System.out.println("Removing shot");
+            }
+        }
     }
-    public ArrayList<Player> getBlocks(){
-        return (ArrayList)blocks.clone();
+    
+    public void checkForCollisionWithObject(int index) {
+        if(objects.get(index) instanceof Shot){
+            for(int i=0; i<objects.size(); i++){
+                if(objects.get(i) instanceof Block){
+                    
+                    if(objects.get(index).intersectsArea(objects.get(i).getX(), 
+                                                         objects.get(i).getY(), 
+                                                         objects.get(i).getWidth(), 
+                                                         objects.get(i).getHeight())){
+                        System.out.println("Collision with brick");
+                        ((Block)objects.get(i)).setHp(((Block)objects.get(i)).getHp() - ((Shot)objects.get(index)).getDamage());
+                        objects.remove(index);
+                    }
+                    
+                    
+                    
+                }
+            }
+            
+        }
+        
     }
-    public ArrayList<Alien> getAliens(){
-        return (ArrayList)aliens.clone();
-    }
-    */
+    
+    
 }
