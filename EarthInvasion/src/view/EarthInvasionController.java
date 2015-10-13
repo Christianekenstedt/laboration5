@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
 import model.Player;
 import model.Block;
+import model.GameObject;
 
 /**
  *
@@ -78,6 +79,11 @@ public class EarthInvasionController {
         
     
     }
+    public ArrayList<GameObject> getObjects() {
+        return (ArrayList)model.getObjects().clone();
+    }
+    
+    /*
     public ArrayList<Player> getPlayers(){
         return (ArrayList)model.getPlayer().clone();
     }
@@ -87,4 +93,5 @@ public class EarthInvasionController {
     public ArrayList<Alien> getAliens(){
         return (ArrayList)model.getAliens().clone();
     }
+    */
 }

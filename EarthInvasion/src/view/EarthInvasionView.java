@@ -20,6 +20,7 @@ import javafx.scene.text.TextAlignment;
 import model.Alien;
 import model.Block;
 import model.EarthInvasionModel;
+import model.GameObject;
 import model.Player;
 import view.EarthInvasionController;
 
@@ -61,23 +62,18 @@ public class EarthInvasionView extends VBox {
             gc = canvas.getGraphicsContext2D(); 
             model.tick(1);
             model.tick(2);
+            model.moveAlien();
             // paint the background
             drawBackground(gc);
             // paint info
             drawInfo(gc);
-            // paint the blocks
-            for(Block b: controller.getBlocks()){
-                b.drawBlock(gc);
+            // paint the objects
+            
+            for(GameObject go: controller.getObjects()){
+                go.drawObject(gc);
             }
-            // paint the player
-            for(Player p: controller.getPlayers()){
-                p.drawPlayer(gc);
-            }
-            // paint the aliens
-            for(Alien a: controller.getAliens()){
-                a.drawAlien(gc);
-                a.setX();
-            }
+            
+            
         }
     }
     
@@ -105,8 +101,8 @@ public class EarthInvasionView extends VBox {
     private void drawInfo(GraphicsContext gc) {
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
-        gc.setFont(new Font("LLPixel",20));
-        gc.strokeText("Score: " + model.getScore(), 500, 20);
+        gc.setFont(new Font("LLPixel.ttf",20));
+        gc.strokeText("Score: " + 1337, 500, 20);
     }
     private void initView(){
         this.setPadding(new Insets(0, 0, 0, 0));

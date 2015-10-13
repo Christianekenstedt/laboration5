@@ -9,32 +9,36 @@ import javafx.scene.text.Font;
  *
  * @author Gustaf
  */
-public class Player {
+public class Player extends GameObject{
     
-    private int hp,score;
-    private double x;
-    private double y;
-    private double width, height;
+    private int hp;
     private Image image;
     private String path;
     
     private double velX=0;
     private double velY=0;
     
-    public Player(int hp, int x, int y, String path){
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param hp
+     * @param path 
+     */
+    public Player(double x, double y, double width, double height, int hp, String path){
+        super(x, y, width, height);
         this.hp = hp;
-        score = 0;
-        this.x = x;
-        this.y = y;
-        width = 75;
-        height = 150;
         this.path = path;
         
     } 
     
     public void tick() {
-        x+=velX;
-        y+=velY;
+        super.setX(getX() + velX);
+        super.setY(getY() + velY);
+        //x+=velX;
+        //y+=velY;
     }
 
     public void setVelX(double velX) {
@@ -45,31 +49,16 @@ public class Player {
         this.velY = velY;
     } 
   */  
-    public double getX() {
-        return x;
-    }
-    
-    public double getY() {
-        return y;
-    }
-    
-    public void setX(double x) {
-        //x += 1.0;
-        this.x = x;
-    }
-    
-    public void setY(int y) {
-        y+=1.0;
-    }
-    public int getScore(){
+    /*public int getScore(){
         return score;
-    }
-    public void drawPlayer(GraphicsContext gc) {
+    }*/
+    @Override
+    public void drawObject(GraphicsContext gc) {
         image = new Image(path);
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
         gc.setFont(new Font("LLPixel",20));
         gc.strokeText("Health: " + hp, 10, 20);
-        gc.drawImage(image, x, y, height,width);
+        gc.drawImage(image, getX(), getY(), getHeight(),getWidth());
     }
 }
