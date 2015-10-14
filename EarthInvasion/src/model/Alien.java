@@ -49,8 +49,8 @@ public class Alien extends GameObject{
    
     public void moveAlien(){
         if(movingRight){
-            velocity = 10;
-        }else velocity = -10;
+            velocity = 0.4;
+        }else velocity = -0.4;
         
        setX(getX()+getVelocity());
     }
