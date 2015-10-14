@@ -163,7 +163,12 @@ public class EarthInvasionModel {
                         }
                         objects.remove(index);
                     }
-                    /*else if(objects.get(i) instanceof Alien){
+                    /**/
+                    
+                    
+                    
+                }
+                /*else if(objects.get(i) instanceof Alien){
                     if(objects.get(index).intersectsArea(objects.get(i).getX(), 
                                                          objects.get(i).getY(), 
                                                          objects.get(i).getWidth(), 
@@ -173,10 +178,6 @@ public class EarthInvasionModel {
                         objects.remove(index);
                     }
                 }*/
-                    
-                    
-                    
-                }
             }
             
         }

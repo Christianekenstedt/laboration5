@@ -67,7 +67,7 @@ public class EarthInvasionView extends VBox {
                 model.constrain(go);
             }
             */
-            for(int i=0; i<controller.getObjects().size()-1; i++){
+            for(int i=0; i<controller.getObjects().size(); i++){
                 model.constrain(i);
                 model.checkForCollisionWithObject(i);
             }
