@@ -2,7 +2,6 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -12,15 +11,24 @@ public class Alien extends GameObject{
     private int hp;
     private Image image;
     private static double velocity;
-    private static boolean movingRight;
+    private static boolean movingRight, atBottom;
+    
     
     public Alien(double x, double y, double width, double height){
         super(x, y, width, height);
         loadImage();
         hp = 1; // hur mkt hp?
-        setVelocity(0.2);
         movingRight = true;
+        atBottom = false;
         
+    }
+
+    public boolean isAtBottom() {
+        return atBottom;
+    }
+
+    public void setAtBottom(boolean atBottom) {
+        Alien.atBottom = atBottom;
     }
 
     public static double getVelocity() {
@@ -41,10 +49,13 @@ public class Alien extends GameObject{
    
     public void moveAlien(){
         if(movingRight){
-            velocity = 0.2;
-        }else velocity = -0.2;
+            velocity = 0.4;
+        }else velocity = -0.4;
         
-       setX(getX()+velocity);
+       setX(getX()+getVelocity());
+    }
+    public void moveAlienDown(){
+        setY(getY()+2);
     }
     
     private void loadImage(){

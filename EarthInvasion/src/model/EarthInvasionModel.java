@@ -106,7 +106,13 @@ public class EarthInvasionModel {
             }
         }
     }
-    
+    public void moveAlienDown(){
+        for (GameObject object : objects) {
+            if(object instanceof Alien){
+                ((Alien)object).moveAlienDown();
+            }
+        }
+    }
     public void moveShot(){
         for(GameObject object: objects) {
             if(object instanceof Shot){
@@ -133,11 +139,16 @@ public class EarthInvasionModel {
         else if(objects.get(index) instanceof Alien){
             if(objects.get(index).getX() < 0){
                 objects.get(index).setX(0);
+                moveAlienDown();
                 ((Alien)objects.get(index)).setMovingRight(true);
             }else if(objects.get(index).getX() > 640 - objects.get(index).getWidth()){
                 objects.get(index).setX(640 - objects.get(index).getWidth());
+                moveAlienDown();
                 ((Alien)objects.get(index)).setMovingRight(false);
+            }else if (objects.get(index).getY() > 500 - objects.get(index).getHeight()){
+                ((Alien)objects.get(index)).setAtBottom(true);
             }
+                
         }
         
         else if(objects.get(index) instanceof Shot){

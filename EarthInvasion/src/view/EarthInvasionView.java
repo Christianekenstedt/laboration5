@@ -29,6 +29,7 @@ public class EarthInvasionView extends VBox {
     private GraphicsContext gc;
     private Canvas canvas;
     private EventHandler shipHandler;
+    private Alert alert;
     public EarthInvasionView(EarthInvasionModel model){
 
         this.model = model;
@@ -79,7 +80,10 @@ public class EarthInvasionView extends VBox {
                 go.drawObject(gc);
             }
             
-            
+            if(isGameOver()){
+               //showAlert("Game Over"); // ENDAST TILLFÄLLIG!!
+               timer.stop();
+            }
         }
     }
     
@@ -178,5 +182,23 @@ public class EarthInvasionView extends VBox {
         };
         canvas.setOnKeyPressed(shipHandler);
         canvas.setOnKeyReleased(shipHandler);
+    }
+    
+    private boolean isGameOver(){
+        Boolean gameOver = false;
+        for(GameObject go: controller.getObjects()){
+            if(go instanceof Alien){    
+                if(((Alien)go).isAtBottom()){
+                    gameOver = true;
+                }
+            }
+        }
+        return gameOver;
+    }
+    private void showAlert(String message) {
+        alert.setHeaderText("");
+        alert.setTitle("Alert!");
+        alert.setContentText(message);
+        alert.show();
     }
 }
