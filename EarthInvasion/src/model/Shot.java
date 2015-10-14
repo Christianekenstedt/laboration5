@@ -7,6 +7,7 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -48,4 +49,6 @@ public class Shot extends GameObject {
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
     }
+
+    
 }

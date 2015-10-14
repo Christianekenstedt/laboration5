@@ -6,6 +6,7 @@
 package model;
 import view.EarthInvasionView;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -65,9 +66,15 @@ abstract public class GameObject {
     abstract public void drawObject(GraphicsContext gc);
     //abstract public void constrain();
     
-    public boolean intersectsArea(double rectX, double rectY, double rectWidth, double rectHeight) {
-
-        // Find the closest point to the circle's center within 
+    public boolean intersectsArea(double rectX, double rectY, double rectWidth, double rectHeight){
+        
+        Rectangle object = new Rectangle(getX(),getY(),getWidth(),getHeight());
+        Rectangle otherObject = new Rectangle(rectX,rectY,rectWidth,rectHeight);
+        if(object.intersects(otherObject.getBoundsInLocal())){
+            return true;
+        }else return false;
+    }
+      /*  // Find the closest point to the circle's center within 
         // the rectangle
         double closestX = clamp(x, rectX, rectX + rectWidth);
         double closestY = clamp(y, rectY, rectY + rectHeight);
@@ -92,5 +99,5 @@ abstract public class GameObject {
         }
         return value;
     }
-    
+    */
 }

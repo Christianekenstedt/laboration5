@@ -2,6 +2,7 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -50,10 +51,14 @@ public class Alien extends GameObject{
         image = new Image("resources/alien.png");
     }
     
+    
+    
     @Override
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
     }
+
+    
 
     
 }
