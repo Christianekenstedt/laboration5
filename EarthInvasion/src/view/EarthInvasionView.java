@@ -81,7 +81,7 @@ public class EarthInvasionView extends VBox {
             }
             
             if(isGameOver()){
-               //showAlert("Game Over"); // ENDAST TILLFÄLLIG!!
+               showGameOver("Game Over"); // ENDAST TILLFÄLLIG!!
                timer.stop();
             }
         }
@@ -195,10 +195,11 @@ public class EarthInvasionView extends VBox {
         }
         return gameOver;
     }
-    private void showAlert(String message) {
-        alert.setHeaderText("");
-        alert.setTitle("Alert!");
-        alert.setContentText(message);
-        alert.show();
+    private void showGameOver(String message) {
+        gc.setStroke(Color.RED);
+        gc.setFill(Color.RED);
+        gc.setFont(new Font("LLPixel",100));
+        gc.setLineWidth(5);
+        gc.strokeText(message, 25, 360);
     }
 }
