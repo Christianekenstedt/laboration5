@@ -87,16 +87,4 @@ public class EarthInvasionController {
     public ArrayList<GameObject> getObjects() {
         return (ArrayList)model.getObjects().clone();
     }
-    
-    /*
-    public ArrayList<Player> getPlayers(){
-        return (ArrayList)model.getPlayer().clone();
-    }
-    public ArrayList<Block> getBlocks(){
-        return (ArrayList)model.getBlocks().clone();
-    }
-    public ArrayList<Alien> getAliens(){
-        return (ArrayList)model.getAliens().clone();
-    }
-    */
 }
