@@ -157,22 +157,26 @@ public class EarthInvasionModel {
                         System.out.println("Collision with brick");
                         ((Block)objects.get(i)).setHp(((Block)objects.get(i)).getHp() - ((Shot)objects.get(index)).getDamage());
                         
-                        if(((Block)objects.get(i)).getHp() <= 0){
+                        if(((Block)objects.get(i)).getHp() <= 0){  
                             System.out.println(objects.get(i).toString() + " removed");
                             objects.remove(i);
-                        }
-                        System.out.println(objects.get(index).toString() + " removed");
-                        objects.remove(index);
+                            objects.remove(index-1);
+                            i -= i;
+                        }else {System.out.println(objects.get(index).toString() + " removed"); objects.remove(index); index-=1;}
+                        break; 
                     }
                 }else if(objects.get(i) instanceof Alien){
                     if(objects.get(index).intersectsArea(objects.get(i).getX(),objects.get(i).getY(),objects.get(i).getWidth(),objects.get(i).getHeight())){
                         
                         System.out.println("Collision with alien!");
-                        System.out.println(objects.get(i).toString() + " removed");
+                        //System.out.println(objects.get(i).toString() + " removed");
                         objects.remove(i); //Remove the alien
+                        i -=1; 
                         //Varför vill inte skottet försvinna här?
-                        System.out.println(objects.get(index).toString() + " removed");
-                        objects.remove(index); // remove the shot
+                        //System.out.println(objects.get(index).toString() + " removed");
+                        objects.remove(index-1); // remove the shot
+                        index -=1;
+                        break;
                     }
                 }
             }
