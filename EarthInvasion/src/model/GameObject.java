@@ -100,4 +100,9 @@ abstract public class GameObject {
         return value;
     }
     */
+    public String toString(){
+        String info = new String();
+        info = this.getClass().toString();
+        return info;
+    }
 }

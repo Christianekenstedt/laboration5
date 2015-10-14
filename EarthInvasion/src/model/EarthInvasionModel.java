@@ -152,32 +152,29 @@ public class EarthInvasionModel {
             for(int i=0; i<objects.size(); i++){
                 if(objects.get(i) instanceof Block){
                     
-                    if(objects.get(index).intersectsArea(objects.get(i).getX(), 
-                                                         objects.get(i).getY(), 
-                                                         objects.get(i).getWidth(), 
-                                                         objects.get(i).getHeight())){
+                    if(objects.get(index).intersectsArea(objects.get(i).getX(), objects.get(i).getY(), objects.get(i).getWidth(), objects.get(i).getHeight())){
+                        
                         System.out.println("Collision with brick");
                         ((Block)objects.get(i)).setHp(((Block)objects.get(i)).getHp() - ((Shot)objects.get(index)).getDamage());
+                        
                         if(((Block)objects.get(i)).getHp() <= 0){
+                            System.out.println(objects.get(i).toString() + " removed");
                             objects.remove(i);
                         }
+                        System.out.println(objects.get(index).toString() + " removed");
                         objects.remove(index);
                     }
-                    /**/
-                    
-                    
-                    
-                }
-                /*else if(objects.get(i) instanceof Alien){
-                    if(objects.get(index).intersectsArea(objects.get(i).getX(), 
-                                                         objects.get(i).getY(), 
-                                                         objects.get(i).getWidth(), 
-                                                         objects.get(i).getHeight())){
+                }else if(objects.get(i) instanceof Alien){
+                    if(objects.get(index).intersectsArea(objects.get(i).getX(),objects.get(i).getY(),objects.get(i).getWidth(),objects.get(i).getHeight())){
+                        
                         System.out.println("Collision with alien!");
-                        objects.remove(i);
-                        objects.remove(index);
+                        System.out.println(objects.get(i).toString() + " removed");
+                        objects.remove(i); //Remove the alien
+                        //Varför vill inte skottet försvinna här?
+                        System.out.println(objects.get(index).toString() + " removed");
+                        objects.remove(index); // remove the shot
                     }
-                }*/
+                }
             }
             
         }
