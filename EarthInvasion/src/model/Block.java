@@ -20,10 +20,18 @@ public class Block extends GameObject{
         images = new ArrayList<Image>();
         hp = 100;
         loadImages();
-
-
-        
+ 
     }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+    
+    
     
     private void loadImages(){
         Image temp = new Image("resources/newBlock.png");
@@ -44,8 +52,5 @@ public class Block extends GameObject{
         }else System.out.println("dead");
     }
 
-    @Override
-    public void constrain() {
-        
-    }
+
 }

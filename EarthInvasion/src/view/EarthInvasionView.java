@@ -62,13 +62,17 @@ public class EarthInvasionView extends VBox {
             // paint info
             drawInfo(gc);
             // paint the objects
+            /*
             for(GameObject go: controller.getObjects()){
-                if(go instanceof Player){
-                    go.constrain();
-                }else if(go instanceof Alien){
-                    go.constrain();
-                }
+                model.constrain(go);
             }
+            */
+            for(int i=0; i<controller.getObjects().size(); i++){
+                model.constrain(i);
+                model.checkForCollisionWithObject(i);
+            }
+            
+            
             for(GameObject go: controller.getObjects()){
                 go.drawObject(gc);
             }

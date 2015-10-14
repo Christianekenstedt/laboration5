@@ -16,13 +16,24 @@ public class Shot extends GameObject {
     
     private Image image;
     private boolean firedFromPlayer;
+    private int damage;
     
     public Shot(double x, double y, double width, double height, boolean firedFromPlayer){
         super(x, y, width, height);
-        int damage = 30;
+        this.damage = 30;
         loadImage();
         this.firedFromPlayer = firedFromPlayer;
     }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+    
+    
     
     public void moveShot(){
         if(firedFromPlayer == true) {
@@ -36,10 +47,5 @@ public class Shot extends GameObject {
     @Override
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
-    }
-
-    @Override
-    public void constrain() {
-
     }
 }
