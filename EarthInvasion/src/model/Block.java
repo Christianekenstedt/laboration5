@@ -50,7 +50,7 @@ public class Block extends GameObject{
             gc.drawImage(images.get(1), getX(), getY());
         }else if(hp < 84 && hp > 0){
             gc.drawImage(images.get(2), getX(), getY());
-        }else System.out.println("dead");
+        }
     }
 
     
