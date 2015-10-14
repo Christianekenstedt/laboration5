@@ -12,11 +12,12 @@ public class EarthInvasionModel {
     private int screenWidth = 640;
     private int screenHeight = 720+15;
     private ArrayList<GameObject> objects;
+    private int score;
     
     public EarthInvasionModel() {
         
         objects = new ArrayList<GameObject>();
-        
+        score = 0;
         addPlayers(2);
         addAliens();
         addBlocks();
@@ -94,6 +95,9 @@ public class EarthInvasionModel {
         return screenWidth;
     }
     
+    public int getScore(){
+        return score;
+    }
     
     public void moveAlien(){
         for (GameObject object : objects) {
@@ -148,7 +152,11 @@ public class EarthInvasionModel {
     }
     
     public void checkForCollisionWithObject(int index) {
-        if(objects.get(index) instanceof Shot){
+        Boolean shotsExist = false;
+        for(GameObject go: getObjects()){
+            if(go instanceof Shot) shotsExist = true;
+        }
+        if(shotsExist && objects.get(index) instanceof Shot){
             for(int i=0; i<objects.size(); i++){
                 if(objects.get(i) instanceof Block){
                     
@@ -169,6 +177,7 @@ public class EarthInvasionModel {
                     if(objects.get(index).intersectsArea(objects.get(i).getX(),objects.get(i).getY(),objects.get(i).getWidth(),objects.get(i).getHeight())){
                         
                         System.out.println("Collision with alien!");
+                        score += 20;
                         //System.out.println(objects.get(i).toString() + " removed");
                         objects.remove(i); //Remove the alien
                         i -=1; 
