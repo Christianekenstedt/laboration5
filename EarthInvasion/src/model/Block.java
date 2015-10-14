@@ -19,7 +19,7 @@ public class Block extends GameObject{
     public Block(double x,double y, double width, double height){
         super(x, y, width, height);
         images = new ArrayList<Image>();
-        hp = 100;
+        hp = 250;
         loadImages();
  
     }
@@ -44,11 +44,11 @@ public class Block extends GameObject{
     
     @Override
     public void drawObject(GraphicsContext gc) {
-        if(hp > 75){
+        if(hp > 166){
             gc.drawImage(images.get(0), getX(), getY());
-        }else if (hp < 76 && hp > 25){
+        }else if (hp < 167 && hp > 83){
             gc.drawImage(images.get(1), getX(), getY());
-        }else if(hp < 26 && hp > 0){
+        }else if(hp < 84 && hp > 0){
             gc.drawImage(images.get(2), getX(), getY());
         }else System.out.println("dead");
     }
