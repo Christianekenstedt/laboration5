@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -131,7 +132,7 @@ public class EarthInvasionView extends VBox {
         
         MenuItem rulesItem = new MenuItem("Rules");
         helpMenu.getItems().addAll(rulesItem);
-        
+        quitItem.setAccelerator(KeyCombination.keyCombination("Esc"));
         quitItem.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
@@ -157,6 +158,7 @@ public class EarthInvasionView extends VBox {
             @Override
             public void handle(ActionEvent event) {
                 controller.handleHighscore(event);
+                
                 
             }
             

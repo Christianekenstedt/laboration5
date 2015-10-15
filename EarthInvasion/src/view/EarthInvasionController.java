@@ -84,7 +84,6 @@ public class EarthInvasionController {
     public void handleQuit(ActionEvent event){
         AlertWindow alert = new AlertWindow();
         alert.showWindow();
-        //System.exit(0);
         
     
     }
