@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
@@ -80,7 +82,9 @@ public class EarthInvasionController {
     }
     
     public void handleQuit(ActionEvent event){
-        System.exit(0);
+        AlertWindow alert = new AlertWindow();
+        alert.showWindow();
+        //System.exit(0);
         
     
     }

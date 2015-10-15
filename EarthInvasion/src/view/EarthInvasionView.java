@@ -15,7 +15,6 @@ import javafx.scene.text.Font;
 import model.Alien;
 import model.EarthInvasionModel;
 import model.GameObject;
-import model.Player;
 
 /**
  *
@@ -202,4 +201,5 @@ public class EarthInvasionView extends VBox {
         gc.setLineWidth(5);
         gc.strokeText(message, 25, 360);
     }
+    
 }
