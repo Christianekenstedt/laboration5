@@ -127,7 +127,7 @@ public class EarthInvasionModel {
     }
     
     public void constrain(int index) {
-        
+
         if(objects.get(index) instanceof Player){
             if(objects.get(index).getX() < 0){
                 objects.get(index).setX(0);
@@ -189,11 +189,8 @@ public class EarthInvasionModel {
                         
                         System.out.println("Collision with alien!");
                         score += 20;
-                        //System.out.println(objects.get(i).toString() + " removed");
                         objects.remove(i); //Remove the alien
                         i -=1; 
-                        //Varför vill inte skottet försvinna här?
-                        //System.out.println(objects.get(index).toString() + " removed");
                         objects.remove(index-1); // remove the shot
                         index -=1;
                         break;

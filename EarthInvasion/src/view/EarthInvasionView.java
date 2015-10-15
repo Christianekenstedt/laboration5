@@ -63,15 +63,9 @@ public class EarthInvasionView extends VBox {
             // paint info
             drawInfo(gc);
             // paint the objects
-            /*
-            for(GameObject go: controller.getObjects()){
-                model.constrain(go);
-            }
-            */
-            //System.out.println(controller.getObjects().size());
-            //System.out.println(controller.getObjects().get(controller.getObjects().size()-1).toString());
             for(int i=0; i<controller.getObjects().size(); i++){
                 model.constrain(i);
+                
                 model.checkForCollisionWithObject(i);
             }
             

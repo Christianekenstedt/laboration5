@@ -48,7 +48,5 @@ public class Shot extends GameObject {
     @Override
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
-    }
-
-    
+    }   
 }

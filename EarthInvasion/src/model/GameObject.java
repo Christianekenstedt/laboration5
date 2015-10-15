@@ -64,7 +64,6 @@ abstract public class GameObject {
     }*/
     
     abstract public void drawObject(GraphicsContext gc);
-    //abstract public void constrain();
     
     public boolean intersectsArea(double rectX, double rectY, double rectWidth, double rectHeight){
         

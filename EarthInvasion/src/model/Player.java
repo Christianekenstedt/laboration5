@@ -46,14 +46,6 @@ public class Player extends GameObject{
     public void setVelX(double velX) {
         this.velX = velX;
     }
-/*
-    public void setVelY(double velY) {
-        this.velY = velY;
-    } 
-  */  
-    /*public int getScore(){
-        return score;
-    }*/
     @Override
     public void drawObject(GraphicsContext gc) {
         image = new Image(path);
