@@ -5,8 +5,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
-import javafx.scene.shape.Rectangle;
-
 
 /**
  *
@@ -14,11 +12,11 @@ import javafx.scene.shape.Rectangle;
  */
 public class Block extends GameObject{
     private int hp;
-    private ArrayList<Image> images;
+    private final ArrayList<Image> images;
     
     public Block(double x,double y, double width, double height){
         super(x, y, width, height);
-        images = new ArrayList<Image>();
+        images = new ArrayList<>();
         hp = 250;
         loadImages();
  
