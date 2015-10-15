@@ -31,17 +31,17 @@ public class AlertWindow {
     public AlertWindow(){
         alertStage = new Stage();
         alertPane = new BorderPane();
-        scene = new Scene(alertPane, 300, 200);
+        scene = new Scene(alertPane, 300, 100);
         alertPane.setPadding(new Insets(10,10,10,10));
         initAlertWindow();
     }
     private void initAlertWindow(){
-        Label label = new Label("Do you want to exit?");
+        Label label = new Label("Are you sure you want to exit?");
         Button okButton = new Button("Yes");
         okButton.autosize();
         Button cancelButton = new Button("No");
         cancelButton.autosize();
-        HBox buttons = new HBox();
+        HBox buttons = new HBox(5);
         
         buttons.getChildren().addAll(okButton,cancelButton);
         buttons.setAlignment(Pos.CENTER);
@@ -70,6 +70,7 @@ public class AlertWindow {
         alertStage.setScene(scene);
         alertStage.setResizable(false);
         alertStage.setAlwaysOnTop(true);
+        alertStage.toFront();
         alertStage.showAndWait();
     }
 }
