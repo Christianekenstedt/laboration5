@@ -82,11 +82,30 @@ public class EarthInvasionModel {
         block.add(new Block(269.95, 500.0, 100, 40));
         block.add(new Block(483.25, 500.0, 100, 40));
     }
-
+/*
     public void setVelX(double velX, int index) {
-        ((Player) player.get(index - 1)).setVelX(velX);
+        //((Player) player.get(index - 1)).setVelX(velX);
+        
+        
+        
     }
-
+*/
+    
+    public void playerMovement(int rightOrLeft, int index){
+        //1 = left, 2 = right, 3 = false left, 4 = false right
+        if(rightOrLeft == 1){
+            ((Player) player.get(index-1)).setLeft(true);
+        }else if(rightOrLeft == 2){
+            ((Player) player.get(index-1)).setRight(true);
+        }else if(rightOrLeft == 3){
+            ((Player) player.get(index-1)).setLeft(false);
+        }else if(rightOrLeft == 4){
+            ((Player) player.get(index-1)).setRight(false);
+        }
+        
+    }
+    
+    
     public void movePlayers() {
         if(noOfPlayers == 1){
             ((Player) player.get(0)).tick();

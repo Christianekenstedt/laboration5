@@ -30,22 +30,22 @@ public class EarthInvasionController {
     public void keyPressed(KeyEvent event) {
         switch (event.getCode()) {
             case LEFT:
-                model.setVelX(-4, 1);
+                model.playerMovement(1, 1);
                 break;
             case RIGHT:
-                model.setVelX(4, 1);
+                model.playerMovement(2, 1);
                 break;
             case COMMA:
                 model.PlayerShot(1);
                 break;
             case A:
                 if(model.getNoOfPlayers()==2){
-                    model.setVelX(-4, 2);
+                    model.playerMovement(1, 2);
                 }
                 break;
             case D:
                 if(model.getNoOfPlayers()>1){
-                    model.setVelX(4, 2);
+                    model.playerMovement(2, 2);
                 }
                 
                 break;
@@ -59,30 +59,30 @@ public class EarthInvasionController {
                 model.alienShot(1);
                 break;
             default:
+            
         }
     }
 
     public void keyReleased(KeyEvent event) {
         switch (event.getCode()) {
-
             case LEFT:
-                model.setVelX(0, 1);
+                model.playerMovement(3, 1);
                 break;
             case RIGHT:
-                model.setVelX(0, 1);
+                model.playerMovement(4, 1);
                 break;
             case COMMA:
                 //System.out.println("PANG!");
                 break;
             case A:
                 if(model.getNoOfPlayers()>1){
-                    model.setVelX(0, 2);
+                    model.playerMovement(3, 2);
                 }
                 
                 break;
             case D:
                 if(model.getNoOfPlayers()>1){
-                    model.setVelX(0, 2);
+                    model.playerMovement(4, 2);
                 }
                 
                 break;
@@ -90,6 +90,7 @@ public class EarthInvasionController {
 
                 break;
             default:
+            
         }
     }
 

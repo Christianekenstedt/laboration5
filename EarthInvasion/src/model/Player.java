@@ -18,6 +18,8 @@ public class Player extends GameObject {
     private int uniqeNo;
     private double velX;
     private double velY;
+    private boolean left;
+    private boolean right;
 
     /**
      *
@@ -32,18 +34,48 @@ public class Player extends GameObject {
         super(x, y, width, height);
         this.hp = hp;
         this.path = path;
-        velX = 0;
+        velX = 4;
         velY = 0;
         
+        this.left = false;
+        this.right = false;
         
         uniqeNo = playerNo;
         System.out.println("created player: " + playerNo++);
 
     }
 
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+    
+    
+
     public void tick() {
-        super.setX(getX() + velX);
-        super.setY(getY() + velY);
+        
+        if(left && !right){
+            super.setX(getX() - velX);
+        }else if(right && !left){
+            super.setX(getX() + velX);
+        }else if(right && left){
+            super.setX(getX());
+        }
+        
+        
+        //super.setX(getX() + velX);
+        //super.setY(getY() + velY);
     }
 
     public void setVelX(double velX) {
