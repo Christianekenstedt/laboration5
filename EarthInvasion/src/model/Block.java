@@ -50,4 +50,9 @@ public class Block extends GameObject{
             gc.drawImage(images.get(2), getX(), getY());
         }
     }
+
+    @Override
+    public void constrain() {
+        throw new UnsupportedOperationException("Block aint got no constrain!"); //To change body of generated methods, choose Tools | Templates.
+    }
 }

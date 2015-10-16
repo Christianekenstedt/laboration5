@@ -52,7 +52,7 @@ public class Alien extends GameObject{
             velocity = 0.4;
         }else velocity = -0.4;
         
-       setX(getX()+getVelocity());
+        setX(getX()+getVelocity());
     }
     public void moveAlienDown(){
         setY(getY()+2);
@@ -67,5 +67,21 @@ public class Alien extends GameObject{
     @Override
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
+    }
+
+    @Override
+    public void constrain() {
+        
+        if(getX() < 0){
+            setX(0);
+            moveAlienDown();
+            setMovingRight(true);
+        }else if(getX() > 640 - getWidth()){
+            setX(640 - getWidth());
+            moveAlienDown();
+            setMovingRight(false);
+        }else if(getY() > 500 - getHeight()){
+            setAtBottom(true);
+        }
     }
 }

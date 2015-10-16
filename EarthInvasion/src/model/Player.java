@@ -56,6 +56,12 @@ public class Player extends GameObject{
         gc.drawImage(image, getX(), getY(), getHeight(),getWidth());
     }
 
-    
-    
+    @Override
+    public void constrain() {
+        if(getX() < 0){
+            setX(0);
+        }else if(getX() > 640 - getWidth()){
+            setX(640 - getWidth());
+        }
+    }
 }

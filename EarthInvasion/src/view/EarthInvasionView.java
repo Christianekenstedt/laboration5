@@ -63,14 +63,21 @@ public class EarthInvasionView extends VBox {
             drawBackground(gc);
             // paint info
             drawInfo(gc);
+            // constrain the objects
+            model.constrain();
+            // collision
+            collision();
             // paint the objects
-            for(int i=0; i<controller.getObjects().size(); i++){
-                model.constrain(i);
-                model.checkForCollisionWithObject(i);
+            for(GameObject go: controller.getPlayer()){
+                go.drawObject(gc);
             }
-            
-            
-            for(GameObject go: controller.getObjects()){
+            for(GameObject go: controller.getAlien()){
+                go.drawObject(gc);
+            }
+            for(GameObject go: controller.getShot()){
+                go.drawObject(gc);
+            }
+            for(GameObject go: controller.getBlock()){
                 go.drawObject(gc);
             }
             
@@ -81,6 +88,27 @@ public class EarthInvasionView extends VBox {
         }
     }
     
+    
+    public void collision(){
+
+        model.collisionWithObjects();
+        
+        /*
+        for(int i=0; i<controller.getPlayer().size(); i++){
+                model.checkForCollisionWithObject(i);
+        }
+        for(int i=0; i<controller.getAlien().size(); i++){
+                model.checkForCollisionWithObject(i);
+        }
+        for(int i=0; i<controller.getShot().size(); i++){
+                model.shotCheckCollision();
+        }
+        for(int i=0; i<controller.getAlien().size(); i++){
+                model.checkForCollisionWithObject(i);
+        }
+        
+        */
+    }
     
     public void graphicsStart() {
         timer = new run();
@@ -119,8 +147,8 @@ public class EarthInvasionView extends VBox {
         Menu helpMenu = new Menu("Help");
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
-        MenuItem saveItem = new MenuItem("Save", new ImageView(new Image("resources/save.png",15,15,true,true)));
-        saveItem.setAccelerator(KeyCombination.keyCombination("meta+S"));
+        MenuItem saveItem = new MenuItem("Save");//, new ImageView(new Image("resources/save.png",15,15,true,true)));
+        saveItem.setAccelerator(KeyCombination.keyCombination("ctrl+S"));
         MenuItem highscoreItem = new MenuItem("Highscore");
         fileMenu.getItems().addAll(newGameItem,saveItem,highscoreItem,new SeparatorMenuItem(),quitItem);
         
@@ -188,12 +216,12 @@ public class EarthInvasionView extends VBox {
     
     private boolean isGameOver(){
         Boolean gameOver = false;
-        for(GameObject go: controller.getObjects()){
-            if(go instanceof Alien){    
-                if(((Alien)go).isAtBottom()){
-                    gameOver = true;
-                }
+
+        for(GameObject go: controller.getAlien()){
+            if(((Alien)go).isAtBottom()){
+                gameOver = true;
             }
+            
         }
         return gameOver;
     }

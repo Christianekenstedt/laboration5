@@ -94,8 +94,23 @@ public class EarthInvasionController {
     void handleSaveItem(ActionEvent event) {
         System.out.println("SAVE");
     }
+    /*
     public ArrayList<GameObject> getObjects() {
         return (ArrayList)model.getObjects().clone();
+    }
+    */
+    public ArrayList<GameObject> getPlayer() {
+        return (ArrayList)model.getPlayer();
+    }
+
+    public ArrayList<GameObject> getAlien() {
+        return (ArrayList)model.getAlien();
+    }
+    public ArrayList<GameObject> getShot() {
+        return (ArrayList)model.getShot();
+    }
+    public ArrayList<GameObject> getBlock() {
+        return (ArrayList)model.getBlock();
     }
 
     

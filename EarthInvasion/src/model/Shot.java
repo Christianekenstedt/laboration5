@@ -18,14 +18,26 @@ public class Shot extends GameObject {
     private Image image;
     private boolean firedFromPlayer;
     private int damage;
+    private boolean inFrame;
     
     public Shot(double x, double y, double width, double height, boolean firedFromPlayer){
         super(x, y, width, height);
         this.damage = 30;
         loadImage();
         this.firedFromPlayer = firedFromPlayer;
+        this.inFrame = true;
     }
 
+    public boolean isInFrame() {
+        return inFrame;
+    }
+
+    public void setInFrame(boolean inFrame) {
+        this.inFrame = inFrame;
+    }
+
+    
+    
     public int getDamage() {
         return damage;
     }
@@ -49,4 +61,14 @@ public class Shot extends GameObject {
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
     }   
+
+    @Override
+    public void constrain() {
+        if(getY() <= 0){
+            setInFrame(false);
+        }else if(getY() >= 720+15 - getHeight()){
+            setInFrame(false);
+        }
+    }
+    
 }
