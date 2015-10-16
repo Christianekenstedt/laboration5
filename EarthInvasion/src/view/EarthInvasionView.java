@@ -122,7 +122,7 @@ public class EarthInvasionView extends VBox {
         Menu helpMenu = new Menu("Help");
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
-        MenuItem saveItem = new MenuItem("Save", new ImageView(new Image("resources/save.png",15,15,true,true)));
+        MenuItem saveItem = new MenuItem("Save");//, new ImageView(new Image("resources/save.png",15,15,true,true)));
         saveItem.setAccelerator(KeyCombination.keyCombination("meta+S"));
         MenuItem highscoreItem = new MenuItem("Highscore");
         fileMenu.getItems().addAll(newGameItem,saveItem,highscoreItem,new SeparatorMenuItem(),quitItem);
@@ -167,7 +167,7 @@ public class EarthInvasionView extends VBox {
             }
             
         });
-        menuBar.useSystemMenuBarProperty().set(true);
+        //menuBar.useSystemMenuBarProperty().set(true);
         menuBar.getMenus().addAll(fileMenu,helpMenu); //Adds all menus to the menu bar.
         return menuBar;
     }
