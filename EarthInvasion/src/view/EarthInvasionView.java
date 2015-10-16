@@ -220,6 +220,10 @@ public class EarthInvasionView extends VBox {
         timer.start();
     }
     
+    public AnimationTimer getTimer(){
+        
+        return this.timer;
+    }
     
     
 }
