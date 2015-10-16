@@ -26,9 +26,9 @@ import view.EarthInvasionView;
  * @author Christian
  */
 public class AlertWindow {
-    Stage alertStage;
-    BorderPane alertPane;
-    Scene scene;
+    private Stage alertStage;
+    private BorderPane alertPane;
+    private Scene scene;
     public AlertWindow(){
         alertStage = new Stage();
         alertPane = new BorderPane();
