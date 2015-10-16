@@ -92,24 +92,8 @@ public class EarthInvasionView extends VBox {
     }
 
     public void collision() {
-
         model.collisionWithObjects();
         model.moveAlienDown();
-        /*
-         for(int i=0; i<controller.getPlayer().size(); i++){
-         model.checkForCollisionWithObject(i);
-         }
-         for(int i=0; i<controller.getAlien().size(); i++){
-         model.checkForCollisionWithObject(i);
-         }
-         for(int i=0; i<controller.getShot().size(); i++){
-         model.shotCheckCollision();
-         }
-         for(int i=0; i<controller.getAlien().size(); i++){
-         model.checkForCollisionWithObject(i);
-         }
-        
-         */
     }
 
     public void graphicsStart() {
@@ -119,7 +103,6 @@ public class EarthInvasionView extends VBox {
 
     public void drawBackground(GraphicsContext gc) {
         image = new Image("resources/bg1.jpg");
-        //gc.drawImage(image, 0, 0);
         gc.drawImage(image, 0, 0, model.getScreenWidth() + 12, model.getScreenHeight());
     }
 
@@ -134,7 +117,6 @@ public class EarthInvasionView extends VBox {
         this.setPadding(new Insets(0, 0, 0, 0));
 
         MenuBar menuBar = createMenu();
-        System.out.println();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
         canvas = new Canvas(model.getScreenWidth() + 12, model.getScreenHeight());
         canvas.setFocusTraversable(true);
@@ -148,71 +130,63 @@ public class EarthInvasionView extends VBox {
      */
     private MenuBar createMenu() {
         MenuBar menuBar = new MenuBar();
+        
         Menu fileMenu = new Menu("File");
+        Menu gameMenu = new Menu("Game");
         Menu helpMenu = new Menu("Help");
+        
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
-        MenuItem saveItem = new MenuItem("Save");//, new ImageView(new Image("resources/save.png",15,15,true,true)));
-        saveItem.setAccelerator(KeyCombination.keyCombination("ctrl+S"));
+        MenuItem saveItem = new MenuItem("Save", new ImageView(new Image("resources/save.png",15,15,true,true)));
+        
         MenuItem highscoreItem = new MenuItem("Highscore");
+        
         fileMenu.getItems().addAll(newGameItem, saveItem, highscoreItem, new SeparatorMenuItem(), quitItem);
-
+        MenuItem pauseItem = new MenuItem("Pause");
+        MenuItem resumeItem = new MenuItem("Resume");
+        gameMenu.getItems().addAll(pauseItem, resumeItem);
+        
         MenuItem rulesItem = new MenuItem("Rules");
-        helpMenu.getItems().addAll(rulesItem);
+        helpMenu.getItems().add(rulesItem);
+        
         quitItem.setAccelerator(KeyCombination.keyCombination("Esc"));
-        quitItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                controller.handleQuit(event);
-            }
-
+        quitItem.setOnAction((ActionEvent event) -> {
+            controller.handleQuit(event);
         });
-        newGameItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                controller.handleNewGame(event);
-            }
-
+        newGameItem.setOnAction((ActionEvent event) -> {
+            controller.handleNewGame(event);
         });
-        saveItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                controller.handleSaveItem(event);
-            }
-
+        saveItem.setAccelerator(KeyCombination.keyCombination("ctrl+S"));
+        saveItem.setOnAction((ActionEvent event) -> {
+            controller.handleSaveItem(event);
         });
-        rulesItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                controller.handleRules(event);
-            }
-
+        rulesItem.setOnAction((ActionEvent event) -> {
+            controller.handleRules(event);
         });
-        highscoreItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                controller.handleHighscore(event);
-
-            }
-
+        highscoreItem.setOnAction((ActionEvent event) -> {
+            controller.handleHighscore(event);
+        });
+        pauseItem.setAccelerator(KeyCombination.keyCombination("P"));
+        pauseItem.setOnAction((ActionEvent event) ->{
+            controller.handlePause(event);
+        });
+        resumeItem.setAccelerator(KeyCombination.keyCombination("R"));
+        resumeItem.setOnAction((ActionEvent event) ->{
+            controller.handleResume(event);
         });
         //menuBar.useSystemMenuBarProperty().set(true);
-        menuBar.getMenus().addAll(fileMenu, helpMenu); //Adds all menus to the menu bar.
+        menuBar.getMenus().addAll(fileMenu, gameMenu, helpMenu); //Adds all menus to the menu bar.
         return menuBar;
     }
 
     private void addEventHandlers() {
 
-        shipHandler = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-
-                if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-                    //controller.handleShip(event); 
-                    controller.keyPressed(event);
-                } else if (event.getEventType() == KeyEvent.KEY_RELEASED) {
-                    controller.keyReleased(event);
-                }
+        shipHandler = (EventHandler<KeyEvent>) (KeyEvent event) -> {
+            if (event.getEventType() == KeyEvent.KEY_PRESSED) {
+                //controller.handleShip(event);
+                controller.keyPressed(event);
+            } else if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+                controller.keyReleased(event);
             }
         };
         canvas.setOnKeyPressed(shipHandler);
@@ -249,11 +223,6 @@ public class EarthInvasionView extends VBox {
 
     public void setTimerStart() {
         timer.start();
-    }
-
-    public AnimationTimer getTimer() {
-
-        return this.timer;
     }
 
 }

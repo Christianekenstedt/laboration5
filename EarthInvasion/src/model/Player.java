@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
  */
 public class Player extends GameObject {
 
-    private int hp;
+    private final int hp;
     private Image image;
     private final String path;
 
@@ -39,8 +39,6 @@ public class Player extends GameObject {
     public void tick() {
         super.setX(getX() + velX);
         super.setY(getY() + velY);
-        //x+=velX;
-        //y+=velY;
     }
 
     public void setVelX(double velX) {

@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Timer;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import model.EarthInvasionModel;
 import model.GameObject;
 
@@ -99,15 +103,21 @@ public class EarthInvasionController {
         view.setFrostEffect(0, 0);
 
     }
+    
+    public void handlePause(ActionEvent event) {
+        view.setTimerStop();
+        view.setFrostEffect(10, 3);
+        
+    }
 
+    public void handleResume(ActionEvent event) {
+        view.setTimerStart();
+        view.setFrostEffect(0, 0);
+    }
+    
     void handleSaveItem(ActionEvent event) {
         System.out.println("SAVE");
     }
-    /*
-     public ArrayList<GameObject> getObjects() {
-     return (ArrayList)model.getObjects().clone();
-     }
-     */
 
     public ArrayList<GameObject> getPlayer() {
         return (ArrayList) model.getPlayer();
@@ -124,5 +134,6 @@ public class EarthInvasionController {
     public ArrayList<GameObject> getBlock() {
         return (ArrayList) model.getBlock();
     }
+
 
 }
