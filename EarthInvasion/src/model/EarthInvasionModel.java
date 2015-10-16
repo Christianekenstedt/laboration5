@@ -154,10 +154,10 @@ public class EarthInvasionModel {
         else if(objects.get(index) instanceof Shot){
             if(objects.get(index).getY() <= 0){
                 objects.remove(index);
-                System.out.println("Removing shot");
+                //System.out.println("Removing shot");
             }else if(objects.get(index).getY() >= screenHeight - objects.get(index).getHeight()){
                 objects.remove(index);
-                System.out.println("Removing shot");
+                //System.out.println("Removing shot");
             }
         }
     }
@@ -173,21 +173,21 @@ public class EarthInvasionModel {
                     
                     if(objects.get(index).intersectsArea(objects.get(i).getX(), objects.get(i).getY(), objects.get(i).getWidth(), objects.get(i).getHeight())){
                         
-                        System.out.println("Collision with brick");
+                        //System.out.println("Collision with brick");
                         ((Block)objects.get(i)).setHp(((Block)objects.get(i)).getHp() - ((Shot)objects.get(index)).getDamage());
                         
                         if(((Block)objects.get(i)).getHp() <= 0){  
-                            System.out.println(objects.get(i).toString() + " removed");
+                            //System.out.println(objects.get(i).toString() + " removed");
                             objects.remove(i);
                             objects.remove(index-1);
                             i -= i;
-                        }else {System.out.println(objects.get(index).toString() + " removed"); objects.remove(index); index-=1;}
+                        }else {/*System.out.println(objects.get(index).toString() + " removed"); */objects.remove(index); index-=1;}
                         break; 
                     }
                 }else if(objects.get(i) instanceof Alien){
                     if(objects.get(index).intersectsArea(objects.get(i).getX(),objects.get(i).getY(),objects.get(i).getWidth(),objects.get(i).getHeight())){
                         
-                        System.out.println("Collision with alien!");
+                        //System.out.println("Collision with alien!");
                         score += 20;
                         objects.remove(i); //Remove the alien
                         i -=1; 

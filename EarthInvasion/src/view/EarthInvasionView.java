@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -65,7 +66,6 @@ public class EarthInvasionView extends VBox {
             // paint the objects
             for(int i=0; i<controller.getObjects().size(); i++){
                 model.constrain(i);
-                
                 model.checkForCollisionWithObject(i);
             }
             
@@ -114,15 +114,15 @@ public class EarthInvasionView extends VBox {
      * @return 
      */
     private MenuBar createMenu(){
-        
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         Menu helpMenu = new Menu("Help");
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
-        
+        MenuItem saveItem = new MenuItem("Save", new ImageView(new Image("resources/save.png",15,15,true,true)));
+        saveItem.setAccelerator(KeyCombination.keyCombination("meta+S"));
         MenuItem highscoreItem = new MenuItem("Highscore");
-        fileMenu.getItems().addAll(newGameItem,highscoreItem,new SeparatorMenuItem(),quitItem);
+        fileMenu.getItems().addAll(newGameItem,saveItem,highscoreItem,new SeparatorMenuItem(),quitItem);
         
         MenuItem rulesItem = new MenuItem("Rules");
         helpMenu.getItems().addAll(rulesItem);
@@ -138,6 +138,13 @@ public class EarthInvasionView extends VBox {
             @Override
             public void handle(ActionEvent event) {
                 controller.handleNewGame(event);
+            }
+            
+        });
+        saveItem.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                controller.handleSaveItem(event);
             }
             
         });
