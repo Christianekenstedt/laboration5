@@ -39,13 +39,21 @@ public class EarthInvasionController {
                 model.PlayerShot(1);
                 break;
             case A:
-                model.setVelX(-4, 2);
+                if(model.getNoOfPlayers()>1){
+                    model.setVelX(-4, 2);
+                }
                 break;
             case D:
-                model.setVelX(4, 2);
+                if(model.getNoOfPlayers()>1){
+                    model.setVelX(4, 2);
+                }
+                
                 break;
             case SPACE:
-                model.PlayerShot(2);
+                if(model.getNoOfPlayers()>1){
+                    model.PlayerShot(2);
+                }
+                
                 break;
             case V:
                 model.alienShot(1);
@@ -67,10 +75,16 @@ public class EarthInvasionController {
                 //System.out.println("PANG!");
                 break;
             case A:
-                model.setVelX(0, 2);
+                if(model.getNoOfPlayers()>1){
+                    model.setVelX(0, 2);
+                }
+                
                 break;
             case D:
-                model.setVelX(0, 2);
+                if(model.getNoOfPlayers()>1){
+                    model.setVelX(0, 2);
+                }
+                
                 break;
             case SPACE:
 

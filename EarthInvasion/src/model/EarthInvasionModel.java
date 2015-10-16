@@ -18,6 +18,7 @@ public class EarthInvasionModel {
 
     private int score;
     int ticker;
+    private int noOfPlayers;
 
     public EarthInvasionModel() {
 
@@ -27,7 +28,8 @@ public class EarthInvasionModel {
         shot = new ArrayList<GameObject>();
         ticker = 0;
         score = 0;
-        addPlayers(2);
+        noOfPlayers = 1; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
+        addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
     }
@@ -47,13 +49,21 @@ public class EarthInvasionModel {
         return player.get(index - 1).getY();
     }
 
+    public int getNoOfPlayers() {
+        return noOfPlayers;
+    }
+
+    public void setNoOfPlayers(int noOfPlayers) {
+        this.noOfPlayers = noOfPlayers;
+    }
+    
     private void addPlayers(int noOfPlayers) {
         if (noOfPlayers == 2) {
 
             player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship.png"));
             player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship2.png"));
         } else {
-            player.add(new Player(250, 620, 75, 150, 100, "resources/ship.png"));
+            player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship.png"));
         }
     }
 
@@ -77,8 +87,18 @@ public class EarthInvasionModel {
         ((Player) player.get(index - 1)).setVelX(velX);
     }
 
-    public void tick(int index) {
-        ((Player) player.get(index - 1)).tick();
+    public void movePlayers() {
+        if(noOfPlayers == 1){
+            ((Player) player.get(0)).tick();
+        }else if (noOfPlayers == 2){
+            ((Player) player.get(0)).tick();
+            ((Player) player.get(1)).tick();
+        }
+        
+    }
+    
+    public void tick(int index){
+        ((Player) player.get(index-1)).tick();
     }
 
     public int getScreenHeight() {
