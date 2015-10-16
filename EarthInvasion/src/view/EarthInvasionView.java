@@ -95,7 +95,7 @@ public class EarthInvasionView extends VBox {
     public void collision(){
 
         model.collisionWithObjects();
-        
+        model.moveAlienDown();
         /*
         for(int i=0; i<controller.getPlayer().size(); i++){
                 model.checkForCollisionWithObject(i);

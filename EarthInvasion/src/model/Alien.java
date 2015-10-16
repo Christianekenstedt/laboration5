@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
+import model.EarthInvasionModel;
 /**
  *
  * @author Chrille
@@ -11,7 +11,7 @@ public class Alien extends GameObject{
     private int hp;
     private Image image;
     private static double velocity;
-    private static boolean movingRight, atBottom;
+    private static boolean movingRight, atBottom, constrained;
     
     
     public Alien(double x, double y, double width, double height){
@@ -20,6 +20,7 @@ public class Alien extends GameObject{
         hp = 1; // hur mkt hp?
         movingRight = true;
         atBottom = false;
+        constrained = false;
         
     }
 
@@ -74,14 +75,24 @@ public class Alien extends GameObject{
         
         if(getX() < 0){
             setX(0);
-            moveAlienDown();
+            constrained = true;
+            //moveAlienDown();
             setMovingRight(true);
         }else if(getX() > 640 - getWidth()){
             setX(640 - getWidth());
-            moveAlienDown();
+            constrained = true;
+            //moveAlienDown();
             setMovingRight(false);
         }else if(getY() > 500 - getHeight()){
             setAtBottom(true);
         }
+    }
+
+    public boolean hasConstrained() {
+        return constrained;
+    }
+
+    void setConstrained() {
+        constrained = false;
     }
 }

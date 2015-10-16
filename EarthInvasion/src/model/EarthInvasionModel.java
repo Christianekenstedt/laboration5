@@ -163,34 +163,21 @@ public class EarthInvasionModel {
     public void moveAlienDown(){
         
         for (GameObject object : alien) {
-            ((Alien)object).moveAlienDown();
-        }
-        /*
-        for (GameObject object : objects) {
-            if(object instanceof Alien){
+            if(((Alien)object).hasConstrained()){
                 ((Alien)object).moveAlienDown();
+                
             }
+            
         }
-        */
+        for(GameObject object: alien){ // FUL LÖSNING SOM FAN MEN VET EJ HUR ANNARS?!
+            ((Alien)object).setConstrained();
+        }
     }
     public void moveShot(){        
           
         for(GameObject object: shot) {
             ((Shot)object).moveShot(); 
         }
-        
-        /*
-        for(GameObject object: objects) {
-            if(object instanceof Shot){
-                ((Shot)object).moveShot(); 
-            }
-        }
-        
-        
-        for(GameObject object: shot) {
-            ((Shot)object).moveShot(); 
-        }
-        */
     }
     
     
@@ -231,8 +218,11 @@ public class EarthInvasionModel {
             for(int j=0; j<alien.size(); j++){
                 if(shot.get(i).intersectsArea(alien.get(j).getX(), alien.get(j).getY(), alien.get(j).getWidth(), alien.get(j).getHeight())){
                     shot.remove(shot.get(i));
+                    i--;
+                    score += 20;
                     alien.remove(alien.get(j));
                     j--;
+                    break;
                 }
             }
         }
@@ -247,12 +237,15 @@ public class EarthInvasionModel {
                 
                 if(shot.get(i).intersectsArea(block.get(j).getX(), block.get(j).getY(), block.get(j).getWidth(), block.get(j).getHeight())){
                     ((Block)block.get(j)).setHp(((Block)block.get(j)).getHp() - ((Shot)shot.get(i)).getDamage());
-                    shot.remove(shot.get(i));
+                    
                     if(((Block)block.get(j)).getHp() <= 0){
                         block.remove(block.get(j));
-                    }
-                    j--;
+                        shot.remove(i);
+                        j--;
+                    }else shot.remove(shot.get(i));i--;
+                    break;
                 }
+                
                 
             }
             
