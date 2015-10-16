@@ -9,58 +9,79 @@ import javafx.scene.text.Font;
  *
  * @author Gustaf
  */
-public class Player extends GameObject{
-    
+public class Player extends GameObject {
+
     private int hp;
     private Image image;
     private final String path;
-    
+    private static int playerNo = 0;
+    private int uniqeNo;
     private double velX;
     private double velY;
-    
+
     /**
-     * 
+     *
      * @param x
      * @param y
      * @param width
      * @param height
      * @param hp
-     * @param path 
+     * @param path
      */
-    public Player(double x, double y, double width, double height, int hp, String path){
+    public Player(double x, double y, double width, double height, int hp, String path) {
         super(x, y, width, height);
         this.hp = hp;
         this.path = path;
         velX = 0;
         velY = 0;
         
-    } 
-    
+        
+        uniqeNo = playerNo;
+        System.out.println("created player: " + playerNo++);
+
+    }
+
     public void tick() {
         super.setX(getX() + velX);
         super.setY(getY() + velY);
-        //x+=velX;
-        //y+=velY;
     }
 
     public void setVelX(double velX) {
         this.velX = velX;
     }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getUniqeNo() {
+        return uniqeNo;
+    }
+    
     @Override
     public void drawObject(GraphicsContext gc) {
+        
         image = new Image(path);
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
-        gc.setFont(new Font("LLPixel",20));
-        gc.strokeText("Health: " + hp, 10, 20);
-        gc.drawImage(image, getX(), getY(), getHeight(),getWidth());
+        gc.setFont(new Font("LLPixel", 20));
+        if(getUniqeNo() == 0) {
+                gc.strokeText("P"+ (getUniqeNo()+1) + " Health: " + getHp(), 10, 20);
+            }else gc.strokeText("P"+ (getUniqeNo()+1) + " Health: " + getHp(), 10, 45);
+
+        
+        gc.drawImage(image, getX(), getY(), getHeight(), getWidth());
     }
 
     @Override
     public void constrain() {
-        if(getX() < 0){
+        if (getX() < 0) {
             setX(0);
-        }else if(getX() > 640 - getWidth()){
+        } else if (getX() > 640 - getWidth()) {
             setX(640 - getWidth());
         }
     }
