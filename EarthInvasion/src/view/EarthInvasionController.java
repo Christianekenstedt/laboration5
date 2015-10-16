@@ -84,7 +84,7 @@ public class EarthInvasionController {
     
     public void handleQuit(ActionEvent event){
         AlertWindow alert = new AlertWindow();
-        //view.
+        
         view.setTimerStop();
         alert.showWindow();
         view.setTimerStart();

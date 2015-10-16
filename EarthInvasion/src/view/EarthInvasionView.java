@@ -186,6 +186,10 @@ public class EarthInvasionView extends VBox {
         canvas.setOnKeyReleased(shipHandler);
     }
     
+    public void setFrostEffect(){
+        canvas.setEffect(FROST);
+    }
+    
     private boolean isGameOver(){
         Boolean gameOver = false;
         for(GameObject go: controller.getObjects()){
