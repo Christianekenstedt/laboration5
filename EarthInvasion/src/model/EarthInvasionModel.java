@@ -107,10 +107,10 @@ public class EarthInvasionModel {
                     }
                 }
             }
-            alienShot(counter);
-            
+            alienShot(counter);            
+
         }
-        
+
     }
     
     public void alienShot(int index){
@@ -171,8 +171,30 @@ public class EarthInvasionModel {
     public void collisionWithObjects() {
         shotCheckCollisionWithAlien();
         shotCheckCollisionWithBlock();
+        shotCheckCollisionWithPlayer();
     }
+    
+    private void shotCheckCollisionWithPlayer() {
+        for (int i = 0; i < shot.size(); i++) {
+            for (int j = 0; j < player.size(); j++) {
+                if(!((Shot)shot.get(i)).isFiredFromPlayer()){
+                    if (shot.get(i).intersectsArea(player.get(j).getX(), player.get(j).getY(), player.get(j).getWidth(), player.get(j).getHeight())) {
+                        ((Player) player.get(j)).setHp(((Player) player.get(j)).getHp() - ((Shot) shot.get(i)).getDamage());
 
+                        if (((Player) player.get(j)).getHp() <= 0) {
+                            //player.remove(player.get(j)); //TAGIT BORT ATT PLAYERN FÖRSVINNER ATM
+                            shot.remove(i);
+                            //j--;
+                        } else {
+                            shot.remove(shot.get(i));
+                        }
+                        i--;
+                        break;
+                    }
+                }
+            }
+        }
+    }
     public void shotCheckCollisionWithAlien() {
         for (int i = 0; i < shot.size(); i++) {
             for (int j = 0; j < alien.size(); j++) {
@@ -230,5 +252,7 @@ public class EarthInvasionModel {
     public ArrayList<GameObject> getBlock() {
         return (ArrayList) block.clone();
     }
+
+
 
 }

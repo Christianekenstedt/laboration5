@@ -11,10 +11,11 @@ import javafx.scene.text.Font;
  */
 public class Player extends GameObject {
 
-    private final int hp;
+    private int hp;
     private Image image;
     private final String path;
-
+    private static int playerNo = 0;
+    private int uniqeNo;
     private double velX;
     private double velY;
 
@@ -33,6 +34,10 @@ public class Player extends GameObject {
         this.path = path;
         velX = 0;
         velY = 0;
+        
+        
+        uniqeNo = playerNo;
+        System.out.println("created player: " + playerNo++);
 
     }
 
@@ -45,13 +50,30 @@ public class Player extends GameObject {
         this.velX = velX;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getUniqeNo() {
+        return uniqeNo;
+    }
+    
     @Override
     public void drawObject(GraphicsContext gc) {
+        
         image = new Image(path);
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
         gc.setFont(new Font("LLPixel", 20));
-        gc.strokeText("Health: " + hp, 10, 20);
+        if(getUniqeNo() == 0) {
+                gc.strokeText("P"+ (getUniqeNo()+1) + " Health: " + getHp(), 10, 20);
+            }else gc.strokeText("P"+ (getUniqeNo()+1) + " Health: " + getHp(), 10, 45);
+
+        
         gc.drawImage(image, getX(), getY(), getHeight(), getWidth());
     }
 
