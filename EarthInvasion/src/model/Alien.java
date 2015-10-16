@@ -3,25 +3,26 @@ package model;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.EarthInvasionModel;
+
 /**
  *
  * @author Chrille
  */
-public class Alien extends GameObject{
+public class Alien extends GameObject {
+
     private int hp;
     private Image image;
     private static double velocity;
     private static boolean movingRight, atBottom, constrained;
-    
-    
-    public Alien(double x, double y, double width, double height){
+
+    public Alien(double x, double y, double width, double height) {
         super(x, y, width, height);
         loadImage();
         hp = 1; // hur mkt hp?
         movingRight = true;
         atBottom = false;
         constrained = false;
-        
+
     }
 
     public boolean isAtBottom() {
@@ -47,24 +48,25 @@ public class Alien extends GameObject{
     public void setMovingRight(boolean movingRight) {
         Alien.movingRight = movingRight;
     }
-   
-    public void moveAlien(){
-        if(movingRight){
+
+    public void moveAlien() {
+        if (movingRight) {
             velocity = 0.4;
-        }else velocity = -0.4;
-        
-        setX(getX()+getVelocity());
+        } else {
+            velocity = -0.4;
+        }
+
+        setX(getX() + getVelocity());
     }
-    public void moveAlienDown(){
-        setY(getY()+2);
+
+    public void moveAlienDown() {
+        setY(getY() + 2);
     }
-    
-    private void loadImage(){
+
+    private void loadImage() {
         image = new Image("resources/alien.png");
     }
-    
-    
-    
+
     @Override
     public void drawObject(GraphicsContext gc) {
         gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
@@ -72,18 +74,18 @@ public class Alien extends GameObject{
 
     @Override
     public void constrain() {
-        
-        if(getX() < 0){
+
+        if (getX() < 0) {
             setX(0);
             constrained = true;
             //moveAlienDown();
             setMovingRight(true);
-        }else if(getX() > 640 - getWidth()){
+        } else if (getX() > 640 - getWidth()) {
             setX(640 - getWidth());
             constrained = true;
             //moveAlienDown();
             setMovingRight(false);
-        }else if(getY() > 500 - getHeight()){
+        } else if (getY() > 500 - getHeight()) {
             setAtBottom(true);
         }
     }

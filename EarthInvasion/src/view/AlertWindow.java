@@ -26,54 +26,58 @@ import view.EarthInvasionView;
  * @author Christian
  */
 public class AlertWindow {
+
     private Stage alertStage;
     private BorderPane alertPane;
     private Scene scene;
-    public AlertWindow(){
+
+    public AlertWindow() {
         alertStage = new Stage();
         alertPane = new BorderPane();
         scene = new Scene(alertPane, 300, 100);
-        alertPane.setPadding(new Insets(10,10,10,10));
+        alertPane.setPadding(new Insets(10, 10, 10, 10));
         initAlertWindow();
     }
-    private void initAlertWindow(){
+
+    private void initAlertWindow() {
         Label label = new Label("Are you sure you want to exit?");
         Button okButton = new Button("Yes");
         okButton.autosize();
         Button cancelButton = new Button("No");
         cancelButton.autosize();
         HBox buttons = new HBox(5);
-        
-        buttons.getChildren().addAll(okButton,cancelButton);
+
+        buttons.getChildren().addAll(okButton, cancelButton);
         buttons.setAlignment(Pos.CENTER);
         alertPane.setBottom(buttons);
         alertPane.setCenter(label);
-        
-        okButton.setOnAction(new EventHandler<ActionEvent>(){
+
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 //Ropa på spara funktioner osv..
                 System.exit(0);
             }
-            
+
         });
-        cancelButton.setOnAction(new EventHandler<ActionEvent>(){
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 alertStage.close();
             }
-            
+
         });
-        
+
     }
-    public void showWindow(){
+
+    public void showWindow() {
         alertStage.setTitle("Warning!");
         alertStage.setScene(scene);
         alertStage.setResizable(false);
         alertStage.setAlwaysOnTop(false);
         alertStage.toFront();
         alertStage.initStyle(StageStyle.UNDECORATED);
-        
+
         alertStage.showAndWait();
         //Här borde vi lägga någon typ av return
     }

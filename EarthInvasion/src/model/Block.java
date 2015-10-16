@@ -10,16 +10,17 @@ import javafx.scene.image.WritableImage;
  *
  * @author Chrille
  */
-public class Block extends GameObject{
+public class Block extends GameObject {
+
     private int hp;
     private final ArrayList<Image> images;
-    
-    public Block(double x,double y, double width, double height){
+
+    public Block(double x, double y, double width, double height) {
         super(x, y, width, height);
         images = new ArrayList<>();
         hp = 250;
         loadImages();
- 
+
     }
 
     public void setHp(int hp) {
@@ -29,24 +30,22 @@ public class Block extends GameObject{
     public int getHp() {
         return hp;
     }
-    
-    
-    
-    private void loadImages(){
+
+    private void loadImages() {
         Image temp = new Image("resources/newBlock.png");
         PixelReader reader = temp.getPixelReader();
         images.add(new WritableImage(reader, 0, 0, 100, 40));
         images.add(new WritableImage(reader, 100, 0, 100, 40));
         images.add(new WritableImage(reader, 200, 0, 100, 40));
     }
-    
+
     @Override
     public void drawObject(GraphicsContext gc) {
-        if(hp > 166){
+        if (hp > 166) {
             gc.drawImage(images.get(0), getX(), getY());
-        }else if (hp < 167 && hp > 83){
+        } else if (hp < 167 && hp > 83) {
             gc.drawImage(images.get(1), getX(), getY());
-        }else if(hp < 84 && hp > 0){
+        } else if (hp < 84 && hp > 0) {
             gc.drawImage(images.get(2), getX(), getY());
         }
     }

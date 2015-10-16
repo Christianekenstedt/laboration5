@@ -17,25 +17,24 @@ import view.EarthInvasionView;
  * @author Chrille
  */
 public class EarthInvasion extends Application {
+
     @Override
     public void start(Stage primaryStage) {
         // skapa EarthInvasionModel och skicka som argument till EarthInvasionView
-        
-        
-        
+
         EarthInvasionModel model = new EarthInvasionModel();
         EarthInvasionView root = new EarthInvasionView(model);
-        
+
         Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
                 AlertWindow alert = new AlertWindow();
                 root.setTimerStop();
-                root.setFrostEffect(10,3);
+                root.setFrostEffect(10, 3);
                 alert.showWindow();
                 root.setTimerStart();
-                root.setFrostEffect(0,0);
+                root.setFrostEffect(0, 0);
                 event.consume();
             }
         });
@@ -45,7 +44,6 @@ public class EarthInvasion extends Application {
         primaryStage.getIcons().add(new Image("resources/alien_icon.png"));
         primaryStage.show();
     }
-    
 
     /**
      * @param args the command line arguments
@@ -53,5 +51,5 @@ public class EarthInvasion extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
