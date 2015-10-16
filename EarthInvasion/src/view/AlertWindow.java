@@ -72,5 +72,6 @@ public class AlertWindow {
         alertStage.setAlwaysOnTop(true);
         alertStage.toFront();
         alertStage.showAndWait();
+        //Här borde vi lägga någon typ av return
     }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import static com.sun.javafx.runtime.async.BackgroundExecutor.getTimer;
 import java.util.ArrayList;
 import java.util.Timer;
 import javafx.animation.AnimationTimer;
@@ -83,7 +84,10 @@ public class EarthInvasionController {
     
     public void handleQuit(ActionEvent event){
         AlertWindow alert = new AlertWindow();
+        //view.
+        view.setTimerStop();
         alert.showWindow();
+        view.setTimerStart();
         
     
     }

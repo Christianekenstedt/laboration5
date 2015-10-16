@@ -204,5 +204,14 @@ public class EarthInvasionView extends VBox {
         gc.setLineWidth(5);
         gc.strokeText(message, 25, 360);
     }
+
+    public void setTimerStop() {
+        timer.stop();
+    }
+    public void setTimerStart() {
+        timer.start();
+    }
+    
+    
     
 }
