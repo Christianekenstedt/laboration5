@@ -17,6 +17,7 @@ public class EarthInvasionModel {
     private final ArrayList<GameObject> shot;
 
     private int score;
+    int ticker;
 
     public EarthInvasionModel() {
 
@@ -24,7 +25,7 @@ public class EarthInvasionModel {
         alien = new ArrayList<GameObject>();
         block = new ArrayList<GameObject>();
         shot = new ArrayList<GameObject>();
-
+        ticker = 0;
         score = 0;
         addPlayers(2);
         addAliens();
@@ -32,7 +33,7 @@ public class EarthInvasionModel {
     }
 
     public void PlayerShot(int index) {
-
+        
         shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
     }
 
@@ -92,8 +93,33 @@ public class EarthInvasionModel {
         return score;
     }
     
+    public void checkIfShootPlayer(){
+        int counter = 0;
+        
+        for(int i = 0; i < alien.size(); i++){ 
+            for(int j = 0; j < alien.size(); j++){
+                if(alien.get(i).getX() == alien.get(j).getX()){ // Kollar om alien i har samma x-värde som alien j
+                                                                // för i så fall så ligger båda på samma kolummn.
+                                                                  // Då måste vi kolla om alien j har större y-värde, om den har de så får inte alien i skjuta. 
+                                                                //Ifall den inte har de måste vi kolla om tills arrayen är slut av aliens, och den absolut sista alien får skjuta. för varje rad.
+                    if (alien.get(i).getY() < alien.get(j).getY()){ // Om alien i:s, y-värde är mindre än alien j:s, då betyder det att alien i, ej får skjuta.
+                        counter = j ;                               // Då sparar vi undan tillfälligt den alien som finns längst ner för varje kolummn.
+                    }
+                }
+            }
+            alienShot(counter);
+            
+        }
+        
+    }
+    
     public void alienShot(int index){
-        shot.add(new Shot(alien.get(index - 1).getX()-10, alien.get(index - 1).getY()-10, 7, 25, false));
+        
+        ticker ++;
+        if(ticker == 100){
+            shot.add(new Shot(alien.get(index).getX()+(alien.get(index).getWidth()/2), alien.get(index).getY()+ alien.get(index).getHeight(), 7, 25, false));
+        }
+        if (ticker > 1000) ticker = 0;
     }
     
     public void moveAlien() {

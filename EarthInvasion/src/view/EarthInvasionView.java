@@ -83,7 +83,9 @@ public class EarthInvasionView extends VBox {
             for (GameObject go : controller.getBlock()) {
                 go.drawObject(gc);
             }
-
+            
+            model.checkIfShootPlayer();
+                    
             if (isGameOver()) {
                 showGameOver("Game Over"); // ENDAST TILLFÄLLIG!!
                 timer.stop();
