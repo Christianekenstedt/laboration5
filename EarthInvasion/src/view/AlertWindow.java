@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import view.EarthInvasionView;
 
@@ -69,8 +70,10 @@ public class AlertWindow {
         alertStage.setTitle("Warning!");
         alertStage.setScene(scene);
         alertStage.setResizable(false);
-        alertStage.setAlwaysOnTop(true);
+        alertStage.setAlwaysOnTop(false);
         alertStage.toFront();
+        alertStage.initStyle(StageStyle.UNDECORATED);
+        
         alertStage.showAndWait();
         //Här borde vi lägga någon typ av return
     }

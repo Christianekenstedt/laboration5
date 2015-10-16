@@ -7,6 +7,8 @@ import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
@@ -31,6 +33,7 @@ public class EarthInvasionView extends VBox {
     private Canvas canvas;
     private EventHandler shipHandler;
     private Alert alert;
+    
     public EarthInvasionView(EarthInvasionModel model){
 
         this.model = model;
@@ -164,6 +167,7 @@ public class EarthInvasionView extends VBox {
             }
             
         });
+        menuBar.useSystemMenuBarProperty().set(true);
         menuBar.getMenus().addAll(fileMenu,helpMenu); //Adds all menus to the menu bar.
         return menuBar;
     }
@@ -186,8 +190,8 @@ public class EarthInvasionView extends VBox {
         canvas.setOnKeyReleased(shipHandler);
     }
     
-    public void setFrostEffect(){
-        canvas.setEffect(FROST);
+    public void setFrostEffect(int BLUR_VALUE, int AMOUNT){
+        canvas.setEffect(new BoxBlur(BLUR_VALUE, BLUR_VALUE, AMOUNT));
     }
     
     private boolean isGameOver(){
