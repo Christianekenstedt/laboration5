@@ -28,7 +28,7 @@ public class EarthInvasionModel {
         shot = new ArrayList<GameObject>();
         ticker = 0;
         score = 0;
-        noOfPlayers = 1; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
+        noOfPlayers = 2; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
         addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
