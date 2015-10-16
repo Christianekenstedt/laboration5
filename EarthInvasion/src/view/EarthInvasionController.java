@@ -80,14 +80,21 @@ public class EarthInvasionController {
     
     public void handleRules(ActionEvent event){
         System.out.println("RULES!!");
+        RulesWindow rules= new RulesWindow();
+        view.setTimerStop();
+        view.setFrostEffect(10,3);
+        rules.showWindow();
+        view.setTimerStart();
+        view.setFrostEffect(0,0);
     }
     
     public void handleQuit(ActionEvent event){
         AlertWindow alert = new AlertWindow();
-        //view.
         view.setTimerStop();
+        view.setFrostEffect(10,3);
         alert.showWindow();
         view.setTimerStart();
+        view.setFrostEffect(0,0);
         
     
     }

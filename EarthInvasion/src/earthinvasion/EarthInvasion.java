@@ -31,7 +31,12 @@ public class EarthInvasion extends Application {
             @Override
             public void handle(WindowEvent event) {
                 AlertWindow alert = new AlertWindow();
+                root.setTimerStop();
+                root.setFrostEffect(10,3);
                 alert.showWindow();
+                root.setTimerStart();
+                root.setFrostEffect(0,0);
+                event.consume();
             }
         });
         primaryStage.setTitle("Earth Invasion!");
