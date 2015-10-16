@@ -91,7 +91,11 @@ public class EarthInvasionModel {
     public int getScore() {
         return score;
     }
-
+    
+    public void alienShot(int index){
+        shot.add(new Shot(alien.get(index - 1).getX()-10, alien.get(index - 1).getY()-10, 7, 25, false));
+    }
+    
     public void moveAlien() {
 
         for (GameObject object : alien) {

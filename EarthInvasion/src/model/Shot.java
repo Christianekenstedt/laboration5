@@ -19,6 +19,7 @@ public class Shot extends GameObject {
     private boolean firedFromPlayer;
     private int damage;
     private boolean inFrame;
+    private Image image2;
 
     public Shot(double x, double y, double width, double height, boolean firedFromPlayer) {
         super(x, y, width, height);
@@ -45,18 +46,31 @@ public class Shot extends GameObject {
     }
 
     public void moveShot() {
-        if (firedFromPlayer == true) {
+        if (firedFromPlayer) {
             setY(getY() - 2);
+        }else{
+            setY(getY() + 2);
         }
+    }
+
+    public boolean isFiredFromPlayer() {
+        return firedFromPlayer;
     }
 
     private void loadImage() {
         image = new Image("resources/shot.png");
+        image2 = new Image("resources/shot2.png");
+        
     }
 
     @Override
     public void drawObject(GraphicsContext gc) {
-        gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
+        if(firedFromPlayer){
+            gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
+        }else{
+            gc.drawImage(image2, getX(), getY(), getWidth(), getHeight());
+        }
+        
     }
 
     @Override

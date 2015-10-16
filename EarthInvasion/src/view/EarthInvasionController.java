@@ -47,6 +47,9 @@ public class EarthInvasionController {
             case SPACE:
                 model.PlayerShot(2);
                 break;
+            case V:
+                model.alienShot(1);
+                break;
             default:
         }
     }
