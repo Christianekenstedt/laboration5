@@ -39,7 +39,7 @@ public class EarthInvasionController {
                 model.PlayerShot(1);
                 break;
             case A:
-                if(model.getNoOfPlayers()>1){
+                if(model.getNoOfPlayers()==2){
                     model.setVelX(-4, 2);
                 }
                 break;

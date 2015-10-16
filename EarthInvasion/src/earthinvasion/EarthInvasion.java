@@ -14,7 +14,7 @@ import model.EarthInvasionModel;
 import view.AlertWindow;
 
 import view.EarthInvasionView;
-import view.FXMLMainMenuController;
+import view.MainMenu;
 
 /**
  *
@@ -40,8 +40,10 @@ public class EarthInvasion extends Application {
             menuStage.showAndWait();
             
         }*/
-        
-        EarthInvasionModel model = new EarthInvasionModel();
+        MainMenu m = new MainMenu();
+        m.showWindow();
+        System.out.println(MainMenu.getNoOfPlayers());
+        EarthInvasionModel model = new EarthInvasionModel(MainMenu.getNoOfPlayers());
         EarthInvasionView root = new EarthInvasionView(model);
         
         Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());

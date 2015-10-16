@@ -20,7 +20,7 @@ public class EarthInvasionModel {
     int ticker;
     private int noOfPlayers;
 
-    public EarthInvasionModel() {
+    public EarthInvasionModel(int noOfPlayers) {
 
         player = new ArrayList<GameObject>();
         alien = new ArrayList<GameObject>();
@@ -28,7 +28,7 @@ public class EarthInvasionModel {
         shot = new ArrayList<GameObject>();
         ticker = 0;
         score = 0;
-        noOfPlayers = 2; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
+        this.noOfPlayers = noOfPlayers; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
         addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
