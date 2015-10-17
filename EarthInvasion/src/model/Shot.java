@@ -7,7 +7,6 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -60,7 +59,6 @@ public class Shot extends GameObject {
     private void loadImage() {
         image = new Image("resources/shot.png");
         image2 = new Image("resources/shot2.png");
-        
     }
 
     @Override
