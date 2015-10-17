@@ -59,7 +59,7 @@ public class Shot extends GameObject {
 
     private void loadImage() {
         image = new Image("resources/shot.png");
-        image2 = new Image("resources/ship2.png");
+        image2 = new Image("resources/shot2.png");
         
     }
 
