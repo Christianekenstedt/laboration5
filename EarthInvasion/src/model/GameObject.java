@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import javafx.geometry.Rectangle2D;
 import view.EarthInvasionView;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.Rectangle;
@@ -68,11 +69,11 @@ abstract public class GameObject {
     
     public boolean intersectsArea(double rectX, double rectY, double rectWidth, double rectHeight){
         
-        Rectangle object = new Rectangle(getX(),getY(),getWidth(),getHeight());
-        Rectangle otherObject = new Rectangle(rectX,rectY,rectWidth,rectHeight);
-        if(object.intersects(otherObject.getBoundsInLocal())){
-            return true;
-        }else return false;
+        Rectangle2D object = new Rectangle2D(getX(),getY(),getWidth(),getHeight());
+        Rectangle2D otherObject = new Rectangle2D(rectX,rectY,rectWidth,rectHeight);
+        
+        return object.intersects(otherObject);
+
     }
      
     public String toString(){
