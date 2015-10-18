@@ -60,8 +60,8 @@ public class EarthInvasionModel {
     private void addPlayers(int noOfPlayers) {
         if (noOfPlayers == 2) {
 
-            player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship.png"));
-            player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship2.png"));
+            player.add(new Player(260, 620, 66.3, 66.3, 100, "resources/ship.png"));
+            player.add(new Player(360, 620, 66.3, 66.3, 100, "resources/ship2.png"));
         } else {
             player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship.png"));
         }
@@ -82,14 +82,6 @@ public class EarthInvasionModel {
         block.add(new Block(269.95, 500.0, 100, 40));
         block.add(new Block(483.25, 500.0, 100, 40));
     }
-/*
-    public void setVelX(double velX, int index) {
-        //((Player) player.get(index - 1)).setVelX(velX);
-        
-        
-        
-    }
-*/
     
     public void playerMovement(int rightOrLeft, int index){
         //1 = left, 2 = right, 3 = false left, 4 = false right
@@ -237,7 +229,7 @@ public class EarthInvasionModel {
     public void shotCheckCollisionWithAlien() {
         for (int i = 0; i < shot.size(); i++) {
             for (int j = 0; j < alien.size(); j++) {
-                if (shot.get(i).intersectsArea(alien.get(j).getX(), alien.get(j).getY(), alien.get(j).getWidth(), alien.get(j).getHeight())) {
+                if ( ((Shot)shot.get(i)).isFiredFromPlayer() && shot.get(i).intersectsArea(alien.get(j).getX(), alien.get(j).getY(), alien.get(j).getWidth(), alien.get(j).getHeight())) {
                     shot.remove(shot.get(i));
                     i--;
                     score += 20;

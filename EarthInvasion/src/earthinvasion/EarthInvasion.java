@@ -25,40 +25,21 @@ public class EarthInvasion extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // skapa EarthInvasionModel och skicka som argument till EarthInvasionView
-        /*menuStage = new Stage();
-        Parent root2 = FXMLLoader.load(getClass().getResource("/view/FXMLMainMenu.fxml"));
-        Scene scene2 = new Scene(root2, 640, 720);
-        
-        System.out.println(FXMLMainMenuController.getNoOfPlayers());
-        
-        if(FXMLMainMenuController.getNoOfPlayers() == 0){
-            menuStage.setTitle("Earth Invasion!");
-            menuStage.setScene(scene2);
-            menuStage.setResizable(false);
-            menuStage.getIcons().add(new Image("resources/alien_icon.png"));
-            menuStage.showAndWait();
-            
-        }*/
         MainMenu m = new MainMenu();
         m.showWindow();
-        System.out.println(MainMenu.getNoOfPlayers());
         EarthInvasionModel model = new EarthInvasionModel(MainMenu.getNoOfPlayers());
         EarthInvasionView root = new EarthInvasionView(model);
         
         Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());
         
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                AlertWindow alert = new AlertWindow();
-                root.setTimerStop();
-                root.setFrostEffect(10, 3);
-                alert.showWindow();
-                root.setTimerStart();
-                root.setFrostEffect(0, 0);
-                event.consume();
-            }
+        primaryStage.setOnCloseRequest((WindowEvent event) -> {
+            AlertWindow alert = new AlertWindow();
+            root.setTimerStop();
+            root.setFrostEffect(10, 3);
+            alert.showWindow();
+            root.setTimerStart();
+            root.setFrostEffect(0, 0);
+            event.consume();
         });
         
         primaryStage.setTitle("Earth Invasion!");
