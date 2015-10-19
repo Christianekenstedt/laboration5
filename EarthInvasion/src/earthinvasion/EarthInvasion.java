@@ -22,7 +22,6 @@ import view.MainMenu;
  * @author Chrille
  */
 public class EarthInvasion extends Application {
-    //private static Stage menuStage;
 
     @Override
     public void start(Stage primaryStage) throws IOException {

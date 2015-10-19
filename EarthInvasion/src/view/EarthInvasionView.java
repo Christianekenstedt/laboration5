@@ -1,6 +1,8 @@
 package view;
 
 import javafx.animation.AnimationTimer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -35,9 +37,10 @@ public class EarthInvasionView extends VBox {
     private Canvas canvas;
     private EventHandler shipHandler;
     private Alert alert;
+    private Audio a;
 
     public EarthInvasionView(EarthInvasionModel model) {
-        Audio a = new Audio();
+        a = new Audio();
         this.model = model;
         controller = new EarthInvasionController(model, this, a); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         //Creates the window, menu bar and so on
@@ -155,9 +158,43 @@ public class EarthInvasionView extends VBox {
         MenuItem highscoreItem = new MenuItem("Highscore");
         
         fileMenu.getItems().addAll(newGameItem, saveItem, highscoreItem, new SeparatorMenuItem(), quitItem);
+        
+        MenuItem bgMusic = new MenuItem("Music");
+        bgMusic.setDisable(true);
+        
+        Slider bgS = new Slider(0,1,a.getBgVolume());
+        bgS.setShowTickLabels(true);
+        bgS.setShowTickMarks(true);
+        
+        bgS.valueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+            oldValue = a.getBgVolume();
+            a.setBgVolume(newValue.doubleValue());
+            
+        });
+        
+        MenuItem sfxMusic = new MenuItem("Sound effects");
+        sfxMusic.setDisable(true);
+        
+        Slider fxS = new Slider(0,1,a.getSoundEffectsVolume());
+        fxS.setShowTickLabels(true);
+        fxS.setShowTickMarks(true);
+        
+        fxS.valueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+            oldValue = a.getSoundEffectsVolume();
+            a.setSoundEffectsVolume(newValue.doubleValue());
+        });
+        
+        CustomMenuItem sliderBg = new CustomMenuItem(bgS);
+        CustomMenuItem sliderSfx = new CustomMenuItem(fxS);
+        sliderBg.setHideOnClick(false);
+        sliderSfx.setHideOnClick(false);
+        
+        Menu music = new Menu("Music");
+        music.getItems().addAll(bgMusic,sliderBg,new SeparatorMenuItem(),sfxMusic,sliderSfx);
+        
         MenuItem pauseItem = new MenuItem("Pause");
         MenuItem resumeItem = new MenuItem("Resume");
-        gameMenu.getItems().addAll(pauseItem, resumeItem);
+        gameMenu.getItems().addAll(pauseItem, resumeItem, new SeparatorMenuItem(), music);
         
         MenuItem rulesItem = new MenuItem("Rules");
         helpMenu.getItems().add(rulesItem);

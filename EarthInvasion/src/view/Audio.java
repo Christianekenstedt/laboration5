@@ -6,6 +6,8 @@
 package view;
 
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import static javafx.scene.input.DataFormat.URL;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.*;
@@ -23,6 +25,8 @@ public class Audio {
     private AudioClip alienKilled;
     private Media music;
     private MediaPlayer bgMusic;
+    private double bgVolume;
+    private double soundEffectsVolume;
     
     public Audio(){
         loadSounds();
@@ -32,22 +36,52 @@ public class Audio {
         music = new Media(getClass().getResource("/resources/audio/music.mpeg").toExternalForm());
         bulletSound = new AudioClip(getClass().getResource("/resources/audio/LaserGun.mp3").toExternalForm());
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
+        setSoundEffectsVolume(0.5);
+        setBgVolume(0.2);
         
     }
     
     public void playBG(){
+        
         bgMusic = new MediaPlayer(music);
-        bgMusic.setVolume(0.2);
+        bgMusic.setVolume(getBgVolume());
         bgMusic.play();
     }
     public void playBullet(){
-        bulletSound.setVolume(0.5);
-
+        bulletSound.setVolume(getSoundEffectsVolume());
         bulletSound.play();
         
     }
     public void alienKilled(){
-        alienKilled.setVolume(0.5);
+        alienKilled.setVolume(getSoundEffectsVolume());
         alienKilled.play();
     }
+    
+    public void setMediaPlayerVolume(){
+             bgMusic.setVolume(getBgVolume());
+    }
+    
+    public double getBgVolume() {
+        return bgVolume;
+    }
+    
+    public void setBgVolume(double bgVolume) {
+        this.bgVolume = bgVolume;
+    }
+
+    public double getSoundEffectsVolume() {
+        return soundEffectsVolume;
+    }
+
+    public void setSoundEffectsVolume(double soundEffectsVolume) {
+        this.soundEffectsVolume = soundEffectsVolume;
+    }
+
+    /*@Override
+    public void update(Observable o, Object o1) {
+        //setBgVolume((Double) o.);
+    }*/
+
+ 
+    
 }
