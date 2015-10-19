@@ -30,22 +30,26 @@ public class RulesWindow {
     public RulesWindow() {
         rulesStage = new Stage();
         rulesPane = new BorderPane();
-        scene = new Scene(rulesPane, 300, 100);
+        scene = new Scene(rulesPane, 400, 400);
         rulesPane.setPadding(new Insets(10, 10, 10, 10));
         initRulesWindow();
     }
 
     private void initRulesWindow() {
-        Label label = new Label("Rules and rules and rules....");
+        Label title = new Label("Rules for Earth Invasion!");
+        Label info = new Label("Singel player:\n'←' to go left\n '→' go right\n',' (COMMA) to shoot\n\nMultiplayer:\n\nPlayer 2:\n'A' to go left\n'D' to go right\n'SPACE' to shoot\n\n Game rules:\n\n Shot down the aliens before they kill you or they reach your shields.");
+        
         Button okButton = new Button("Yes, i understand!");
         okButton.autosize();
-
         HBox buttons = new HBox(5);
-
+        title.setCenterShape(true);
+        
         buttons.getChildren().add(okButton);
-        buttons.setAlignment(Pos.CENTER);
+        buttons.setAlignment(Pos.BOTTOM_CENTER);
         rulesPane.setBottom(buttons);
-        rulesPane.setCenter(label);
+        
+        rulesPane.setTop(title);
+        rulesPane.setCenter(info);
 
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -59,7 +63,7 @@ public class RulesWindow {
     }
 
     public void showWindow() {
-        rulesStage.setTitle("Warning!");
+        rulesStage.setTitle("Rules!");
         rulesStage.setScene(scene);
         rulesStage.setResizable(false);
         rulesStage.setAlwaysOnTop(false);
