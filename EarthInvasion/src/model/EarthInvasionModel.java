@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import view.Audio;
 
 /**
  *
@@ -19,13 +20,17 @@ public class EarthInvasionModel {
     private int score;
     int ticker;
     private int noOfPlayers;
+    private final Audio a;
 
-    public EarthInvasionModel(int noOfPlayers) {
-
+    public EarthInvasionModel(int noOfPlayers, Audio a) {
+        this.a = a;
         player = new ArrayList<GameObject>();
         alien = new ArrayList<GameObject>();
         block = new ArrayList<GameObject>();
         shot = new ArrayList<GameObject>();
+        
+        
+        
         ticker = 0;
         score = 0;
         this.noOfPlayers = noOfPlayers; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
@@ -233,6 +238,7 @@ public class EarthInvasionModel {
                     shot.remove(shot.get(i));
                     i--;
                     score += 20;
+                    a.alienKilled();
                     alien.remove(alien.get(j));
                     j--;
                     break;

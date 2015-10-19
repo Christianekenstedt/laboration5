@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.EarthInvasionModel;
 import view.AlertWindow;
+import view.Audio;
 
 import view.EarthInvasionView;
 import view.MainMenu;
@@ -25,9 +26,10 @@ public class EarthInvasion extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        MainMenu m = new MainMenu();
+        Audio a = new Audio();
+        MainMenu m = new MainMenu(a);
         m.showWindow();
-        EarthInvasionModel model = new EarthInvasionModel(MainMenu.getNoOfPlayers());
+        EarthInvasionModel model = new EarthInvasionModel(MainMenu.getNoOfPlayers(), a);
         EarthInvasionView root = new EarthInvasionView(model);
         
         Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());

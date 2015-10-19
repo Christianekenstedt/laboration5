@@ -29,8 +29,10 @@ public class MainMenu {
     private Button twoPlayerButton;
     private static int noOfPlayers;
     private final Stage menuStage;
+    private final Audio a;
     
-    public MainMenu() {
+    public MainMenu(Audio a) {
+        this.a = a;
         menuStage = new Stage();
         aPane = new AnchorPane();
         scene = new Scene(aPane, 640, 720);
@@ -40,6 +42,7 @@ public class MainMenu {
 
 
     public void initMainMenu() {
+        a.playBG();
         Image bg = new Image("resources/EarthInvasion.gif",650,750,false,false);
         Image logo = new Image("resources/earthInvasionLogo.png",400,100,true,true);
         imageView = new ImageView(bg);

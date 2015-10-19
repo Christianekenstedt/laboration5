@@ -37,9 +37,9 @@ public class EarthInvasionView extends VBox {
     private Alert alert;
 
     public EarthInvasionView(EarthInvasionModel model) {
-
+        Audio a = new Audio();
         this.model = model;
-        controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        controller = new EarthInvasionController(model, this, a); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         //Creates the window, menu bar and so on
         initView();
         // Add all the event handlers

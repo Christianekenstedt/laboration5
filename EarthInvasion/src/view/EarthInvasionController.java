@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.EarthInvasionModel;
 import model.GameObject;
-
+import view.Audio;
 /**
  *
  * @author Chrille
@@ -21,10 +21,12 @@ public class EarthInvasionController {
 
     private final EarthInvasionModel model;
     private final EarthInvasionView view;
+    private final Audio audio;
 
-    EarthInvasionController(EarthInvasionModel model, EarthInvasionView view) {
+    EarthInvasionController(EarthInvasionModel model, EarthInvasionView view, Audio audio) {
         this.model = model;
         this.view = view;
+        this.audio = audio;
     }
 
     public void keyPressed(KeyEvent event) {
@@ -37,6 +39,7 @@ public class EarthInvasionController {
                 break;
             case COMMA:
                 model.PlayerShot(1);
+                audio.playBullet();
                 break;
             case A:
                 if(model.getNoOfPlayers()==2){
@@ -52,6 +55,7 @@ public class EarthInvasionController {
             case SPACE:
                 if(model.getNoOfPlayers()>1){
                     model.PlayerShot(2);
+                    audio.playBullet();
                 }
                 
                 break;
