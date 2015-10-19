@@ -42,7 +42,7 @@ public class MainMenu {
 
 
     public void initMainMenu() {
-        a.playBG();
+        //a.toggleBGMusic();
         Image bg = new Image("resources/EarthInvasion.gif",650,750,false,false);
         Image logo = new Image("resources/earthInvasionLogo.png",400,100,true,true);
         imageView = new ImageView(bg);

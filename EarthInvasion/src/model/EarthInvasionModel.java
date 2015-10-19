@@ -20,10 +20,10 @@ public class EarthInvasionModel {
     private int score;
     int ticker;
     private int noOfPlayers;
-    private final Audio a;
+    private final Audio audio;
 
-    public EarthInvasionModel(int noOfPlayers, Audio a) {
-        this.a = a;
+    public EarthInvasionModel(int noOfPlayers, Audio audio) {
+        this.audio = audio;
         player = new ArrayList<GameObject>();
         alien = new ArrayList<GameObject>();
         block = new ArrayList<GameObject>();
@@ -238,7 +238,7 @@ public class EarthInvasionModel {
                     shot.remove(shot.get(i));
                     i--;
                     score += 20;
-                    a.alienKilled();
+                    audio.alienKilled();
                     alien.remove(alien.get(j));
                     j--;
                     break;

@@ -1,15 +1,10 @@
 package view;
 
-import static com.sun.javafx.runtime.async.BackgroundExecutor.getTimer;
 import java.util.ArrayList;
-import java.util.Timer;
-import javafx.animation.AnimationTimer;
+
 import javafx.event.ActionEvent;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import model.EarthInvasionModel;
 import model.GameObject;
 import view.Audio;
@@ -21,12 +16,12 @@ public class EarthInvasionController {
 
     private final EarthInvasionModel model;
     private final EarthInvasionView view;
-    private final Audio audio;
+    //private final Audio audio;
 
-    EarthInvasionController(EarthInvasionModel model, EarthInvasionView view, Audio audio) {
+    public EarthInvasionController(EarthInvasionModel model, EarthInvasionView view){
         this.model = model;
         this.view = view;
-        this.audio = audio;
+        //this.audio = audio;
     }
 
     public void keyPressed(KeyEvent event) {
@@ -39,7 +34,7 @@ public class EarthInvasionController {
                 break;
             case COMMA:
                 model.PlayerShot(1);
-                audio.playBullet();
+                Audio.playBullet();
                 break;
             case A:
                 if(model.getNoOfPlayers()==2){
@@ -55,12 +50,14 @@ public class EarthInvasionController {
             case SPACE:
                 if(model.getNoOfPlayers()>1){
                     model.PlayerShot(2);
-                    audio.playBullet();
+                    Audio.playBullet();
                 }
                 
                 break;
             case V:
                 model.alienShot(1);
+                //audio.toggleBGMusic();
+                //audio.alienKilled();
                 break;
             default:
             

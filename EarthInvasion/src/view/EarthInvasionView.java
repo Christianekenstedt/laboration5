@@ -40,9 +40,8 @@ public class EarthInvasionView extends VBox {
     private Audio a;
 
     public EarthInvasionView(EarthInvasionModel model) {
-        a = new Audio();
         this.model = model;
-        controller = new EarthInvasionController(model, this, a); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
         //Creates the window, menu bar and so on
         initView();
         // Add all the event handlers
@@ -159,23 +158,16 @@ public class EarthInvasionView extends VBox {
         
         fileMenu.getItems().addAll(newGameItem, saveItem, highscoreItem, new SeparatorMenuItem(), quitItem);
         
-        MenuItem bgMusic = new MenuItem("Music");
-        bgMusic.setDisable(true);
-        
-        Slider bgS = new Slider(0,1,a.getBgVolume());
-        bgS.setShowTickLabels(true);
-        bgS.setShowTickMarks(true);
-        
-        bgS.valueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            oldValue = a.getBgVolume();
-            a.setBgVolume(newValue.doubleValue());
-            
+        CheckMenuItem bgMusic = new CheckMenuItem("Music");
+        bgMusic.setSelected(true);
+        bgMusic.selectedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            Audio.toggleBGMusic();
         });
         
         MenuItem sfxMusic = new MenuItem("Sound effects");
         sfxMusic.setDisable(true);
         
-        Slider fxS = new Slider(0,1,a.getSoundEffectsVolume());
+        Slider fxS = new Slider(0,1,Audio.getSoundEffectsVolume());
         fxS.setShowTickLabels(true);
         fxS.setShowTickMarks(true);
         
@@ -184,13 +176,13 @@ public class EarthInvasionView extends VBox {
             a.setSoundEffectsVolume(newValue.doubleValue());
         });
         
-        CustomMenuItem sliderBg = new CustomMenuItem(bgS);
+        
         CustomMenuItem sliderSfx = new CustomMenuItem(fxS);
-        sliderBg.setHideOnClick(false);
+        
         sliderSfx.setHideOnClick(false);
         
         Menu music = new Menu("Music");
-        music.getItems().addAll(bgMusic,sliderBg,new SeparatorMenuItem(),sfxMusic,sliderSfx);
+        music.getItems().addAll(bgMusic,new SeparatorMenuItem(),sfxMusic,sliderSfx);
         
         MenuItem pauseItem = new MenuItem("Pause");
         MenuItem resumeItem = new MenuItem("Resume");
