@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class EarthInvasionModel {
 
-    private final int screenWidth = 640;
-    private final int screenHeight = 720 + 15;
+    private final static int screenWidth = 640;
+    private final static int screenHeight = 720 + 15;
 
     private final ArrayList<GameObject> player;
     private final ArrayList<GameObject> alien;
@@ -112,11 +112,11 @@ public class EarthInvasionModel {
         ((Player) player.get(index-1)).tick();
     }
 
-    public int getScreenHeight() {
+    public static int getScreenHeight() {
         return screenHeight;
     }
 
-    public int getScreenWidth() {
+    public static int getScreenWidth() {
         return screenWidth;
     }
 

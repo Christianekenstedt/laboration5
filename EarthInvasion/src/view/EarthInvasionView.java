@@ -58,21 +58,23 @@ public class EarthInvasionView extends VBox {
             if (previousNs == 0) {
                 previousNs = nowNs;
             }
-            gc = canvas.getGraphicsContext2D();
+            
             
             //model.tick(1);
             //model.tick(2);
             model.movePlayers();
             model.moveAlien();
             model.moveShot();
-            // paint the background
-            drawBackground(gc);
-            // paint info
-            drawInfo(gc);
             // constrain the objects
             model.constrain();
             // collision
             collision();
+            // paint the background
+            drawBackground(gc);
+            // paint info
+            drawInfo(gc);
+            
+            
             // paint the objects
             for (GameObject go : controller.getPlayer()) {
                 go.drawObject(gc);
@@ -102,13 +104,17 @@ public class EarthInvasionView extends VBox {
     }
 
     public void graphicsStart() {
+        gc = canvas.getGraphicsContext2D();
+        
+        //Thread gu = new Thread(new GraphicsUpdater(gc,controller,model, this));
+        //gu.start();
         timer = new run();
         timer.start();
     }
 
     public void drawBackground(GraphicsContext gc) {
         image = new Image("resources/bg1.jpg");
-        gc.drawImage(image, 0, 0, model.getScreenWidth() + 12, model.getScreenHeight());
+        gc.drawImage(image, 0, 0, EarthInvasionModel.getScreenWidth() + 12, EarthInvasionModel.getScreenHeight());
     }
 
     private void drawInfo(GraphicsContext gc) {
