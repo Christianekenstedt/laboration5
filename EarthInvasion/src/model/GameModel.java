@@ -86,10 +86,10 @@ public class GameModel {
     private void addPlayers(int noOfPlayers) {
         if (noOfPlayers == 2) {
 
-            player.add(new Player(260, 620, 66.3, 66.3, 100, "resources/ship.png"));
-            player.add(new Player(360, 620, 66.3, 66.3, 100, "resources/ship2.png"));
+            player.add(new Player(260, 650, 66.3, 66.3, 100, "resources/ship.png"));
+            player.add(new Player(360, 650, 66.3, 66.3, 100, "resources/ship2.png"));
         } else {
-            player.add(new Player(250, 620, 66.3, 66.3, 100, "resources/ship.png"));
+            player.add(new Player(250, 650, 66.3, 66.3, 100, "resources/ship.png"));
         }
     }
 
@@ -104,9 +104,9 @@ public class GameModel {
     }
 
     private void addBlocks() {
-        block.add(new Block(56.65, 500.0, 100, 40));
-        block.add(new Block(269.95, 500.0, 100, 40));
-        block.add(new Block(483.25, 500.0, 100, 40));
+        block.add(new Block(56.65, 530.0, 100, 40));
+        block.add(new Block(269.95, 530.0, 100, 40));
+        block.add(new Block(483.25, 530.0, 100, 40));
     }
 
     /**

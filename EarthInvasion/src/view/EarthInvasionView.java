@@ -73,7 +73,7 @@ public class EarthInvasionView extends VBox {
 
     public void drawBackground() {
         image = new Image("resources/bg1.jpg");
-        gc.drawImage(image, 0, 0, getScreenWidth() + 12, getScreenHeight());
+        gc.drawImage(image, 0, 0, getScreenWidth(), getScreenHeight());
     }
 
     public void drawInfo() {
@@ -90,7 +90,7 @@ public class EarthInvasionView extends VBox {
 
         MenuBar menuBar = createMenu();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
-        canvas = new Canvas(getScreenWidth() + 12, getScreenHeight());
+        canvas = new Canvas(getScreenWidth(), getScreenHeight());
         canvas.setFocusTraversable(true);
         canvas.requestFocus();
         this.getChildren().addAll(canvas);
