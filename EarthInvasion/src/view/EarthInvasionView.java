@@ -1,7 +1,7 @@
 package view;
 
+import controller.EarthInvasionController;
 import javafx.animation.AnimationTimer;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,7 +10,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
@@ -18,10 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import model.Alien;
-import model.EarthInvasionModel;
-import model.GameObject;
-import model.Player;
+import model.*;
 
 /**
  *
@@ -29,19 +25,22 @@ import model.Player;
  */
 public class EarthInvasionView extends VBox {
 
-    private AnimationTimer timer;
+    private final static int screenWidth = 640;
+    private final static int screenHeight = 720 + 15;
+
     private Image image;
-    private final EarthInvasionModel model;
+    private final GameModel model;
     private final EarthInvasionController controller;
     private GraphicsContext gc;
     private Canvas canvas;
     private EventHandler shipHandler;
-    private Alert alert;
-    private Audio a;
+    private Audio audio;
 
-    public EarthInvasionView(EarthInvasionModel model) {
+    public EarthInvasionView(GameModel model, Audio audio) {
         this.model = model;
-        controller = new EarthInvasionController(model, this); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        this.audio = audio;
+        controller = new EarthInvasionController(model, this, audio); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+
         //Creates the window, menu bar and so on
         initView();
         // Add all the event handlers
@@ -51,75 +50,33 @@ public class EarthInvasionView extends VBox {
 
     }
 
-    protected class run extends AnimationTimer {
+    public void drawGameObjects(){
 
-        private long previousNs = 0;
-
-        @Override
-        public void handle(long nowNs) {
-            if (previousNs == 0) {
-                previousNs = nowNs;
-            }
-            
-            
-            //model.tick(1);
-            //model.tick(2);
-            model.movePlayers();
-            model.moveAlien();
-            model.moveShot();
-            // constrain the objects
-            model.constrain();
-            // collision
-            collision();
-            // paint the background
-            drawBackground(gc);
-            // paint info
-            drawInfo(gc);
-            
-            
-            // paint the objects
-            for (GameObject go : controller.getPlayer()) {
-                go.drawObject(gc);
-            }
-            for (GameObject go : controller.getAlien()) {
-                go.drawObject(gc);
-            }
-            for (GameObject go : controller.getShot()) {
-                go.drawObject(gc);
-            }
-            for (GameObject go : controller.getBlock()) {
-                go.drawObject(gc);
-            }
-            
-            model.checkIfShootPlayer();
-                    
-            if (isGameOver()) {
-                showGameOver("Game Over"); // ENDAST TILLFÄLLIG!!
-                timer.stop();
-            }
+        // paint the objects
+        for (GameObject go : controller.getPlayer()) {
+            go.drawObject(gc);
         }
-    }
-
-    public void collision() {
-        model.collisionWithObjects();
-        model.moveAlienDown();
+        for (GameObject go : controller.getAlien()) {
+            go.drawObject(gc);
+        }
+        for (GameObject go : controller.getShot()) {
+            go.drawObject(gc);
+        }
+        for (GameObject go : controller.getBlock()) {
+            go.drawObject(gc);
+        }
     }
 
     public void graphicsStart() {
         gc = canvas.getGraphicsContext2D();
-        
-        //Thread gu = new Thread(new GraphicsUpdater(gc,controller,model, this));
-        //gu.start();
-        timer = new run();
-        timer.start();
     }
 
-    public void drawBackground(GraphicsContext gc) {
+    public void drawBackground() {
         image = new Image("resources/bg1.jpg");
-        gc.drawImage(image, 0, 0, EarthInvasionModel.getScreenWidth() + 12, EarthInvasionModel.getScreenHeight());
+        gc.drawImage(image, 0, 0, getScreenWidth() + 12, getScreenHeight());
     }
 
-    private void drawInfo(GraphicsContext gc) {
+    public void drawInfo() {
         
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
@@ -133,16 +90,12 @@ public class EarthInvasionView extends VBox {
 
         MenuBar menuBar = createMenu();
         this.getChildren().addAll(menuBar); // Creates the menu at the top.
-        canvas = new Canvas(model.getScreenWidth() + 12, model.getScreenHeight());
+        canvas = new Canvas(getScreenWidth() + 12, getScreenHeight());
         canvas.setFocusTraversable(true);
         canvas.requestFocus();
         this.getChildren().addAll(canvas);
     }
 
-    /**
-     *
-     * @return
-     */
     private MenuBar createMenu() {
         MenuBar menuBar = new MenuBar();
         
@@ -172,8 +125,8 @@ public class EarthInvasionView extends VBox {
         fxS.setShowTickMarks(true);
         
         fxS.valueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            oldValue = a.getSoundEffectsVolume();
-            a.setSoundEffectsVolume(newValue.doubleValue());
+            oldValue = audio.getSoundEffectsVolume();
+            audio.setSoundEffectsVolume(newValue.doubleValue());
         });
         
         
@@ -225,7 +178,6 @@ public class EarthInvasionView extends VBox {
 
         shipHandler = (EventHandler<KeyEvent>) (KeyEvent event) -> {
             if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-                //controller.handleShip(event);
                 controller.keyPressed(event);
             } else if (event.getEventType() == KeyEvent.KEY_RELEASED) {
                 controller.keyReleased(event);
@@ -259,12 +211,15 @@ public class EarthInvasionView extends VBox {
         gc.strokeText(message, 25, 360);
     }
 
-    public void setTimerStop() {
-        timer.stop();
+    public static int getScreenHeight() {
+        return screenHeight;
     }
 
-    public void setTimerStart() {
-        timer.start();
+    public static int getScreenWidth() {
+        return screenWidth;
     }
+
+
+
 
 }

@@ -1,14 +1,10 @@
-package earthinvasion;
-
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import model.EarthInvasionModel;
-import view.AlertWindow;
+import model.GameModel;
 import view.Audio;
 
 import view.EarthInvasionView;
@@ -22,25 +18,15 @@ public class EarthInvasion extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Audio a = new Audio();
-        MainMenu m = new MainMenu(a);
-        m.showWindow();
+
+        Audio audio = new Audio();
+        MainMenu m = new MainMenu(audio);
+        GameModel model = new GameModel(MainMenu.getNoOfPlayers());
+        EarthInvasionView root = new EarthInvasionView(model,audio);
+
         
-        EarthInvasionModel model = new EarthInvasionModel(MainMenu.getNoOfPlayers(), a);
-        EarthInvasionView root = new EarthInvasionView(model);
-        
-        Scene scene = new Scene(root, model.getScreenWidth(), model.getScreenHeight());
-        
-        primaryStage.setOnCloseRequest((WindowEvent event) -> {
-            AlertWindow alert = new AlertWindow();
-            root.setTimerStop();
-            root.setFrostEffect(10, 3);
-            alert.showWindow();
-            root.setTimerStart();
-            root.setFrostEffect(0, 0);
-            event.consume();
-        });
-        
+        Scene scene = new Scene(root, root.getScreenWidth(), root.getScreenHeight());
+
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

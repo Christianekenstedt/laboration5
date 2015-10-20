@@ -2,7 +2,6 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import model.EarthInvasionModel;
 
 /**
  *
@@ -94,7 +93,7 @@ public class Alien extends GameObject {
         return constrained;
     }
 
-    void setConstrained() {
+    public void setConstrained() {
         constrained = false;
     }
 }

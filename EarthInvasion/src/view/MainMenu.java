@@ -38,6 +38,7 @@ public class MainMenu {
         scene = new Scene(aPane, 640, 720);
         aPane.setPadding(new Insets(10, 10, 10, 10));
         initMainMenu();
+        showWindow();
     }
 
 

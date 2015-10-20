@@ -72,10 +72,6 @@ public class Player extends GameObject {
         }else if(right && left){
             super.setX(getX());
         }
-        
-        
-        //super.setX(getX() + velX);
-        //super.setY(getY() + velY);
     }
 
     public void setVelX(double velX) {

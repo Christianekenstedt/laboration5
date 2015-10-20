@@ -32,7 +32,7 @@ public class Audio {
         music = new Media(getClass().getResource("/resources/audio/music.mpeg").toExternalForm());
         bgMusic = new MediaPlayer(music);
         setBgVolume(0.2);
-        bgMusic.setAutoPlay(true);
+        //bgMusic.setAutoPlay(true);
         bulletSound = new AudioClip(getClass().getResource("/resources/audio/LaserGun.mp3").toExternalForm());
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
         setSoundEffectsVolume(0.5);
