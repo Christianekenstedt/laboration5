@@ -57,6 +57,15 @@ public class GameModel {
 
         shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
     }
+    
+    public void alienShot(int index) {
+        //System.out.println("SHOT!");
+        //ticker ++;    
+        //if(ticker == 100){
+        getShot().add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
+        //}
+        // if (ticker > 1000) ticker = 0;
+    }
 
     /**
      *

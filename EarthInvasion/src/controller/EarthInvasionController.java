@@ -88,19 +88,28 @@ public class EarthInvasionController {
                     }
                 }
             }
-            alienShot(counter);
+            
+            
+            
+            
 
         }
+        for(int k = 0; k < getPlayer().size(); k++){
+                if(getAlien().get(counter).getX() == getPlayer().get(k).getX() ){
+                    System.out.println("Alien "+counter+ "match with" + "player " + (k+1));
+                    model.alienShot(counter);
+                }
+            }
 
     }
 
-    public void alienShot(int index) {
-
-        //ticker ++;
-        //if(ticker == 100){
-        //getShot().add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
-        //}
-        // if (ticker > 1000) ticker = 0;
+    public void alienAI(){
+        
+        if(getPlayer().get(0).getX()+ getAlien().get(0).getWidth() > getAlien().get(0).getX()){
+            if(getPlayer().get(0).getX()+ getAlien().get(0).getWidth() > getAlien().get(0).getX()){
+                //if(getPlayer().get(0).getX())
+            }
+        }
     }
 
     public void moveAlien() {
@@ -257,7 +266,7 @@ public class EarthInvasionController {
 
                 break;
             case V:
-                alienShot(1);
+                model.alienShot(1);
                 break;
             default:
 
@@ -374,6 +383,8 @@ public class EarthInvasionController {
             checkForConstrain();
             checkForCollision();
             checkIfShootPlayer();
+            
+            //alienAI();
         }
     }
 }
