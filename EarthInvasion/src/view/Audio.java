@@ -5,17 +5,10 @@
  */
 package view;
 
-import java.net.URL;
-import java.util.Observable;
-import java.util.Observer;
-import static javafx.scene.input.DataFormat.URL;
+
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.*;
 import static javafx.scene.media.MediaPlayer.Status.PAUSED;
-import static javafx.scene.media.MediaPlayer.Status.READY;
-import static javafx.scene.media.MediaPlayer.Status.STOPPED;
-import static javafx.scene.media.MediaPlayer.Status.UNKNOWN;
-import javafx.util.Duration;
 
 
 /**
@@ -38,12 +31,12 @@ public class Audio {
     private void loadSounds() {
         music = new Media(getClass().getResource("/resources/audio/music.mpeg").toExternalForm());
         bgMusic = new MediaPlayer(music);
-        
+        setBgVolume(0.2);
         bgMusic.setAutoPlay(true);
         bulletSound = new AudioClip(getClass().getResource("/resources/audio/LaserGun.mp3").toExternalForm());
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
         setSoundEffectsVolume(0.5);
-        setBgVolume(0.2);
+        
         
         
     }

@@ -12,10 +12,10 @@ public class EarthInvasionModel {
     private final static int screenWidth = 640;
     private final static int screenHeight = 720 + 15;
 
-    private final ArrayList<GameObject> player;
-    private final ArrayList<GameObject> alien;
-    private final ArrayList<GameObject> block;
-    private final ArrayList<GameObject> shot;
+    private  ArrayList<GameObject> player;
+    private  ArrayList<GameObject> alien;
+    private  ArrayList<GameObject> block;
+    private  ArrayList<GameObject> shot;
 
     private int score;
     int ticker;
@@ -24,21 +24,25 @@ public class EarthInvasionModel {
 
     public EarthInvasionModel(int noOfPlayers, Audio audio) {
         this.audio = audio;
-        player = new ArrayList<GameObject>();
-        alien = new ArrayList<GameObject>();
-        block = new ArrayList<GameObject>();
-        shot = new ArrayList<GameObject>();
+        this.noOfPlayers = noOfPlayers;
         
-        
-        
+        //Creating all the aliens, blocks and players, inits all the data.
+        init();
+        // Starting the gameloop?
+    }
+    
+    private void init(){
+        player = new ArrayList<>();
+        alien = new ArrayList<>();
+        block = new ArrayList<>();
+        shot = new ArrayList<>();
         ticker = 0;
         score = 0;
-        this.noOfPlayers = noOfPlayers; // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
+        // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
         addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
     }
-
     public void PlayerShot(int index) {
         
         shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));

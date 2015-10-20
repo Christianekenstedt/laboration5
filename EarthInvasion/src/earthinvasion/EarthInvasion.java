@@ -25,6 +25,7 @@ public class EarthInvasion extends Application {
         Audio a = new Audio();
         MainMenu m = new MainMenu(a);
         m.showWindow();
+        
         EarthInvasionModel model = new EarthInvasionModel(MainMenu.getNoOfPlayers(), a);
         EarthInvasionView root = new EarthInvasionView(model);
         

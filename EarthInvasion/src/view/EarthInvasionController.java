@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import model.EarthInvasionModel;
 import model.GameObject;
-import view.Audio;
 /**
  *
  * @author Chrille
@@ -153,6 +152,4 @@ public class EarthInvasionController {
     public ArrayList<GameObject> getBlock() {
         return (ArrayList) model.getBlock();
     }
-
-
 }
