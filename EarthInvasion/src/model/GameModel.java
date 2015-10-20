@@ -8,25 +8,27 @@ import java.util.ArrayList;
  */
 public class GameModel {
 
-
-
-    private  ArrayList<GameObject> player;
-    private  ArrayList<GameObject> alien;
-    private  ArrayList<GameObject> block;
-    private  ArrayList<GameObject> shot;
+    private ArrayList<GameObject> player;
+    private ArrayList<GameObject> alien;
+    private ArrayList<GameObject> block;
+    private ArrayList<GameObject> shot;
 
     private int score;
-    int ticker;
+    private int ticker;
     private int noOfPlayers;
+    private int levelCounter;
 
-
-    public GameModel(int noOfPlayers){
+    /**
+     *
+     * @param noOfPlayers
+     */
+    public GameModel(int noOfPlayers) {
         this.noOfPlayers = noOfPlayers;
+        levelCounter = 1;
         init();
     }
 
-
-    private void init(){
+    private void init() {
         player = new ArrayList<>();
         alien = new ArrayList<>();
         block = new ArrayList<>();
@@ -38,15 +40,37 @@ public class GameModel {
         addAliens();
         addBlocks();
     }
+    
+    public void newLevel(){
+        levelCounter++;
+        shot.clear();
+        alien.clear();
+        addAliens();
+        Alien.setVelocity(Alien.getVelocity()*levelCounter);
+    }
+    
+    /**
+     *
+     * @param index
+     */
     public void PlayerShot(int index) {
 
         shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
     }
 
+    /**
+     *
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     * Returns the number of players.
+     *
+     * @return noOfPlayers
+     */
     public int getNoOfPlayers() {
         return noOfPlayers;
     }
@@ -77,34 +101,61 @@ public class GameModel {
         block.add(new Block(483.25, 500.0, 100, 40));
     }
 
-    public void removeObject(GameObject o){
-        if(o instanceof Shot){
+    /**
+     *
+     * @param o
+     */
+    public void removeObject(GameObject o) {
+        if (o instanceof Shot) {
             this.shot.remove(o);
-        }else if (o instanceof Alien){
+        } else if (o instanceof Alien) {
             this.alien.remove(o);
-        }else if (o instanceof Block){
+            if(alien.isEmpty()){
+                newLevel();
+            }
+        } else if (o instanceof Block) {
             this.block.remove(o);
-        }else if (o instanceof Player){
+        } else if (o instanceof Player) {
             this.player.remove(o);
         }
     }
-
+    
+    /**
+     *
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<GameObject> getPlayer() {
         return (ArrayList) player.clone();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<GameObject> getAlien() {
         return (ArrayList) alien.clone();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<GameObject> getShot() {
         return (ArrayList) shot.clone();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<GameObject> getBlock() {
         return (ArrayList) block.clone();
     }

@@ -1,31 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
-
 
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.*;
 import static javafx.scene.media.MediaPlayer.Status.PAUSED;
 import javafx.util.Duration;
 
-
 /**
  *
  * @author Chrille
  */
 public class Audio {
-    
+
     private static AudioClip bulletSound;
     private static AudioClip alienKilled;
     private Media music;
     private static MediaPlayer bgMusic;
     private static double bgVolume;
     private static double soundEffectsVolume;
-    
-    public Audio(){
+
+    public Audio() {
         loadSounds();
     }
 
@@ -34,39 +27,41 @@ public class Audio {
         bgMusic = new MediaPlayer(music);
         bgMusic.setVolume(0.1);
         bgMusic.setAutoPlay(true);
-        bgMusic.setOnEndOfMedia(()->{
+        bgMusic.setOnEndOfMedia(() -> {
             bgMusic.seek(Duration.ZERO);
             bgMusic.play();
         });
         bulletSound = new AudioClip(getClass().getResource("/resources/audio/LaserGun.mp3").toExternalForm());
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
         setSoundEffectsVolume(0.5);
-        
+
     }
-    
-    public void playBG(){
+
+    public void playBG() {
         bgMusic.setVolume(getBgVolume());
     }
-    public static void playBullet(){
+
+    public static void playBullet() {
         bulletSound.setVolume(Audio.getSoundEffectsVolume());
         bulletSound.play();
-        
+
     }
-    public void alienKilled(){
-        alienKilled.setVolume(Audio.getSoundEffectsVolume()-0.2);
+
+    public void alienKilled() {
+        alienKilled.setVolume(Audio.getSoundEffectsVolume() - 0.2);
         alienKilled.play();
     }
-    
-    public  void setMediaPlayerVolume(){
+
+    public void setMediaPlayerVolume() {
         bgMusic.setVolume(getBgVolume());
     }
-    
-    public  double getBgVolume() {
+
+    public double getBgVolume() {
         return bgVolume;
     }
-    
-    public  void setBgVolume(double bgVolume) {
-        
+
+    public void setBgVolume(double bgVolume) {
+
         Audio.bgVolume = bgVolume;
         System.out.println(Audio.bgVolume);
     }
@@ -74,13 +69,16 @@ public class Audio {
     public static double getSoundEffectsVolume() {
         return soundEffectsVolume;
     }
-    
-    public static void toggleBGMusic(){
-        if(bgMusic.getStatus() == PAUSED) bgMusic.play();
-        else bgMusic.pause();
-        
+
+    public static void toggleBGMusic() {
+        if (bgMusic.getStatus() == PAUSED) {
+            bgMusic.play();
+        } else {
+            bgMusic.pause();
+        }
+
     }
-    
+
     public static void setSoundEffectsVolume(double soundEffectsVolume) {
         Audio.soundEffectsVolume = soundEffectsVolume;
     }

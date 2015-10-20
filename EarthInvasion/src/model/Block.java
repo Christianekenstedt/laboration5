@@ -15,6 +15,13 @@ public class Block extends GameObject {
     private int hp;
     private final ArrayList<Image> images;
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public Block(double x, double y, double width, double height) {
         super(x, y, width, height);
         images = new ArrayList<>();
@@ -23,10 +30,18 @@ public class Block extends GameObject {
 
     }
 
+    /**
+     *
+     * @param hp
+     */
     public void setHp(int hp) {
         this.hp = hp;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHp() {
         return hp;
     }
@@ -39,6 +54,10 @@ public class Block extends GameObject {
         images.add(new WritableImage(reader, 200, 0, 100, 40));
     }
 
+    /**
+     *
+     * @param gc
+     */
     @Override
     public void drawObject(GraphicsContext gc) {
         if (hp > 166) {
@@ -50,6 +69,9 @@ public class Block extends GameObject {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void constrain() {
         throw new UnsupportedOperationException("Block aint got no constrain!"); //To change body of generated methods, choose Tools | Templates.
