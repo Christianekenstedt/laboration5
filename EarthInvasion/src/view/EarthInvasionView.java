@@ -81,7 +81,7 @@ public class EarthInvasionView extends VBox {
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
         gc.setFont(new Font("LLPixel", 20));
-
+        gc.strokeText("Level: " + model.getLevelCounter(), 420, 20);
         gc.strokeText("Score: " + model.getScore(), 500, 20);
     }
 

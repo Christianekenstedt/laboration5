@@ -66,6 +66,14 @@ public class GameModel {
         this.score = score;
     }
 
+    public int getLevelCounter() {
+        return levelCounter;
+    }
+
+    public void setLevelCounter(int levelCounter) {
+        this.levelCounter = levelCounter;
+    }
+    
     /**
      * Returns the number of players.
      *

@@ -64,10 +64,6 @@ public class EarthInvasionController {
         moveAlienDown();
     }
     
-    private boolean checkIfNewLevel(){
-        return getAlien().isEmpty();
-    }
-    
     public void movePlayers() {
         if (model.getNoOfPlayers() == 1) {
             ((Player) getPlayer().get(0)).tick();
@@ -366,15 +362,15 @@ public class EarthInvasionController {
             if (previousNs == 0) {
                 previousNs = nowNs;
             }
-            // paint the background
+            // paint the background, info and objects
             view.drawBackground();
-            // paint info and objects
             view.drawInfo();
             view.drawGameObjects();
 
             movePlayers();
             moveAlien();
             moveShot();
+            
             checkForConstrain();
             checkForCollision();
             checkIfShootPlayer();

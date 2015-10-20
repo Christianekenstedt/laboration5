@@ -122,14 +122,10 @@ public class Alien extends GameObject {
     public void constrain() {
 
         if (getX() < 0) {
-            setX(0);
             constrained = true;
-            //moveAlienDown();
             setMovingRight(true);
         } else if (getX() > 640 - getWidth()) {
-            setX(640 - getWidth());
             constrained = true;
-            //moveAlienDown();
             setMovingRight(false);
         } else if (getY() > 500 - getHeight()) {
             setAtBottom(true);
