@@ -56,7 +56,7 @@ public class EarthInvasionController {
 
     }
 
-    public void collision() {
+    public void checkForCollision() {
         collisionWithObjects();
         moveAlienDown();
     }
@@ -126,7 +126,7 @@ public class EarthInvasionController {
         }
     }
 
-    public void constrain() {
+    public void checkForConstrain() {
 
         for (GameObject p : getPlayer()) {
             p.constrain();
@@ -360,23 +360,17 @@ public class EarthInvasionController {
             if (previousNs == 0) {
                 previousNs = nowNs;
             }
+            // paint the background
+            view.drawBackground();
+            // paint info and objects
+            view.drawInfo();
+            view.drawGameObjects();
+            
             movePlayers();
             moveAlien();
             moveShot();
-
-            // constrain the objects
-            constrain();
-
-            // collision
-            collision();
-            // paint the background
-            view.drawBackground();
-            // paint info
-            view.drawInfo();
-
-
-            view.drawGameObjects();
-
+            checkForConstrain();
+            checkForCollision();
             checkIfShootPlayer();
 
 

@@ -31,13 +31,11 @@ public class Audio {
     private void loadSounds() {
         music = new Media(getClass().getResource("/resources/audio/music.mpeg").toExternalForm());
         bgMusic = new MediaPlayer(music);
-        setBgVolume(0.2);
-        //bgMusic.setAutoPlay(true);
+        bgMusic.setVolume(0.1);
+        bgMusic.setAutoPlay(true);
         bulletSound = new AudioClip(getClass().getResource("/resources/audio/LaserGun.mp3").toExternalForm());
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
         setSoundEffectsVolume(0.5);
-        
-        
         
     }
     
@@ -50,7 +48,7 @@ public class Audio {
         
     }
     public void alienKilled(){
-        alienKilled.setVolume(Audio.getSoundEffectsVolume());
+        alienKilled.setVolume(Audio.getSoundEffectsVolume()-0.2);
         alienKilled.play();
     }
     
