@@ -28,9 +28,11 @@ public class Shot extends GameObject {
     public Shot(double x, double y, double width, double height, boolean firedFromPlayer) {
         super(x, y, width, height);
         this.damage = 30;
-        loadImage();
         this.firedFromPlayer = firedFromPlayer;
         this.inFrame = true;
+        loadImage();
+        
+        
     }
 
     /**

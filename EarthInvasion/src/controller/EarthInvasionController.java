@@ -10,6 +10,7 @@ import model.*;
 import view.AlertWindow;
 import view.Audio;
 import view.EarthInvasionView;
+import view.HighscoreView;
 import view.RulesWindow;
 
 /**
@@ -87,23 +88,41 @@ public class EarthInvasionController {
                         counter = j;                               // Da sparar vi undan tillfalligt den getAlien() som finns langst ner far varje kolummn.
                     }
                 }
+                
             }
-        }
-        for(int k = 0; k < getPlayer().size(); k++){
-                if(getPlayer().get(k).getX() > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
-                    System.out.println("Player in sight!"); 
+            for(int k = 0; k < getPlayer().size(); k++){
+                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
+                    System.out.println(counter + " sees palyer"); 
                     model.alienShot(counter);
                 }else System.out.println("not in sight!");
-            }
+        }
+        }
+        
 
     }
 
     public void alienAI(){
         
-        if(getPlayer().get(0).getX() > getAlien().get(0).getX() && getPlayer().get(0).getX() < (getAlien().get(0).getX() + getAlien().get(0).getWidth()) ){
-            System.out.println("Player in sight!"); 
-            //model.alienShot(counter);
-        }else System.out.println("not in sight!");
+       int counter = 0;
+
+        for (int i = 0; i < getAlien().size(); i++) {
+            for (int j = 0; j < getAlien().size(); j++) {
+                if (getAlien().get(i).getX() == getAlien().get(j).getX()) { // Kollar om getAlien() i har samma x-varde som getAlien() j
+                    // for i so fall so ligger bada pa samma kolummn.
+                    // Da maste vi kolla om getAlien() j har starre y-varde, om den har de sa far inte getAlien() i skjuta.
+                    //Ifall den inte har de maste vi kolla om tills arrayen ar slut av aliens, och den absolut sista getAlien() for skjuta. for varje rad.
+                    if (getAlien().get(i).getY() < getAlien().get(j).getY()) { // Om getAlien() i:s, y-varde ar mindre an getAlien() j:s, da betyder det att getAlien() i, ej far skjuta.
+                        counter = j;                               // Da sparar vi undan tillfalligt den getAlien() som finns langst ner far varje kolummn.
+                    }
+                }
+                
+            }
+            for(int k = 0; k < getPlayer().size(); k++){
+                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
+                    model.alienShot(counter);
+                }
+            }
+        }
         
         
     }
@@ -304,11 +323,15 @@ public class EarthInvasionController {
     }
 
     public void handleHighscore(ActionEvent event) {
-        System.out.println("HIGHSCORE!");
+        HighscoreView highscores = new HighscoreView();
+        setTimerStop();
+        view.setFrostEffect(10, 3);
+        highscores.showWindow();
+        setTimerStart();
+        view.setFrostEffect(0, 0);
     }
 
     public void handleRules(ActionEvent event) {
-        System.out.println("RULES!!");
         RulesWindow rules = new RulesWindow();
         setTimerStop();
         view.setFrostEffect(10, 3);
@@ -378,9 +401,9 @@ public class EarthInvasionController {
             
             checkForConstrain();
             checkForCollision();
-            checkIfShootPlayer();
+            //checkIfShootPlayer();
             
-            //alienAI();
+            alienAI();
         }
     }
 }

@@ -26,7 +26,7 @@ public class Audio {
         music = new Media(getClass().getResource("/resources/audio/music.mpeg").toExternalForm());
         bgMusic = new MediaPlayer(music);
         bgMusic.setVolume(0.1);
-        bgMusic.setAutoPlay(true);
+        //bgMusic.setAutoPlay(true);
         bgMusic.setOnEndOfMedia(() -> {
             bgMusic.seek(Duration.ZERO);
             bgMusic.play();

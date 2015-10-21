@@ -99,7 +99,7 @@ public class Alien extends GameObject {
      *
      */
     public void moveAlienDown() {
-        setY(getY() + 2);
+        setY(getY() + 4);
     }
 
     private void loadImage() {

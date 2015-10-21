@@ -45,7 +45,11 @@ public class GameModel {
         levelCounter++;
         shot.clear();
         alien.clear();
+        block.clear();
+        //player.clear();
         addAliens();
+        addBlocks();
+        //addPlayers(2);
         Alien.setVelocity(Alien.getVelocity()*levelCounter);
     }
     
@@ -59,12 +63,12 @@ public class GameModel {
     }
     
     public void alienShot(int index) {
-        //System.out.println("SHOT!");
-        //ticker ++;    
-        //if(ticker == 100){
-        shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
-        //}
-        // if (ticker > 1000) ticker = 0;
+        
+        ticker ++;    
+        if(ticker == 10){
+            shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
+        }
+         if (ticker > 300 ) ticker = 0;
     }
 
     /**

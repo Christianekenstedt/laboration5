@@ -39,7 +39,7 @@ public class Player extends GameObject {
 
         this.left = false;
         this.right = false;
-
+        
         uniqeNo = playerNo;
         System.out.println("created player: " + playerNo++);
 
