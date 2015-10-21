@@ -38,7 +38,7 @@ public class EarthInvasionView extends VBox {
     private EventHandler shipHandler;
     private Audio audio;
 
-    public EarthInvasionView(GameModel model, Audio audio) {
+    public EarthInvasionView(GameModel model, Audio audio) throws Exception {
         this.model = model;
         this.audio = audio;
         controller = new EarthInvasionController(model, this, audio); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController

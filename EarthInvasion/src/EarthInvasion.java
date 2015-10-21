@@ -17,7 +17,7 @@ import view.MainMenu;
 public class EarthInvasion extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, Exception {
 
         Audio audio = new Audio();
         MainMenu m = new MainMenu(audio);

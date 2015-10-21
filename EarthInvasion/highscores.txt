@@ -1,2 +1,1 @@
-chrille 2 1337
-gurris 0 0
+test 1 0

@@ -1,4 +1,3 @@
-
 package view;
 
 import java.util.logging.Level;
@@ -18,6 +17,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import controller.FileHandler;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import model.GameModel;
 
 /**
@@ -37,20 +40,27 @@ public class GameOverView {
         this.file = file;
         stage = new Stage();
         pane = new VBox(10);
-        scene = new Scene(pane, 230, 100);
+        scene = new Scene(pane, 230, 150);
         pane.setPadding(new Insets(10, 10, 10, 10));
         initRulesWindow();
     }
 
     private void initRulesWindow() {
         HBox box = new HBox(5);
+        Text gameOverText = new Text("GAME OVER");
+        gameOverText.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
+        gameOverText.setFill(Color.RED);
+        
         Label label = new Label("Name: ");
-        TextField text = new TextField("player");
+        TextField text = new TextField();
+        text.setPromptText("name on highscore list");
+        text.deselect();
         Button saveButton = new Button("Save");
         saveButton.setAlignment(Pos.BOTTOM_CENTER);
         
         box.getChildren().addAll(label, text);
-        pane.getChildren().addAll(box, saveButton);
+        pane.getChildren().addAll(gameOverText,box, saveButton);
+        pane.setAlignment(Pos.CENTER);
         
         saveButton.setOnAction(event->{
             
@@ -67,7 +77,9 @@ public class GameOverView {
     }
 
     public void showWindow() {
-        stage.setTitle("Rules!");
+        
+        
+        stage.setTitle("Game Over...");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setAlwaysOnTop(false);
