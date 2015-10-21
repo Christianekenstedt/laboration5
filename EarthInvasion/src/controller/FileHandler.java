@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
@@ -17,6 +15,11 @@ public class FileHandler {
     
     
     private String savedScore;
+    private final String PATH;
+
+    public FileHandler() {
+        PATH = "highscores.txt";
+    }
     
 
     /**
@@ -37,7 +40,7 @@ public class FileHandler {
         BufferedReader fin = null;
 
         try {
-            fin = new BufferedReader(new FileReader("highscores.txt"));
+            fin = new BufferedReader(new FileReader(PATH));
 
             line = fin.readLine(); 	// Read a line from the file...
             while (line != null) {	// ...while there's more to read.
@@ -76,7 +79,7 @@ public class FileHandler {
         PrintWriter fout = null;
         FileWriter fw = null;
         try {
-            fw = new FileWriter("highscores.txt");
+            fw = new FileWriter(PATH);
             fout = new PrintWriter(new BufferedWriter(fw));
             // Writing to file...
             fout.println(savedScore+highscoresString);
