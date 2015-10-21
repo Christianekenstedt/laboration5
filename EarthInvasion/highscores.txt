@@ -1,4 +1,2 @@
-nullplayer		1		0
-asdasd		1		0
-player		1		0
-1 1 0
+chrille 2 1337
+gurris 0 0

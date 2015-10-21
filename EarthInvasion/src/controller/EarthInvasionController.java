@@ -26,11 +26,12 @@ public class EarthInvasionController {
     private final Audio audio;
     private FileHandler file;
 
-    public EarthInvasionController(GameModel model, EarthInvasionView view, Audio audio) {
+    public EarthInvasionController(GameModel model, EarthInvasionView view, Audio audio) throws Exception {
         this.model = model;
         this.view = view;
         this.audio = audio;
         file = new FileHandler();
+        file.read();
         gameLoop();
 
     }

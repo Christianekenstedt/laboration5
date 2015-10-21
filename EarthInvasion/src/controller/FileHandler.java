@@ -27,7 +27,7 @@ public class FileHandler {
      * null if the file is not found.
      * @throws Exception
      */
-    public String read() throws Exception {
+    public void read() throws Exception {
         String line;
         String name;
         int score;
@@ -63,7 +63,7 @@ public class FileHandler {
             
         }
         savedScore = highscoreString;
-        return highscoreString;
+        
 
     }
 
@@ -86,4 +86,9 @@ public class FileHandler {
             }
         }
     }
+
+    public String getSavedScore() {
+        return savedScore;
+    }
+    
 }

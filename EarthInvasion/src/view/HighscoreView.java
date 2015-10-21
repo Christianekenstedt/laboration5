@@ -25,19 +25,22 @@ public class HighscoreView {
     private Stage highStage;
     private BorderPane highPane;
     private Scene scene;
-    private FileHandler highscoreList;
+    private FileHandler file;
     
     public HighscoreView(FileHandler file) throws Exception{
-        highscoreList = file;
+        this.file = file;
         highStage = new Stage();
         highPane = new BorderPane();
         scene = new Scene(highPane, 300, 300);
         highPane.setPadding(new Insets(10, 10, 10, 10));
         
-        initHighscoreWindow(highscoreList.read());
+        initHighscoreWindow();
     }
     
-    private void initHighscoreWindow(String highscoreString) {
+    private void initHighscoreWindow() throws Exception {
+        file.read();
+        String highscoreString = file.getSavedScore();
+        // eventuellt reada varja gång oxå
         Label title = new Label("Highscores");
         title.setFont(Font.font("Helvetica",FontWeight.BOLD, 20));
         title.setUnderline(true);
