@@ -88,28 +88,24 @@ public class EarthInvasionController {
                     }
                 }
             }
-            
-            
-            
-            
-
         }
         for(int k = 0; k < getPlayer().size(); k++){
-                if(getAlien().get(counter).getX() == getPlayer().get(k).getX() ){
-                    System.out.println("Alien "+counter+ "match with" + "player " + (k+1));
+                if(getPlayer().get(k).getX() > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
+                    System.out.println("Player in sight!"); 
                     model.alienShot(counter);
-                }
+                }else System.out.println("not in sight!");
             }
 
     }
 
     public void alienAI(){
         
-        if(getPlayer().get(0).getX()+ getAlien().get(0).getWidth() > getAlien().get(0).getX()){
-            if(getPlayer().get(0).getX()+ getAlien().get(0).getWidth() > getAlien().get(0).getX()){
-                //if(getPlayer().get(0).getX())
-            }
-        }
+        if(getPlayer().get(0).getX() > getAlien().get(0).getX() && getPlayer().get(0).getX() < (getAlien().get(0).getX() + getAlien().get(0).getWidth()) ){
+            System.out.println("Player in sight!"); 
+            //model.alienShot(counter);
+        }else System.out.println("not in sight!");
+        
+        
     }
 
     public void moveAlien() {

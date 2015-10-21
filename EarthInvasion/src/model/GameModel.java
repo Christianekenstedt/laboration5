@@ -62,7 +62,7 @@ public class GameModel {
         //System.out.println("SHOT!");
         //ticker ++;    
         //if(ticker == 100){
-        getShot().add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
+        shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
         //}
         // if (ticker > 1000) ticker = 0;
     }
