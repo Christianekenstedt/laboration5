@@ -1,6 +1,8 @@
 package view;
 
 import controller.EarthInvasionController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -159,7 +161,11 @@ public class EarthInvasionView extends VBox {
             controller.handleRules(event);
         });
         highscoreItem.setOnAction((ActionEvent event) -> {
-            controller.handleHighscore(event);
+            try {
+                controller.handleHighscore(event);
+            } catch (Exception ex) {
+                Logger.getLogger(EarthInvasionView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         pauseItem.setAccelerator(KeyCombination.keyCombination("P"));
         pauseItem.setOnAction((ActionEvent event) ->{

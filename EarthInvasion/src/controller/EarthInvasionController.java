@@ -322,7 +322,7 @@ public class EarthInvasionController {
         System.out.println("START NEW GAME!!");
     }
 
-    public void handleHighscore(ActionEvent event) {
+    public void handleHighscore(ActionEvent event) throws Exception {
         HighscoreView highscores = new HighscoreView();
         setTimerStop();
         view.setFrostEffect(10, 3);
