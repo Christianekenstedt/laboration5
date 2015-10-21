@@ -10,6 +10,7 @@ import model.*;
 import view.AlertWindow;
 import view.Audio;
 import view.EarthInvasionView;
+import view.GameOverView;
 import view.HighscoreView;
 import view.RulesWindow;
 
@@ -23,12 +24,13 @@ public class EarthInvasionController {
     private final GameModel model;
     private final EarthInvasionView view;
     private final Audio audio;
+    private FileHandler file;
 
     public EarthInvasionController(GameModel model, EarthInvasionView view, Audio audio) {
         this.model = model;
         this.view = view;
         this.audio = audio;
-
+        file = new FileHandler();
         gameLoop();
 
     }
@@ -323,7 +325,7 @@ public class EarthInvasionController {
     }
 
     public void handleHighscore(ActionEvent event) throws Exception {
-        HighscoreView highscores = new HighscoreView();
+        HighscoreView highscores = new HighscoreView(file);
         setTimerStop();
         view.setFrostEffect(10, 3);
         highscores.showWindow();
@@ -362,7 +364,8 @@ public class EarthInvasionController {
     }
 
     public void handleSaveItem(ActionEvent event) {
-        System.out.println("SAVE");
+        GameOverView gov = new GameOverView(model, file);
+        gov.showWindow();
     }
 
     public ArrayList<GameObject> getPlayer() {

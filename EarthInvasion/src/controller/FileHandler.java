@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +14,10 @@ import java.util.StringTokenizer;
  */
 @SuppressWarnings("unchecked")
 public class FileHandler {
-    static String newline = System.getProperty("line.separator");
+    
+    
+    private String savedScore;
+    
 
     /**
      * The method read reads the file "booklist.ser" and deserializes the data.
@@ -59,6 +62,7 @@ public class FileHandler {
             }
             
         }
+        savedScore = highscoreString;
         return highscoreString;
 
     }
@@ -75,7 +79,7 @@ public class FileHandler {
             fw = new FileWriter("highscores.txt");
             fout = new PrintWriter(new BufferedWriter(fw));
             // Writing to file...
-            fout.println(highscoresString);
+            fout.println(savedScore+highscoresString);
         } finally {
             if (fout != null) {
                 fout.close();

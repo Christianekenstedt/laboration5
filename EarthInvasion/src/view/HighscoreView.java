@@ -1,6 +1,6 @@
 package view;
 
-import model.FileHandler;
+import controller.FileHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -27,8 +27,8 @@ public class HighscoreView {
     private Scene scene;
     private FileHandler highscoreList;
     
-    public HighscoreView() throws Exception{
-        highscoreList = new FileHandler();
+    public HighscoreView(FileHandler file) throws Exception{
+        highscoreList = file;
         highStage = new Stage();
         highPane = new BorderPane();
         scene = new Scene(highPane, 300, 300);

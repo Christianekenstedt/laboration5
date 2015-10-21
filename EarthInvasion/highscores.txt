@@ -1,2 +1,4 @@
-Christian 3 1337
-Gustaf 1 0
+nullplayer		1		0
+asdasd		1		0
+player		1		0
+1 1 0

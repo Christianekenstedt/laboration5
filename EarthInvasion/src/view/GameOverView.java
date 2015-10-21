@@ -1,0 +1,80 @@
+
+package view;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import controller.FileHandler;
+import model.GameModel;
+
+/**
+ *
+ * @author Christian
+ */
+public class GameOverView {
+
+    private Stage stage;
+    private VBox pane;
+    private Scene scene;
+    private FileHandler file;
+    private GameModel model;
+
+    public GameOverView(GameModel model, FileHandler file) {
+        this.model = model;
+        this.file = file;
+        stage = new Stage();
+        pane = new VBox(10);
+        scene = new Scene(pane, 230, 100);
+        pane.setPadding(new Insets(10, 10, 10, 10));
+        initRulesWindow();
+    }
+
+    private void initRulesWindow() {
+        HBox box = new HBox(5);
+        Label label = new Label("Name: ");
+        TextField text = new TextField("player");
+        Button saveButton = new Button("Save");
+        saveButton.setAlignment(Pos.BOTTOM_CENTER);
+        
+        box.getChildren().addAll(label, text);
+        pane.getChildren().addAll(box, saveButton);
+        
+        saveButton.setOnAction(event->{
+            
+            try {
+                file.write(text.getText()+" "+model.getLevelCounter()+" "+model.getScore());
+            } catch (Exception ex) {
+                Logger.getLogger(GameOverView.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("File save don't work");
+            }
+            stage.close();
+        });
+        
+        
+    }
+
+    public void showWindow() {
+        stage.setTitle("Rules!");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setAlwaysOnTop(false);
+        stage.toFront();
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        stage.showAndWait();
+        //Här borde vi lägga någon typ av return
+    }
+}
