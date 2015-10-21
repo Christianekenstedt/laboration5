@@ -190,7 +190,8 @@ public class EarthInvasionController {
                         ((Player) getPlayer().get(j)).setHp(((Player) getPlayer().get(j)).getHp() - ((Shot) getShot().get(i)).getDamage());
 
                         if (((Player) getPlayer().get(j)).getHp() <= 0) {
-                            //model.removeObject(getPlayer().get(j)); //TAGIT BORT ATT PLAYERN FoRSVINNER ATM
+                            Player.setPlayerNo(Player.getPlayerNo()-1);
+                            model.removeObject(getPlayer().get(j)); //TAGIT BORT ATT PLAYERN FoRSVINNER ATM
                             model.removeObject(getShot().get(i));
 
                             //j--;

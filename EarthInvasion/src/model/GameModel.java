@@ -93,7 +93,7 @@ public class GameModel {
      * @return noOfPlayers
      */
     public int getNoOfPlayers() {
-        return noOfPlayers;
+        return noOfPlayers = Player.getPlayerNo();
     }
 
     private void addPlayers(int noOfPlayers) {

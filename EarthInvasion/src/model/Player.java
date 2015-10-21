@@ -45,6 +45,14 @@ public class Player extends GameObject {
 
     }
 
+    public static int getPlayerNo() {
+        return playerNo;
+    }
+
+    public static void setPlayerNo(int playerNo) {
+        Player.playerNo = playerNo;
+    }
+    
     /**
      *
      * @return
