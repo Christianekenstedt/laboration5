@@ -13,6 +13,8 @@ public class Alien extends GameObject {
     private Image image, image2;
     private static double velocity;
     private static boolean movingRight, atBottom, constrained;
+    private int reloadCounter;
+    private boolean canFire;
 
     /**
      *
@@ -30,7 +32,26 @@ public class Alien extends GameObject {
         constrained = false;
         setVelocity(0.2);
         animationTimer = 0;
+        
+        canFire=true;
+        reloadCounter = 0;
 
+    }
+    
+    public int getReloadCounter() {
+        return reloadCounter;
+    }
+
+    public void reloadCounter(int reloadCounter) {
+        this.reloadCounter = reloadCounter;
+    }
+    
+    public boolean canFire() {
+        return canFire;
+    }
+
+    public void setCanFire(boolean canFire) {
+        this.canFire = canFire;
     }
 
     /**

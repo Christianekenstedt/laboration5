@@ -79,7 +79,15 @@ public class GameModel {
     
     
     public boolean alienShot(int index) {
-        
+       
+        if(((Alien) alien.get(index)).canFire()){
+            shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
+            ((Alien) alien.get(index)).setCanFire(false);
+            ((Alien) alien.get(index)).reloadCounter(0);
+            return true;
+        }
+        return false;
+        /*
         ticker ++;    
         if(ticker == 10){
             shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
@@ -87,6 +95,7 @@ public class GameModel {
         }
          if (ticker > 300/(1+(levelCounter/10)) ) ticker = 0;
         return false;
+        */
     }
 
     /**

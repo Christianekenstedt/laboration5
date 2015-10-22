@@ -410,7 +410,16 @@ public class EarthInvasionController {
                 }
             }
         }
+        for(int i=0; i<getAlien().size(); i++){
+            if(!((Alien) getAlien().get(i)).canFire()){
+                ((Alien) getAlien().get(i)).reloadCounter(((Alien) getAlien().get(i)).getReloadCounter()+1);
+                if(((Alien) getAlien().get(i)).getReloadCounter() == (50-model.getLevelCounter())){
+                    ((Alien) getAlien().get(i)).setCanFire(true);
+                }
+            }
+        }
     }
+    
     
     protected class GameLoop extends AnimationTimer {
 
