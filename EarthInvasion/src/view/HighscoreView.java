@@ -92,4 +92,9 @@ public class HighscoreView {
         highStage.showAndWait();
         //Här borde vi lägga någon typ av return
     }
+    
+    private void sortList(String list){
+        //while()
+        
+    }
 }

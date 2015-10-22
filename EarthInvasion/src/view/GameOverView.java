@@ -34,6 +34,7 @@ public class GameOverView {
     private Scene scene;
     private FileHandler file;
     private GameModel model;
+    private int score;
 
     public GameOverView(GameModel model, FileHandler file) {
         this.model = model;
@@ -42,6 +43,7 @@ public class GameOverView {
         pane = new VBox(10);
         scene = new Scene(pane, 230, 150);
         pane.setPadding(new Insets(10, 10, 10, 10));
+        score = model.getScore();
         initRulesWindow();
     }
 
@@ -66,7 +68,7 @@ public class GameOverView {
         saveButton.setOnAction(event->{
             if(text.getLength()>4 && !text.getText().contains(" ")){
               try {
-                file.write(text.getText()+" "+model.getLevelCounter()+" "+model.getScore());
+                file.write(text.getText()+" "+model.getLevelCounter()+" " + score);
                 } catch (Exception ex) {
                     Logger.getLogger(GameOverView.class.getName()).log(Level.SEVERE, null, ex);
                     System.err.println("File save don't work");

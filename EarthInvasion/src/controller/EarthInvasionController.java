@@ -373,8 +373,8 @@ public class EarthInvasionController {
             GameOverView gov = new GameOverView(model, file);
             
             gov.showWindow();
-            model.restartGame();
             view.drawMessage("Press 'R' when you are ready\nto play again!");
+            model.restartGame();
         }
     }
     protected class GameLoop extends AnimationTimer {

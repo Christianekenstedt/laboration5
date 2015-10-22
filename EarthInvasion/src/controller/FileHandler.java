@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 /**
@@ -32,8 +34,9 @@ public class FileHandler {
      */
     public void read() throws Exception {
         String line;
+        ArrayList<String> lines = new ArrayList<>();
         String name;
-        int score;
+        int score, level;
         StringTokenizer tokenizer;
         String highscoreString = "";
 
@@ -47,7 +50,16 @@ public class FileHandler {
 
                 try {
                     tokenizer = new StringTokenizer(line);
-                    highscoreString += tokenizer.nextToken() + "\t\t" + tokenizer.nextToken() + "\t\t" + tokenizer.nextToken() + "\n";
+                    
+                    
+                    //ArrayList<String> s = new ArrayList<>();
+                    
+                    name =tokenizer.nextToken();
+                    level = Integer.parseInt(tokenizer.nextToken());
+                    score = Integer.parseInt(tokenizer.nextToken());
+                    highscoreString +=name + "\t\t" + level + "\t\t" + score + "\n";
+                    
+                    lines.add(line);
                 } catch (NumberFormatException ne) {
                     System.out.println("Input mismatch. Skipping this line.");
                 }
@@ -65,6 +77,10 @@ public class FileHandler {
             }
             
         }
+        Collections.sort(lines);
+        Collections.reverse(lines);
+        System.out.println(lines);
+        
         savedScore = highscoreString;
         
 
