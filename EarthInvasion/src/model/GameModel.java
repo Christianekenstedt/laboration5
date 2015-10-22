@@ -49,6 +49,7 @@ public class GameModel {
         init(getNoOfPlayers());
     }
     public void newLevel(){
+        Player.setPlayerNo(0);
         levelCounter++;
         shot.clear();
         alien.clear();
