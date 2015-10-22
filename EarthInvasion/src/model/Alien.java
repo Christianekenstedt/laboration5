@@ -105,7 +105,7 @@ public class Alien extends GameObject {
 
     private void loadImage() {
         image = new Image("resources/alien.png");
-        image2 = new Image("resources/ship.png");
+        image2 = new Image("resources/alien2.png");
     }
 
     /**
