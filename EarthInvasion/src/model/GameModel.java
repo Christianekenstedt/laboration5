@@ -1,6 +1,5 @@
 package model;
 
-import view.Audio;
 import java.util.ArrayList;
 
 /**
@@ -66,13 +65,15 @@ public class GameModel {
         shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
     }
     
-    public void alienShot(int index) {
+    public boolean alienShot(int index) {
         
         ticker ++;    
         if(ticker == 10){
             shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
+            return true;
         }
-         if (ticker > 300 ) ticker = 0;
+         if (ticker > 300/(1+(levelCounter/10)) ) ticker = 0;
+        return false;
     }
 
     /**
@@ -97,9 +98,9 @@ public class GameModel {
      * @return noOfPlayers
      */
     public int getNoOfPlayers() {
-        return noOfPlayers = Player.getPlayerNo();
+        return noOfPlayers;
     }
-
+    
     private void addPlayers(int noOfPlayers) {
         if (noOfPlayers == 2) {
             player.add(new Player(260, 650, 66.3, 66.3, 100, "resources/ship.png"));
@@ -151,7 +152,10 @@ public class GameModel {
     public int getScore() {
         return score;
     }
-
+    
+    public int getUniqePlayerNo(int playerNo){
+        return ((Player)player.get(getNoOfPlayers()-playerNo)).getUniqeNo();
+    }
     /**
      *
      * @return

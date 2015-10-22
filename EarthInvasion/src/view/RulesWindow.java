@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -37,6 +39,7 @@ public class RulesWindow {
 
     private void initRulesWindow() {
         Label title = new Label("Rules for Earth Invasion!");
+        title.setFont(Font.font("Helvetica",FontWeight.BOLD, 20));
         Label info = new Label("Singel player:\n'←' to go left\n '→' go right\n',' (COMMA) to shoot\n\nMultiplayer:\n\nPlayer 2:\n'A' to go left\n'D' to go right\n'SPACE' to shoot\n\n Game rules:\n\n Shot down the aliens before they kill you or they reach your shields.");
         
         Button okButton = new Button("Yes, i understand!");
@@ -50,7 +53,7 @@ public class RulesWindow {
         
         rulesPane.setTop(title);
         rulesPane.setCenter(info);
-
+        rulesPane.setAlignment(title,Pos.TOP_CENTER);
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

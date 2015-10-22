@@ -1,6 +1,7 @@
 package view;
 
 import controller.EarthInvasionController;
+import controller.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
@@ -40,10 +41,10 @@ public class EarthInvasionView extends VBox {
     private EventHandler shipHandler;
     private Audio audio;
 
-    public EarthInvasionView(GameModel model, Audio audio) throws Exception {
+    public EarthInvasionView(GameModel model, Audio audio, FileHandler file) throws Exception {
         this.model = model;
         this.audio = audio;
-        controller = new EarthInvasionController(model, this, audio); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
+        controller = new EarthInvasionController(model, this, audio, file); // skapa EarthInvasionController och model och view skicka som argument till EarthInvasionController
 
         //Creates the window, menu bar and so on
         initView();
@@ -115,11 +116,11 @@ public class EarthInvasionView extends VBox {
         
         MenuItem newGameItem = new MenuItem("New Game");
         MenuItem quitItem = new MenuItem("Quit");
-        MenuItem saveItem = new MenuItem("Save", new ImageView(new Image("resources/save.png",15,15,true,true)));
+        
         
         MenuItem highscoreItem = new MenuItem("Highscore");
         
-        fileMenu.getItems().addAll(newGameItem, saveItem, highscoreItem, new SeparatorMenuItem(), quitItem);
+        fileMenu.getItems().addAll(newGameItem, highscoreItem, new SeparatorMenuItem(), quitItem);
         
         CheckMenuItem bgMusic = new CheckMenuItem("Music");
         bgMusic.setSelected(true);
@@ -161,10 +162,7 @@ public class EarthInvasionView extends VBox {
         newGameItem.setOnAction((ActionEvent event) -> {
             controller.handleNewGame(event);
         });
-        saveItem.setAccelerator(KeyCombination.keyCombination("ctrl+S"));
-        saveItem.setOnAction((ActionEvent event) -> {
-            controller.handleSaveItem(event);
-        });
+        
         rulesItem.setOnAction((ActionEvent event) -> {
             controller.handleRules(event);
         });

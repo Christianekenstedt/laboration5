@@ -13,10 +13,14 @@ public class Audio {
 
     private static AudioClip bulletSound;
     private static AudioClip alienKilled;
+    private AudioClip playerKilled;
+    private AudioClip alienShoot;
+    
     private Media music;
     private static MediaPlayer bgMusic;
     private static double bgVolume;
     private static double soundEffectsVolume;
+    
 
     public Audio() {
         loadSounds();
@@ -26,13 +30,15 @@ public class Audio {
         music = new Media(getClass().getResource("/resources/audio/music.mpeg").toExternalForm());
         bgMusic = new MediaPlayer(music);
         bgMusic.setVolume(0.1);
-        //bgMusic.setAutoPlay(true);
+        bgMusic.setAutoPlay(true);
         bgMusic.setOnEndOfMedia(() -> {
             bgMusic.seek(Duration.ZERO);
             bgMusic.play();
         });
         bulletSound = new AudioClip(getClass().getResource("/resources/audio/LaserGun.mp3").toExternalForm());
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
+        playerKilled = new AudioClip(getClass().getResource("/resources/audio/playerDie.wav").toExternalForm());
+        alienShoot = new AudioClip(getClass().getResource("/resources/audio/alienShoot.wav").toExternalForm());
         setSoundEffectsVolume(0.5);
 
     }
@@ -48,8 +54,17 @@ public class Audio {
     }
 
     public void alienKilled() {
-        alienKilled.setVolume(Audio.getSoundEffectsVolume() - 0.2);
+        alienKilled.setVolume(Audio.getSoundEffectsVolume() - 0.3);
         alienKilled.play();
+    }
+    
+    public void playerKilled(){
+        playerKilled.setVolume(Audio.getSoundEffectsVolume());
+        playerKilled.play();
+    }
+    public void alienShoot(){
+        alienShoot.setVolume(Audio.getSoundEffectsVolume()-0.2);
+        alienShoot.play();
     }
 
     public void setMediaPlayerVolume() {

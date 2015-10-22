@@ -99,7 +99,7 @@ public class Alien extends GameObject {
      *
      */
     public void moveAlienDown() {
-        setY(getY() + 4);
+        setY(getY() + 3);
     }
 
     private void loadImage() {
@@ -127,7 +127,7 @@ public class Alien extends GameObject {
         } else if (getX() > 640 - getWidth()) {
             constrained = true;
             setMovingRight(false);
-        } else if (getY() > 500 - getHeight()) {
+        } else if (getY() > 540 - getHeight()) {
             setAtBottom(true);
         }
     }

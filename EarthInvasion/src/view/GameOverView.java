@@ -64,7 +64,7 @@ public class GameOverView {
         pane.setAlignment(Pos.CENTER);
         
         saveButton.setOnAction(event->{
-            if(text.getText().length()>4 && !text.getText().contains(" ")){
+            if(text.getLength()>4 && !text.getText().contains(" ")){
               try {
                 file.write(text.getText()+" "+model.getLevelCounter()+" "+model.getScore());
                 } catch (Exception ex) {

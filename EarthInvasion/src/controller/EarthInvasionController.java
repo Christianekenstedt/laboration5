@@ -26,11 +26,11 @@ public class EarthInvasionController {
     private final Audio audio;
     private FileHandler file;
 
-    public EarthInvasionController(GameModel model, EarthInvasionView view, Audio audio) throws Exception {
+    public EarthInvasionController(GameModel model, EarthInvasionView view, Audio audio, FileHandler file) throws Exception {
         this.model = model;
         this.view = view;
         this.audio = audio;
-        file = new FileHandler();
+        this.file = file;
         file.read();
         gameLoop();
 
@@ -72,35 +72,10 @@ public class EarthInvasionController {
         if (model.getNoOfPlayers() == 1) {
             ((Player) getPlayer().get(0)).tick();
         } else if (model.getNoOfPlayers() == 2) {
-            ((Player) getPlayer().get(0)).tick();
-            ((Player) getPlayer().get(1)).tick();
+            for(int i = 0; i< getPlayer().size(); i++)
+            ((Player) getPlayer().get(i)).tick();
+            
         }
-
-    }
-
-    public void checkIfShootPlayer() {
-        int counter = 0;
-
-        for (int i = 0; i < getAlien().size(); i++) {
-            for (int j = 0; j < getAlien().size(); j++) {
-                if (getAlien().get(i).getX() == getAlien().get(j).getX()) { // Kollar om getAlien() i har samma x-varde som getAlien() j
-                    // for i so fall so ligger bada pa samma kolummn.
-                    // Da maste vi kolla om getAlien() j har starre y-varde, om den har de sa far inte getAlien() i skjuta.
-                    //Ifall den inte har de maste vi kolla om tills arrayen ar slut av aliens, och den absolut sista getAlien() for skjuta. for varje rad.
-                    if (getAlien().get(i).getY() < getAlien().get(j).getY()) { // Om getAlien() i:s, y-varde ar mindre an getAlien() j:s, da betyder det att getAlien() i, ej far skjuta.
-                        counter = j;                               // Da sparar vi undan tillfalligt den getAlien() som finns langst ner far varje kolummn.
-                    }
-                }
-                
-            }
-            for(int k = 0; k < getPlayer().size(); k++){
-                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
-                    System.out.println(counter + " sees palyer"); 
-                    model.alienShot(counter);
-                }else System.out.println("not in sight!");
-        }
-        }
-        
 
     }
 
@@ -122,7 +97,8 @@ public class EarthInvasionController {
             }
             for(int k = 0; k < getPlayer().size(); k++){
                 if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
-                    model.alienShot(counter);
+                    
+                   if(model.alienShot(counter)) audio.alienShoot();
                 }
             }
         }
@@ -193,6 +169,7 @@ public class EarthInvasionController {
                             Player.setPlayerNo(Player.getPlayerNo()-1);
                             model.removeObject(getPlayer().get(j)); //TAGIT BORT ATT PLAYERN FoRSVINNER ATM
                             model.removeObject(getShot().get(i));
+                            audio.playerKilled();
 
                             //j--;
                         } else {
@@ -272,13 +249,13 @@ public class EarthInvasionController {
                 }
                 break;
             case D:
-                if (model.getNoOfPlayers() > 1) {
+                if (model.getNoOfPlayers()==2) {
                     playerMovement(2, 2);
                 }
 
                 break;
             case SPACE:
-                if (model.getNoOfPlayers() > 1) {
+                if (model.getNoOfPlayers()==2) {
                     model.PlayerShot(2);
                     Audio.playBullet();
                 }
@@ -303,13 +280,13 @@ public class EarthInvasionController {
             case COMMA:
                 break;
             case A:
-                if (model.getNoOfPlayers() > 1) {
+                if (model.getNoOfPlayers()==2) {
                     playerMovement(3, 2);
                 }
 
                 break;
             case D:
-                if (model.getNoOfPlayers() > 1) {
+                if (model.getNoOfPlayers()==2) {
                     playerMovement(4, 2);
                 }
 
@@ -365,10 +342,7 @@ public class EarthInvasionController {
         view.setFrostEffect(0, 0);
     }
 
-    public void handleSaveItem(ActionEvent event) {
-        GameOverView gov = new GameOverView(model, file);
-        gov.showWindow();
-    }
+    
 
     public ArrayList<GameObject> getPlayer() {
         return (ArrayList) model.getPlayer();

@@ -5,8 +5,12 @@
  */
 package view;
 
+import controller.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -30,8 +34,12 @@ public class MainMenu {
     private static int noOfPlayers;
     private final Stage menuStage;
     private final Audio a;
+    private Button highscoreButton;
     
-    public MainMenu(Audio a) {
+    private FileHandler file;
+    
+    public MainMenu(Audio a, FileHandler file) {
+        this.file = file;
         this.a = a;
         menuStage = new Stage();
         aPane = new AnchorPane();
@@ -56,13 +64,24 @@ public class MainMenu {
         twoPlayerButton.setOnAction((ActionEvent event) -> {
             twoPlayerButtonHandler(event);
         });
+        highscoreButton = new Button("Highscores");
+        highscoreButton.setOnAction((ActionEvent event) -> {
+            try {
+                highscoreButtonHandler(event);
+            } catch (Exception ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         onePlayerButton.setLayoutX(294);
         onePlayerButton.setLayoutY(335);
         twoPlayerButton.setLayoutX(294);
         twoPlayerButton.setLayoutY(370);
+        highscoreButton.setLayoutX(294);
+        highscoreButton.setLayoutY(405);
         logoImage.setX(120);
         logoImage.setY(210);
-        aPane.getChildren().addAll(imageView,logoImage,onePlayerButton,twoPlayerButton);
+        aPane.getChildren().addAll(imageView,logoImage,onePlayerButton,twoPlayerButton, highscoreButton);
+        
        
     }    
 
@@ -90,5 +109,11 @@ public class MainMenu {
     
     public static int getNoOfPlayers(){
         return noOfPlayers;
+    }
+
+    private void highscoreButtonHandler(ActionEvent event) throws Exception {
+        HighscoreView h = new HighscoreView(file);
+        h.showWindow();
+        
     }
 }
