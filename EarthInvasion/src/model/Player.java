@@ -20,6 +20,10 @@ public class Player extends GameObject {
     private double velY;
     private boolean left;
     private boolean right;
+    private boolean canFire;
+    private int reloadCounter;
+    
+    private boolean dead;
 
     /**
      *
@@ -40,9 +44,44 @@ public class Player extends GameObject {
         this.left = false;
         this.right = false;
         
+        loadImage();
+        
+        dead = false;
+        canFire = true;
+        
+        reloadCounter = 0;
+        
         uniqeNo = playerNo;
         System.out.println("created player: " + playerNo++);
 
+    }
+
+    public int getReloadCounter() {
+        return reloadCounter;
+    }
+
+    public void reloadCounter(int reloadCounter) {
+        this.reloadCounter = reloadCounter;
+    }
+    
+    public boolean canFire() {
+        return canFire;
+    }
+
+    public void setCanFire(boolean canFire) {
+        this.canFire = canFire;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+    
+    private void loadImage(){
+        image = new Image(path);
     }
     
     public static int getPlayerNo() {
@@ -138,7 +177,6 @@ public class Player extends GameObject {
     @Override
     public void drawObject(GraphicsContext gc) {
 
-        image = new Image(path);
         gc.setStroke(Color.RED);
         gc.setFill(Color.RED);
         gc.setFont(new Font("LLPixel", 20));
@@ -147,10 +185,11 @@ public class Player extends GameObject {
         } else {
             gc.strokeText("P" + (getUniqeNo() + 1) + " Health: " + getHp(), 10, 45);
         }
-
-        gc.drawImage(image, getX(), getY(), getHeight(), getWidth());
+        if(!dead){
+            gc.drawImage(image, getX(), getY(), getHeight(), getWidth());
+        }
+        
     }
-
     /**
      *
      */

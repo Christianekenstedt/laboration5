@@ -18,6 +18,7 @@ public class FileHandler {
     
     private String savedScore;
     private final String PATH;
+    private String savedLevel;
 
     public FileHandler() {
         PATH = "highscores.txt";
@@ -34,7 +35,6 @@ public class FileHandler {
      */
     public void read() throws Exception {
         String line;
-        ArrayList<String> lines = new ArrayList<>();
         String name;
         int score, level;
         StringTokenizer tokenizer;
@@ -54,20 +54,21 @@ public class FileHandler {
                     
                     //ArrayList<String> s = new ArrayList<>();
                     
-                    name =tokenizer.nextToken();
-                    level = Integer.parseInt(tokenizer.nextToken());
+                    name = tokenizer.nextToken();
+                    level =Integer.parseInt(tokenizer.nextToken());
                     score = Integer.parseInt(tokenizer.nextToken());
                     highscoreString +=name + "\t\t" + level + "\t\t" + score + "\n";
                     
-                    lines.add(line);
+                    
                 } catch (NumberFormatException ne) {
                     System.out.println("Input mismatch. Skipping this line.");
                 }
                 line = fin.readLine();  // Read another line	
             }
         } catch (FileNotFoundException fe) {
-            System.out.println("Can not find the specified file.");
-            throw fe; // "do not nail your corpse in the upright position"
+            System.out.println("Can not find the specified file, creating a new.");
+            
+            
         } finally {
             try {
                 if (fin != null) {
@@ -77,9 +78,6 @@ public class FileHandler {
             }
             
         }
-        Collections.sort(lines);
-        Collections.reverse(lines);
-        System.out.println(lines);
         
         savedScore = highscoreString;
         
@@ -108,6 +106,10 @@ public class FileHandler {
 
     public String getSavedScore() {
         return savedScore;
+    }
+
+    public String getSavedLevel() {
+        return savedLevel;
     }
     
 }
