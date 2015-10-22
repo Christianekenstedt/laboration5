@@ -9,8 +9,8 @@ import javafx.scene.image.Image;
  */
 public class Alien extends GameObject {
 
-    private int hp;
-    private Image image;
+    private int hp, animationTimer;
+    private Image image, image2;
     private static double velocity;
     private static boolean movingRight, atBottom, constrained;
 
@@ -29,6 +29,7 @@ public class Alien extends GameObject {
         atBottom = false;
         constrained = false;
         setVelocity(0.2);
+        animationTimer = 0;
 
     }
 
@@ -104,6 +105,7 @@ public class Alien extends GameObject {
 
     private void loadImage() {
         image = new Image("resources/alien.png");
+        image2 = new Image("resources/ship.png");
     }
 
     /**
@@ -112,7 +114,13 @@ public class Alien extends GameObject {
      */
     @Override
     public void drawObject(GraphicsContext gc) {
-        gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
+        animationTimer++;
+        if(animationTimer<=50){
+            gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
+        }else if(animationTimer>50 && animationTimer < 100){
+            gc.drawImage(image2, getX(), getY(), getWidth(), getHeight());
+        }else if(animationTimer>100) animationTimer = 0;
+        
     }
 
     /**
