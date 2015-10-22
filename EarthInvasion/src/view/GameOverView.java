@@ -53,9 +53,10 @@ public class GameOverView {
         
         Label label = new Label("Name: ");
         TextField text = new TextField();
-        text.setPromptText("name on highscore list");
+        text.setPromptText("minimum 4 characters");
         text.deselect();
         Button saveButton = new Button("Save");
+        saveButton.requestFocus();
         saveButton.setAlignment(Pos.BOTTOM_CENTER);
         
         box.getChildren().addAll(label, text);
@@ -63,14 +64,16 @@ public class GameOverView {
         pane.setAlignment(Pos.CENTER);
         
         saveButton.setOnAction(event->{
-            
-            try {
+            if(text.getText().length()>4 && !text.getText().contains(" ")){
+              try {
                 file.write(text.getText()+" "+model.getLevelCounter()+" "+model.getScore());
-            } catch (Exception ex) {
-                Logger.getLogger(GameOverView.class.getName()).log(Level.SEVERE, null, ex);
-                System.err.println("File save don't work");
+                } catch (Exception ex) {
+                    Logger.getLogger(GameOverView.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println("File save don't work");
+                }
+                stage.close();  
             }
-            stage.close();
+            
         });
         
         
@@ -86,7 +89,7 @@ public class GameOverView {
         stage.toFront();
         stage.initStyle(StageStyle.UNDECORATED);
 
-        stage.showAndWait();
-        //Här borde vi lägga någon typ av return
+        stage.show();
+        
     }
 }

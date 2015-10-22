@@ -19,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import model.*;
 
 /**
@@ -84,6 +86,13 @@ public class EarthInvasionView extends VBox {
         gc.setFont(new Font("LLPixel", 20));
         gc.strokeText("Level: " + model.getLevelCounter(), 420, 20);
         gc.strokeText("Score: " + model.getScore(), 500, 20);
+    }
+    public void drawMessage(String message){
+        gc.setStroke(Color.RED);
+        
+        gc.setFont(Font.font("LLPixel", FontWeight.BOLD, 20));
+        gc.strokeText(message, 200, 400);
+        
     }
 
     private void initView() {

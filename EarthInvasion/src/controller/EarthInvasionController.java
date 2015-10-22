@@ -323,7 +323,7 @@ public class EarthInvasionController {
     }
 
     public void handleNewGame(ActionEvent event) {
-        System.out.println("START NEW GAME!!");
+        model.restartGame();
     }
 
     public void handleHighscore(ActionEvent event) throws Exception {
@@ -385,7 +385,24 @@ public class EarthInvasionController {
     public ArrayList<GameObject> getBlock() {
         return (ArrayList) model.getBlock();
     }
-
+    
+    private void checkIfGameOver() {
+        Boolean gameOver = false;
+        for(GameObject go: getAlien()){
+            if(((Alien)go).isAtBottom()) gameOver = true;
+        }
+        
+        if(getPlayer().isEmpty()) gameOver = true;
+        
+        if(gameOver){
+            timer.stop();
+            GameOverView gov = new GameOverView(model, file);
+            
+            gov.showWindow();
+            model.restartGame();
+            view.drawMessage("Press 'R' when you are ready\nto play again!");
+        }
+    }
     protected class GameLoop extends AnimationTimer {
 
         private long previousNs = 0;
@@ -406,9 +423,12 @@ public class EarthInvasionController {
             
             checkForConstrain();
             checkForCollision();
-            //checkIfShootPlayer();
             
             alienAI();
+            
+            checkIfGameOver();
         }
+
+        
     }
 }

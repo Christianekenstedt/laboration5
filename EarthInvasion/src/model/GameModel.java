@@ -24,23 +24,27 @@ public class GameModel {
      */
     public GameModel(int noOfPlayers) {
         this.noOfPlayers = noOfPlayers;
-        levelCounter = 1;
-        init();
+        init(this.noOfPlayers);
     }
 
-    private void init() {
+    private void init(int noOfPlayers) {
         player = new ArrayList<>();
         alien = new ArrayList<>();
         block = new ArrayList<>();
         shot = new ArrayList<>();
         ticker = 0;
         score = 0;
+        levelCounter = 1;
         // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
         addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
     }
-    
+    public void restartGame(){
+        Player.setPlayerNo(0);
+        player.clear();
+        init(getNoOfPlayers());
+    }
     public void newLevel(){
         levelCounter++;
         shot.clear();
@@ -98,7 +102,6 @@ public class GameModel {
 
     private void addPlayers(int noOfPlayers) {
         if (noOfPlayers == 2) {
-
             player.add(new Player(260, 650, 66.3, 66.3, 100, "resources/ship.png"));
             player.add(new Player(360, 650, 66.3, 66.3, 100, "resources/ship2.png"));
         } else {
