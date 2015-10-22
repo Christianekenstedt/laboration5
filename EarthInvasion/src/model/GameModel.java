@@ -40,7 +40,7 @@ public class GameModel {
         score = 0;
         playerReloadCounter = 0;
         levelCounter = 1;
-        // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
+        
         addPlayers(noOfPlayers);
         addAliens();
         addBlocks();

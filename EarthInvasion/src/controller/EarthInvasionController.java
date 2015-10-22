@@ -393,9 +393,10 @@ public class EarthInvasionController {
         if(gameOver){
             timer.stop();
             GameOverView gov = new GameOverView(model, file);
-            
             gov.showWindow();
+            
             view.drawMessage("Press 'R' when you are ready\nto play again!");
+            
             model.restartGame();
         }
     }
