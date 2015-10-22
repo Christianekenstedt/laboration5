@@ -40,6 +40,7 @@ public class HighscoreView {
     private void initHighscoreWindow() throws Exception {
         file.read();
         String highscoreString = file.getSavedScore();
+        String highscoreLevel = file.getSavedLevel();
         // eventuellt reada varja gång oxå
         Label title = new Label("Highscores");
         title.setFont(Font.font("Helvetica",FontWeight.BOLD, 20));
@@ -93,8 +94,5 @@ public class HighscoreView {
         //Här borde vi lägga någon typ av return
     }
     
-    private void sortList(String list){
-        //while()
-        
-    }
+    
 }
