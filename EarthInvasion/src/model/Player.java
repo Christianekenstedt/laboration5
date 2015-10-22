@@ -6,8 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
+ * This class represent a player. It extends from GameObject with two abstract
+ * methods.
  *
- * @author Gustaf
+ * @author Gustaf Holmström and Christian Ekenstedt
  */
 public class Player extends GameObject {
 
@@ -22,17 +24,19 @@ public class Player extends GameObject {
     private boolean right;
     private boolean canFire;
     private int reloadCounter;
-    
+
     private boolean dead;
 
     /**
+     * The constructor takes x, y, width, height, hp and the path to the image.
+     * It inits all the data for the player with the given parameters.
      *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @param hp
-     * @param path
+     * @param x, the x-coordinate to be set.
+     * @param y, the y-cooridnate to be set.
+     * @param width, the width of the player.
+     * @param height, the height of the player.
+     * @param hp, the hp to be given to the player.
+     * @param path, the path of the image.
      */
     public Player(double x, double y, double width, double height, int hp, String path) {
         super(x, y, width, height);
@@ -43,58 +47,94 @@ public class Player extends GameObject {
 
         this.left = false;
         this.right = false;
-        
+
         loadImage();
-        
+
         dead = false;
         canFire = true;
-        
+
         reloadCounter = 0;
-        
+
         uniqeNo = playerNo;
         System.out.println("created player: " + playerNo++);
 
     }
 
+    /**
+     *
+     * @return vet ej.
+     */
     public int getReloadCounter() {
         return reloadCounter;
     }
 
+    /**
+     *
+     * @param reloadCounter, vet ej.
+     */
     public void reloadCounter(int reloadCounter) {
         this.reloadCounter = reloadCounter;
     }
-    
+
+    /**
+     *
+     * @return true/false, if the player can shot.
+     */
     public boolean canFire() {
         return canFire;
     }
 
+    /**
+     *
+     * @param canFire, if the player can shot.
+     */
     public void setCanFire(boolean canFire) {
         this.canFire = canFire;
     }
 
+    /**
+     *
+     * @return true/false if the player is dead.
+     */
     public boolean isDead() {
         return dead;
     }
 
+    /**
+     *
+     * @param dead, sets the player if dead or not.
+     */
     public void setDead(boolean dead) {
         this.dead = dead;
     }
-    
-    private void loadImage(){
+
+    /**
+     * Loads the image with the given path.
+     */
+    private void loadImage() {
         image = new Image(path);
     }
-    
+
+    /**
+     *
+     * @return the player number.
+     */
     public static int getPlayerNo() {
         return playerNo;
     }
 
+    /**
+     * Sets the player number.
+     *
+     * @param playerNo, the player number to be set.
+     */
     public static void setPlayerNo(int playerNo) {
         Player.playerNo = playerNo;
     }
-    
+
     /**
      *
-     * @return
+     * @return true/false if left.
      */
     public boolean isLeft() {
         return left;
@@ -102,7 +142,7 @@ public class Player extends GameObject {
 
     /**
      *
-     * @param left
+     * @param left, true/false if left.
      */
     public void setLeft(boolean left) {
         this.left = left;
@@ -110,7 +150,7 @@ public class Player extends GameObject {
 
     /**
      *
-     * @return
+     * @return true/fals if right.
      */
     public boolean isRight() {
         return right;
@@ -118,7 +158,7 @@ public class Player extends GameObject {
 
     /**
      *
-     * @param right
+     * @param right, fyll i.
      */
     public void setRight(boolean right) {
         this.right = right;
@@ -139,40 +179,45 @@ public class Player extends GameObject {
     }
 
     /**
+     * Sets the velocity for x.
      *
-     * @param velX
+     * @param velX, the velocity to be set for x.
      */
     public void setVelX(double velX) {
         this.velX = velX;
     }
 
     /**
+     * Returns the current health points.
      *
-     * @return
+     * @return hp.
      */
     public int getHp() {
         return hp;
     }
 
     /**
+     * Sets the amount of health points.
      *
-     * @param hp
+     * @param hp, the amount to be set.
      */
     public void setHp(int hp) {
         this.hp = hp;
     }
 
     /**
+     * Returns the uniqe player number.
      *
-     * @return
+     * @return the uniqe player number.
      */
     public int getUniqeNo() {
         return uniqeNo;
     }
 
     /**
+     * Draw the player and its current hp.
      *
-     * @param gc
+     * @param gc, the GraphicsContext.
      */
     @Override
     public void drawObject(GraphicsContext gc) {
@@ -185,13 +230,14 @@ public class Player extends GameObject {
         } else {
             gc.strokeText("P" + (getUniqeNo() + 1) + " Health: " + getHp(), 10, 45);
         }
-        if(!dead){
+        if (!dead) {
             gc.drawImage(image, getX(), getY(), getHeight(), getWidth());
         }
-        
+
     }
+
     /**
-     *
+     * This method keeps the player within the canvas.
      */
     @Override
     public void constrain() {

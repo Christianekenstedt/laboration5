@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 /**
  * This class represent a shot which can be fired from a player or an alien.
  *
- * @author Gustaf & Christian Ekenstedt
+ * @author Gustaf Holmström and Christian Ekenstedt
  */
 public class Shot extends GameObject {
 
@@ -47,7 +47,7 @@ public class Shot extends GameObject {
     /**
      * Sets if shot is in frame (true) or not (false).
      *
-     * @param inFrame
+     * @param inFrame, if in frame.
      */
     public void setInFrame(boolean inFrame) {
         this.inFrame = inFrame;
@@ -65,7 +65,7 @@ public class Shot extends GameObject {
     /**
      * Sets the damage for the shot.
      *
-     * @param damage
+     * @param damage, the damage to be set.
      */
     public void setDamage(int damage) {
         this.damage = damage;
@@ -105,7 +105,7 @@ public class Shot extends GameObject {
     /**
      * Draw the object with the GraphicsContext gc.
      *
-     * @param gc
+     * @param gc, the GraphicsContext.
      */
     @Override
     public void drawObject(GraphicsContext gc) {

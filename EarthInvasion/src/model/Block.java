@@ -7,8 +7,10 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
 /**
+ * This class represent a block that exists in the world to cover from shots.
+ * This class extends from GameObject with two abstract methods.
  *
- * @author Chrille
+ * @author Christian Ekenstedt and Gustaf Holmström.
  */
 public class Block extends GameObject {
 
@@ -16,11 +18,12 @@ public class Block extends GameObject {
     private final ArrayList<Image> images;
 
     /**
+     * The constructor creates the block with the given parameters.
      *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x, the x-coordinate for the block.
+     * @param y, the y-coordinate for the block.
+     * @param width, the width to be set for the block.
+     * @param height, the height to be set for the block.
      */
     public Block(double x, double y, double width, double height) {
         super(x, y, width, height);
@@ -31,21 +34,27 @@ public class Block extends GameObject {
     }
 
     /**
+     * Sets the health points for the block with the amount given by the
+     * parameter.
      *
-     * @param hp
+     * @param hp, the hp to be set.
      */
     public void setHp(int hp) {
         this.hp = hp;
     }
 
     /**
+     * Returns the current health points.
      *
-     * @return
+     * @return the current health points.
      */
     public int getHp() {
         return hp;
     }
 
+    /**
+     * This method load all the image of the block (Sprite). 
+     */
     private void loadImages() {
         Image temp = new Image("resources/newBlock.png");
         PixelReader reader = temp.getPixelReader();
@@ -55,8 +64,8 @@ public class Block extends GameObject {
     }
 
     /**
-     *
-     * @param gc
+     * This method draws the object on the GraphicsContext.
+     * @param gc, the GraphicsContext.
      */
     @Override
     public void drawObject(GraphicsContext gc) {
@@ -70,7 +79,7 @@ public class Block extends GameObject {
     }
 
     /**
-     *
+     * This method constrains the block, within the canvas.
      */
     @Override
     public void constrain() {

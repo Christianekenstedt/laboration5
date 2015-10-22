@@ -5,8 +5,8 @@ import javafx.scene.image.Image;
 
 /**
  * This class represent an alien and extends GameObject.
- * 
- * @author Christian Ekenstedt & Gustaf Holmström
+ *
+ * @author Christian Ekenstedt and Gustaf Holmström
  */
 public class Alien extends GameObject {
 
@@ -17,10 +17,11 @@ public class Alien extends GameObject {
 
     /**
      * The constructor takes x,y,widht and height and inits the alien.
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     *
+     * @param x, the x-coordinate for the alien.
+     * @param y, the y-coordinate for the alien.
+     * @param width, the width to be set for the alien.
+     * @param height, the height to be set for the alien.
      */
     public Alien(double x, double y, double width, double height) {
         super(x, y, width, height);
@@ -36,6 +37,7 @@ public class Alien extends GameObject {
 
     /**
      * Returns an boolean if this alien is at bottom.
+     *
      * @return true/false if at bottom.
      */
     public boolean isAtBottom() {
@@ -44,6 +46,7 @@ public class Alien extends GameObject {
 
     /**
      * Sets true/false to atBottom.
+     *
      * @param atBottom
      */
     public void setAtBottom(boolean atBottom) {
@@ -52,6 +55,7 @@ public class Alien extends GameObject {
 
     /**
      * Returns the velocity of the alien.
+     *
      * @return velocity
      */
     public static double getVelocity() {
@@ -60,7 +64,8 @@ public class Alien extends GameObject {
 
     /**
      * Sets the velocity of the alien.
-     * @param velocity
+     *
+     * @param velocity, the velocity to be set.
      */
     public static void setVelocity(double velocity) {
         Alien.velocity = velocity;
@@ -68,6 +73,7 @@ public class Alien extends GameObject {
 
     /**
      * Returns a boolean if the alien is moving right.
+     *
      * @return true/false
      */
     public static boolean isMovingRight() {
@@ -76,6 +82,7 @@ public class Alien extends GameObject {
 
     /**
      * Set true/false if the alien is moving right.
+     *
      * @param movingRight
      */
     public void setMovingRight(boolean movingRight) {
@@ -90,11 +97,10 @@ public class Alien extends GameObject {
             setX(getX() + getVelocity());
             //velocity = 0.4;
         } else {
-            setX(getX() + (getVelocity()*-1));
+            setX(getX() + (getVelocity() * -1));
             //velocity = -0.4;
         }
 
-        
     }
 
     /**
@@ -103,6 +109,7 @@ public class Alien extends GameObject {
     public void moveAlienDown() {
         setY(getY() + 3);
     }
+
     /**
      * This methid loads the images for the alien.
      */
@@ -113,20 +120,21 @@ public class Alien extends GameObject {
 
     /**
      * This method overrides from GameObjects and draws the alien at screen.
+     *
      * @param gc, the GraphicsContext to drawn at.
      */
     @Override
     public void drawObject(GraphicsContext gc) {
         animationTimer++;
-        if(animationTimer<=50){
+        if (animationTimer <= 50) {
             gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
-        }else if(animationTimer>50 && animationTimer <= 100){
+        } else if (animationTimer > 50 && animationTimer <= 100) {
             gc.drawImage(image2, getX(), getY(), getWidth(), getHeight());
-        }else if(animationTimer>100) {
+        } else if (animationTimer > 100) {
             gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
             animationTimer = 0;
         }
-        
+
     }
 
     /**
@@ -148,6 +156,7 @@ public class Alien extends GameObject {
 
     /**
      * Returns a boolean if the alien has constrained.
+     *
      * @return if the alien constrianed.
      */
     public boolean hasConstrained() {

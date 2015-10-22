@@ -4,8 +4,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- *
- * @author Gustaf
+ * This class represent a object that can be renderd in the game, a Player, Alien, Block or a shot.
+ * 
+ * @author Gustaf Holmström and Christian Ekenstedt
  */
 abstract public class GameObject {
 
@@ -13,10 +14,10 @@ abstract public class GameObject {
 
     /**
      *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x, the y-coordinate to be given to the GameObject.
+     * @param y, the x-coordinate to be given to the GameObject.
+     * @param width, the width to be set for the GameObject.
+     * @param height, the height to be set for the GameObject.
      */
     public GameObject(double x, double y, double width, double height) {
         this.x = x;
@@ -35,7 +36,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @param x
+     * @param x sets  the x-coordinate of the object.
      */
     public void setX(double x) {
         this.x = x;
@@ -43,7 +44,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return
+     * @return the y-coordinate of the object.
      */
     public double getY() {
         return y;
@@ -51,7 +52,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @param y
+     * @param y sets the y-coordinate of the object.
      */
     public void setY(double y) {
         this.y = y;
@@ -59,7 +60,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return
+     * @return the width of the object.
      */
     public double getWidth() {
         return width;
@@ -67,7 +68,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return
+     * @return the height of the object.
      */
     public double getHeight() {
         return height;
@@ -75,7 +76,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @param gc
+     * @param gc, the GraaphicsContext
      */
     abstract public void drawObject(GraphicsContext gc);
 
@@ -86,11 +87,11 @@ abstract public class GameObject {
 
     /**
      *
-     * @param rectX
-     * @param rectY
-     * @param rectWidth
-     * @param rectHeight
-     * @return
+     * @param rectX, the x-coordinate for the rect to be checked for intersect.
+     * @param rectY, the y-coordinate for the rect to be checked for intersect.
+     * @param rectWidth, the width for the rect to be checked for intersect.
+     * @param rectHeight, the height for the rect to be checked for intersect.
+     * @return true/false if intersects.
      */
     public boolean intersectsArea(double rectX, double rectY, double rectWidth, double rectHeight) {
 
@@ -102,7 +103,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return
+     * @return a string.
      */
     @Override
     public String toString() {

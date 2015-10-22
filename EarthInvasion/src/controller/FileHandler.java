@@ -14,8 +14,7 @@ import java.util.StringTokenizer;
  */
 @SuppressWarnings("unchecked")
 public class FileHandler {
-    
-    
+
     private String savedScore;
     private final String PATH;
     private String savedLevel;
@@ -23,14 +22,11 @@ public class FileHandler {
     public FileHandler() {
         PATH = "highscores.txt";
     }
-    
 
     /**
-     * The method read reads the file "booklist.ser" and deserializes the data.
-     * If the file is not found, it create a new .ser file and returns null.
+     * The method read the file "highscores.txt". If the file is not found, it
+     * create a new .txt file.
      *
-     * @return books, a reference to a temporary list of the type Book. Returns
-     * null if the file is not found.
      * @throws Exception
      */
     public void read() throws Exception {
@@ -50,16 +46,13 @@ public class FileHandler {
 
                 try {
                     tokenizer = new StringTokenizer(line);
-                    
-                    
+
                     //ArrayList<String> s = new ArrayList<>();
-                    
                     name = tokenizer.nextToken();
-                    level =Integer.parseInt(tokenizer.nextToken());
+                    level = Integer.parseInt(tokenizer.nextToken());
                     score = Integer.parseInt(tokenizer.nextToken());
-                    highscoreString +=name + "\t\t" + level + "\t\t" + score + "\n";
-                    
-                    
+                    highscoreString += name + "\t\t" + level + "\t\t" + score + "\n";
+
                 } catch (NumberFormatException ne) {
                     System.out.println("Input mismatch. Skipping this line.");
                 }
@@ -67,8 +60,7 @@ public class FileHandler {
             }
         } catch (FileNotFoundException fe) {
             System.out.println("Can not find the specified file, creating a new.");
-            
-            
+
         } finally {
             try {
                 if (fin != null) {
@@ -76,18 +68,19 @@ public class FileHandler {
                 }
             } catch (IOException ie) {
             }
-            
+
         }
-        
+
         savedScore = highscoreString;
-        
 
     }
 
     /**
-     * The method write serializes data to the file booklist.ser
+     * The method write to the "highscores.txt". Takes a parameter contaning the
+     * new highscores.
      *
-     * @throws Exception
+     * @param highscoresString
+     * 
      */
     public void write(String highscoresString) throws Exception {
         PrintWriter fout = null;
@@ -96,7 +89,7 @@ public class FileHandler {
             fw = new FileWriter(PATH);
             fout = new PrintWriter(new BufferedWriter(fw));
             // Writing to file...
-            fout.println(savedScore+highscoresString);
+            fout.println(savedScore + highscoresString);
         } finally {
             if (fout != null) {
                 fout.close();
@@ -104,12 +97,22 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Returns the data of the .txt file when first read.
+     *
+     * @return savedScore, the data.
+     */
     public String getSavedScore() {
         return savedScore;
     }
 
+    /**
+     * Returns the data of the .txt file when first read.
+     *
+     * @return savedLevel, the data.
+     */
     public String getSavedLevel() {
         return savedLevel;
     }
-    
+
 }
