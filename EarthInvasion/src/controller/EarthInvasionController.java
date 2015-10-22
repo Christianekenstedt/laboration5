@@ -399,6 +399,18 @@ public class EarthInvasionController {
             model.restartGame();
         }
     }
+    
+    public void playerReload(){
+        for(int i=0; i<getPlayer().size(); i++){
+            if(!((Player) getPlayer().get(i)).canFire()){
+                ((Player) getPlayer().get(i)).reloadCounter(((Player) getPlayer().get(i)).getReloadCounter()+1);
+                if(((Player) getPlayer().get(i)).getReloadCounter() == (30-model.getLevelCounter())){
+                    ((Player) getPlayer().get(i)).setCanFire(true);
+                }
+            }
+        }
+    }
+    
     protected class GameLoop extends AnimationTimer {
 
         private long previousNs = 0;
@@ -413,7 +425,7 @@ public class EarthInvasionController {
             view.drawInfo();
             view.drawGameObjects();
             
-            model.playerReload();
+            playerReload();
 
             movePlayers();
             moveAlien();

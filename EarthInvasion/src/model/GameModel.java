@@ -77,16 +77,6 @@ public class GameModel {
         
     }
     
-    public void playerReload(){
-        for(int i=0; i<player.size(); i++){
-            if(!((Player) player.get(i)).canFire()){
-                ((Player) player.get(i)).reloadCounter(((Player) player.get(i)).getReloadCounter()+1);
-                if(((Player) player.get(i)).getReloadCounter() == (30-levelCounter)){
-                    ((Player) player.get(i)).setCanFire(true);
-                }
-            }
-        }
-    }
     
     public boolean alienShot(int index) {
         
