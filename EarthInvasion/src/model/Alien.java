@@ -117,9 +117,12 @@ public class Alien extends GameObject {
         animationTimer++;
         if(animationTimer<=50){
             gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
-        }else if(animationTimer>50 && animationTimer < 100){
+        }else if(animationTimer>50 && animationTimer <= 100){
             gc.drawImage(image2, getX(), getY(), getWidth(), getHeight());
-        }else if(animationTimer>100) animationTimer = 0;
+        }else if(animationTimer>100) {
+            gc.drawImage(image, getX(), getY(), getWidth(), getHeight());
+            animationTimer = 0;
+        }
         
     }
 
