@@ -96,7 +96,7 @@ public class EarthInvasionController {
                 
             }
             for(int k = 0; k < getPlayer().size(); k++){
-                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) ){
+                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) && ((Player) getPlayer().get(k)).isDead() == false){
                     
                    if(model.alienShot(counter)) audio.alienShoot();
                 }
@@ -240,8 +240,11 @@ public class EarthInvasionController {
                 playerMovement(2, 1);
                 break;
             case COMMA:
-                model.PlayerShot(1);
-                Audio.playBullet();
+                if(((Player) model.getPlayerSpecific(1)).isDead() == false){
+                    model.PlayerShot(1);
+                    Audio.playBullet();
+                }
+                
                 break;
             case A:
                 if (model.getNoOfPlayers() == 2) {
@@ -256,8 +259,11 @@ public class EarthInvasionController {
                 break;
             case SPACE:
                 if (model.getNoOfPlayers()==2) {
-                    model.PlayerShot(2);
-                    Audio.playBullet();
+                    if(((Player) model.getPlayerSpecific(2)).isDead() == false){
+                        model.PlayerShot(2);
+                        Audio.playBullet();
+                    }
+                    
                 }
 
                 break;
@@ -361,12 +367,28 @@ public class EarthInvasionController {
     }
     
     private void checkIfGameOver() {
+        int loss = 0;
         Boolean gameOver = false;
         for(GameObject go: getAlien()){
             if(((Alien)go).isAtBottom()) gameOver = true;
         }
         
-        if(getPlayer().isEmpty()) gameOver = true;
+        //if(getPlayer().isEmpty()) gameOver = true;
+        
+        if(model.getNoOfPlayers() == 2){
+            for(int i=0; i<getPlayer().size(); i++){
+                if(((Player)getPlayer().get(i)).isDead()){
+                    loss+=1;
+                }
+            }
+            if(loss == model.getNoOfPlayers()) gameOver = true;
+        }else if(model.getNoOfPlayers() == 1){
+            if(((Player)getPlayer().get(0)).isDead()){
+                gameOver = true;
+            }
+        }
+        
+        
         
         if(gameOver){
             timer.stop();

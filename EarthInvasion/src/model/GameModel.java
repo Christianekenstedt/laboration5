@@ -25,6 +25,10 @@ public class GameModel {
         this.noOfPlayers = noOfPlayers;
         init(this.noOfPlayers);
     }
+    
+    public GameObject getPlayerSpecific(int index){
+        return player.get(index-1);
+    }
 
     private void init(int noOfPlayers) {
         player = new ArrayList<>();
@@ -49,7 +53,8 @@ public class GameModel {
         shot.clear();
         alien.clear();
         block.clear();
-        //player.clear();
+        player.clear();
+        addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
         //addPlayers(2);
@@ -140,8 +145,15 @@ public class GameModel {
             }
         } else if (o instanceof Block) {
             this.block.remove(o);
-        } else if (o instanceof Player) {
-            this.player.remove(o);
+        }else if (o instanceof Player) {
+            //this.player.remove(o);
+            for(int i=0; i<player.size(); i++){
+                if(player.get(i) == o){
+                    System.out.println("Player: "+i+" is dead!");
+                    ((Player) player.get(i)).setDead(true);
+                    ((Player) player.get(i)).setY(1000);
+                }
+            }
         }
     }
     
