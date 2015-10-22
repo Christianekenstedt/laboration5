@@ -240,7 +240,7 @@ public class EarthInvasionController {
                 playerMovement(2, 1);
                 break;
             case COMMA:
-                if(((Player) model.getPlayerSpecific(1)).isDead() == false){
+                if(((Player) model.getPlayerSpecific(1)).isDead() == false && ((Player) model.getPlayerSpecific(1)).canFire()){
                     model.PlayerShot(1);
                     Audio.playBullet();
                 }
@@ -259,7 +259,7 @@ public class EarthInvasionController {
                 break;
             case SPACE:
                 if (model.getNoOfPlayers()==2) {
-                    if(((Player) model.getPlayerSpecific(2)).isDead() == false){
+                    if(((Player) model.getPlayerSpecific(2)).isDead() == false && ((Player) model.getPlayerSpecific(2)).canFire()){
                         model.PlayerShot(2);
                         Audio.playBullet();
                     }
@@ -412,6 +412,8 @@ public class EarthInvasionController {
             view.drawBackground();
             view.drawInfo();
             view.drawGameObjects();
+            
+            model.playerReload();
 
             movePlayers();
             moveAlien();

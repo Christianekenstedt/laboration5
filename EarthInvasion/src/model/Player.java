@@ -20,6 +20,8 @@ public class Player extends GameObject {
     private double velY;
     private boolean left;
     private boolean right;
+    private boolean canFire;
+    private int reloadCounter;
     
     private boolean dead;
 
@@ -45,10 +47,29 @@ public class Player extends GameObject {
         loadImage();
         
         dead = false;
+        canFire = true;
+        
+        reloadCounter = 0;
         
         uniqeNo = playerNo;
         System.out.println("created player: " + playerNo++);
 
+    }
+
+    public int getReloadCounter() {
+        return reloadCounter;
+    }
+
+    public void reloadCounter(int reloadCounter) {
+        this.reloadCounter = reloadCounter;
+    }
+    
+    public boolean canFire() {
+        return canFire;
+    }
+
+    public void setCanFire(boolean canFire) {
+        this.canFire = canFire;
     }
 
     public boolean isDead() {

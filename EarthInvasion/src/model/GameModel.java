@@ -16,6 +16,7 @@ public class GameModel {
     private int ticker;
     private int noOfPlayers;
     private int levelCounter;
+    private int playerReloadCounter;
 
     /**
      *
@@ -37,6 +38,7 @@ public class GameModel {
         shot = new ArrayList<>();
         ticker = 0;
         score = 0;
+        playerReloadCounter = 0;
         levelCounter = 1;
         // CHANGE THIS TO ADD NR OF PLAYERS! MAXIMUM 2
         addPlayers(noOfPlayers);
@@ -66,8 +68,23 @@ public class GameModel {
      * @param index
      */
     public void PlayerShot(int index) {
-
-        shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
+        if(((Player) player.get(index-1)).canFire()){
+            shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
+            ((Player) player.get(index-1)).setCanFire(false);
+            ((Player) player.get(index-1)).reloadCounter(0);
+        }
+        
+    }
+    
+    public void playerReload(){
+        for(int i=0; i<player.size(); i++){
+            if(!((Player) player.get(i)).canFire()){
+                ((Player) player.get(i)).reloadCounter(((Player) player.get(i)).getReloadCounter()+1);
+                if(((Player) player.get(i)).getReloadCounter() == (30-levelCounter)){
+                    ((Player) player.get(i)).setCanFire(true);
+                }
+            }
+        }
     }
     
     public boolean alienShot(int index) {
