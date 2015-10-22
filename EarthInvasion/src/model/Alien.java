@@ -4,8 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- *
- * @author Chrille
+ * This class represent an alien and extends GameObject.
+ * 
+ * @author Christian Ekenstedt & Gustaf Holmström
  */
 public class Alien extends GameObject {
 
@@ -15,7 +16,7 @@ public class Alien extends GameObject {
     private static boolean movingRight, atBottom, constrained;
 
     /**
-     *
+     * The constructor takes x,y,widht and height and inits the alien.
      * @param x
      * @param y
      * @param width
@@ -34,15 +35,15 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
-     * @return
+     * Returns an boolean if this alien is at bottom.
+     * @return true/false if at bottom.
      */
     public boolean isAtBottom() {
         return atBottom;
     }
 
     /**
-     *
+     * Sets true/false to atBottom.
      * @param atBottom
      */
     public void setAtBottom(boolean atBottom) {
@@ -50,15 +51,15 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
-     * @return
+     * Returns the velocity of the alien.
+     * @return velocity
      */
     public static double getVelocity() {
         return velocity;
     }
 
     /**
-     *
+     * Sets the velocity of the alien.
      * @param velocity
      */
     public static void setVelocity(double velocity) {
@@ -66,15 +67,15 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
-     * @return
+     * Returns a boolean if the alien is moving right.
+     * @return true/false
      */
     public static boolean isMovingRight() {
         return movingRight;
     }
 
     /**
-     *
+     * Set true/false if the alien is moving right.
      * @param movingRight
      */
     public void setMovingRight(boolean movingRight) {
@@ -82,7 +83,7 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
+     * This method moves the alien.
      */
     public void moveAlien() {
         if (movingRight) {
@@ -97,20 +98,22 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
+     * This method moves the alien down.
      */
     public void moveAlienDown() {
         setY(getY() + 3);
     }
-
+    /**
+     * This methid loads the images for the alien.
+     */
     private void loadImage() {
         image = new Image("resources/alien.png");
         image2 = new Image("resources/alien2.png");
     }
 
     /**
-     *
-     * @param gc
+     * This method overrides from GameObjects and draws the alien at screen.
+     * @param gc, the GraphicsContext to drawn at.
      */
     @Override
     public void drawObject(GraphicsContext gc) {
@@ -127,7 +130,7 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
+     * This method keeps the alien inside the canvas.
      */
     @Override
     public void constrain() {
@@ -144,15 +147,15 @@ public class Alien extends GameObject {
     }
 
     /**
-     *
-     * @return
+     * Returns a boolean if the alien has constrained.
+     * @return if the alien constrianed.
      */
     public boolean hasConstrained() {
         return constrained;
     }
 
     /**
-     *
+     * This method set false to constrianed.
      */
     public void setConstrained() {
         constrained = false;
