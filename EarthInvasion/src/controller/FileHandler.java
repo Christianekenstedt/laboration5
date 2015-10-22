@@ -1,16 +1,14 @@
 package controller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
 /**
  * The class FileHandler contains read and write methods. The class read and
- * writes to a specific file called "booklist.ser", if the file is not found it
+ * writes to a specific file called "highscores.txt", if the file is not found it
  * will create a new file with that specific name.
  *
- * @author Christian Ekenstedt & Joachim Zetterman
+ * @author Christian Ekenstedt and Gustaf Holmström
  */
 @SuppressWarnings("unchecked")
 public class FileHandler {
@@ -27,7 +25,8 @@ public class FileHandler {
      * The method read the file "highscores.txt". If the file is not found, it
      * create a new .txt file.
      *
-     * @throws Exception
+     * 
+     * @throws java.lang.Exception
      */
     public void read() throws Exception {
         String line;
@@ -79,7 +78,8 @@ public class FileHandler {
      * The method write to the "highscores.txt". Takes a parameter contaning the
      * new highscores.
      *
-     * @param highscoresString
+     * @param highscoresString, the string to write to the file.
+     * @throws java.lang.Exception
      * 
      */
     public void write(String highscoresString) throws Exception {

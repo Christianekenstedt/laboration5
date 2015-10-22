@@ -28,7 +28,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return
+     * @return the x-coordinate of the object.
      */
     public double getX() {
         return x;

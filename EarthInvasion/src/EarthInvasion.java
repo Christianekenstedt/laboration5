@@ -26,7 +26,7 @@ public class EarthInvasion extends Application {
         EarthInvasionView root = new EarthInvasionView(model,audio, file);
 
         
-        Scene scene = new Scene(root, EarthInvasionView.getScreenWidth()-10, EarthInvasionView.getScreenHeight()+10);
+        Scene scene = new Scene(root, EarthInvasionView.getScreenWidth(), EarthInvasionView.getScreenHeight()+15);
 
         primaryStage.setTitle("Earth Invasion!");
         primaryStage.setScene(scene);

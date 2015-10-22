@@ -68,7 +68,7 @@ public class Alien extends GameObject {
     /**
      * Sets true/false to atBottom.
      *
-     * @param atBottom
+     * @param atBottom, to set if at bottom.
      */
     public void setAtBottom(boolean atBottom) {
         Alien.atBottom = atBottom;
@@ -104,7 +104,7 @@ public class Alien extends GameObject {
     /**
      * Set true/false if the alien is moving right.
      *
-     * @param movingRight
+     * @param movingRight, true/false to set.
      */
     public void setMovingRight(boolean movingRight) {
         Alien.movingRight = movingRight;
