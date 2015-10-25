@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author Chrille
+ * @author Christian Ekenstedt and Gustaf Holmström
  */
 public class Audio {
 
@@ -15,12 +15,11 @@ public class Audio {
     private static AudioClip alienKilled;
     private AudioClip playerKilled;
     private AudioClip alienShoot;
-    
+
     private Media music;
     private static MediaPlayer bgMusic;
     private static double bgVolume;
     private static double soundEffectsVolume;
-    
 
     public Audio() {
         loadSounds();
@@ -57,13 +56,14 @@ public class Audio {
         alienKilled.setVolume(Audio.getSoundEffectsVolume() - 0.2);
         alienKilled.play();
     }
-    
-    public void playerKilled(){
+
+    public void playerKilled() {
         playerKilled.setVolume(Audio.getSoundEffectsVolume());
         playerKilled.play();
     }
-    public void alienShoot(){
-        alienShoot.setVolume(Audio.getSoundEffectsVolume()-0.2);
+
+    public void alienShoot() {
+        alienShoot.setVolume(Audio.getSoundEffectsVolume() - 0.2);
         alienShoot.play();
     }
 

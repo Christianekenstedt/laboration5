@@ -14,7 +14,8 @@ abstract public class GameObject {
     private double x, y, width, height;
 
     /**
-     *
+     * The constructor creates the and intis the data with the given paramets.
+     * 
      * @param x, the y-coordinate to be given to the GameObject.
      * @param y, the x-coordinate to be given to the GameObject.
      * @param width, the width to be set for the GameObject.
@@ -37,7 +38,7 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Return the x-coordinate of the GameObject.
      * @param x sets the x-coordinate of the GameObject.
      */
     public void setX(double x) {
@@ -45,7 +46,7 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Return the y-coordinate of the GameObject.
      * @return the y-coordinate of the GameObject.
      */
     public double getY() {
@@ -53,7 +54,7 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Sets value of y.
      * @param y sets the y-coordinate of the GameObject.
      */
     public void setY(double y) {
@@ -61,7 +62,7 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Return width of the GameObject.
      * @return the width of the GameObject.
      */
     public double getWidth() {
@@ -69,7 +70,7 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Return height of the GameObject.
      * @return the height of the GameObject.
      */
     public double getHeight() {
@@ -77,18 +78,18 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Draw the object.
      * @param gc, the GraphicsContext
      */
     abstract public void drawObject(GraphicsContext gc);
 
     /**
-     *
+     * Checks if the object is within a specific area.
      */
     abstract public void constrain();
 
     /**
-     *
+     * Checks if the object is intersecting with another object given by the parameters.
      * @param rectX, the x-coordinate for the rect to be checked for intersect.
      * @param rectY, the y-coordinate for the rect to be checked for intersect.
      * @param rectWidth, the width for the rect to be checked for intersect.
@@ -104,7 +105,7 @@ abstract public class GameObject {
     }
 
     /**
-     *
+     * Returns a string of the 
      * @return a string.
      */
     @Override

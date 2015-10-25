@@ -2,16 +2,12 @@ package view;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,7 +21,7 @@ import model.GameModel;
 
 /**
  *
- * @author Christian
+ * @author Christian Ekenstedt and Gustaf Holmström
  */
 public class GameOverView {
 
@@ -54,7 +50,7 @@ public class GameOverView {
         Text gameOverText = new Text("GAME OVER");
         gameOverText.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
         gameOverText.setFill(Color.RED);
-        
+
         Label label = new Label("Name: ");
         TextField text = new TextField();
         text.setPromptText("minimum 4 characters");
@@ -62,30 +58,28 @@ public class GameOverView {
         Button saveButton = new Button("Save");
         saveButton.requestFocus();
         saveButton.setAlignment(Pos.BOTTOM_CENTER);
-        
+
         box.getChildren().addAll(label, text);
-        pane.getChildren().addAll(gameOverText,box, saveButton);
+        pane.getChildren().addAll(gameOverText, box, saveButton);
         pane.setAlignment(Pos.CENTER);
-        
-        saveButton.setOnAction(event->{
-            if(text.getLength()>4 && !text.getText().contains(" ")){
-              try {
-                file.write(text.getText()+" "+ level +" " + score);
+
+        saveButton.setOnAction(event -> {
+            if (text.getLength() > 4 && !text.getText().contains(" ")) {
+                try {
+                    file.write(text.getText() + " " + level + " " + score);
                 } catch (Exception ex) {
                     Logger.getLogger(GameOverView.class.getName()).log(Level.SEVERE, null, ex);
                     System.err.println("File save don't work");
                 }
-                stage.close();  
+                stage.close();
             }
-            
+
         });
-        
-        
+
     }
 
     public void showWindow() {
-        
-        
+
         stage.setTitle("Game Over...");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -94,6 +88,6 @@ public class GameOverView {
         stage.initStyle(StageStyle.UNDECORATED);
 
         stage.show();
-        
+
     }
 }
