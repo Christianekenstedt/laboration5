@@ -150,7 +150,7 @@ public class EarthInvasionController {
 
     }
 
-    public void collisionWithObjects() {
+    private void collisionWithObjects() {
         shotCheckCollisionWithAlien();
         shotCheckCollisionWithBlock();
         shotCheckCollisionWithPlayer();
@@ -183,12 +183,10 @@ public class EarthInvasionController {
         for (int i = 0; i < getShot().size(); i++) {
             for (int j = 0; j < getAlien().size(); j++) {
                 if (((Shot) getShot().get(i)).isFiredFromPlayer() && getShot().get(i).intersectsArea(getAlien().get(j).getX(), getAlien().get(j).getY(), getAlien().get(j).getWidth(), getAlien().get(j).getHeight())) {
-                    //getShot().remove(getShot().get(i));
                     model.removeObject(getShot().get(i));
                     i--;
                     model.setScore(model.getScore() + 20);
                     audio.alienKilled();
-                    //getAlien().remove(getAlien().get(j));
                     model.removeObject(getAlien().get(j));
                     j--;
                     break;
@@ -210,12 +208,10 @@ public class EarthInvasionController {
 
                     if (((Block) getBlock().get(j)).getHp() <= 0) {
                         model.removeObject(getBlock().get(j));
-                        //getBlock().remove(getBlock().get(j));
                         model.removeObject(getShot().get(i));
                         j--;
                     } else {
                         model.removeObject(getShot().get(i));
-                        //getShot().remove(getShot().get(i));
                     }
                     i--;
                     break;
@@ -395,7 +391,7 @@ public class EarthInvasionController {
         }
     }
     
-    public void playerReload(){
+    public void reload(){
         for(int i=0; i<getPlayer().size(); i++){
             if(!((Player) getPlayer().get(i)).canFire()){
                 ((Player) getPlayer().get(i)).reloadCounter(((Player) getPlayer().get(i)).getReloadCounter()+1);
@@ -429,7 +425,7 @@ public class EarthInvasionController {
             view.drawInfo();
             view.drawGameObjects();
             
-            playerReload();
+            reload();
 
             movePlayers();
             moveAlien();
