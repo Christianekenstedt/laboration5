@@ -54,6 +54,8 @@ public class GameModel {
         addAliens();
         addBlocks();
     }
+    
+    
     /**
      * Restarts the game.
      */

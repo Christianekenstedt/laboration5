@@ -133,7 +133,7 @@ public class Player extends GameObject {
     }
 
     /**
-     *
+     * return a boolean value showing if player object is moving left or not
      * @return true/false if left.
      */
     public boolean isLeft() {
@@ -141,7 +141,7 @@ public class Player extends GameObject {
     }
 
     /**
-     *
+     * sets variable left to true or false
      * @param left, true/false if left.
      */
     public void setLeft(boolean left) {
@@ -149,7 +149,7 @@ public class Player extends GameObject {
     }
 
     /**
-     *
+     * return a boolean value showing if player object is moving right or not
      * @return true/fals if right.
      */
     public boolean isRight() {
@@ -157,7 +157,7 @@ public class Player extends GameObject {
     }
 
     /**
-     *
+     * sets variable left to true or false
      * @param right, fyll i.
      */
     public void setRight(boolean right) {
@@ -165,7 +165,8 @@ public class Player extends GameObject {
     }
 
     /**
-     *
+     * Depending on the variables left and right the
+     * X value in GameObject will change accordingly
      */
     public void tick() {
 
