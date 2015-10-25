@@ -52,7 +52,7 @@ public class Player extends GameObject {
         uniqeNo = playerNo;
         velX = 4;
         velY = 0;
-        
+        playerNo++;
         loadImage();
     }
 
