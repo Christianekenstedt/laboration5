@@ -12,8 +12,9 @@ public class Shot extends GameObject {
 
     private Image image;
     private boolean firedFromPlayer;
-    private int damage;
     private boolean inFrame;
+    
+    private int damage;
 
     /**
      * The constructor creates the shot when called and inits the data with data

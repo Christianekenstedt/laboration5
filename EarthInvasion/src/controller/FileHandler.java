@@ -40,13 +40,11 @@ public class FileHandler {
         try {
             fin = new BufferedReader(new FileReader(PATH));
 
-            line = fin.readLine(); 	// Read a line from the file...
-            while (line != null) {	// ...while there's more to read.
+            line = fin.readLine();
+            while (line != null) {
 
                 try {
                     tokenizer = new StringTokenizer(line);
-
-                    //ArrayList<String> s = new ArrayList<>();
                     name = tokenizer.nextToken();
                     level = Integer.parseInt(tokenizer.nextToken());
                     score = Integer.parseInt(tokenizer.nextToken());
@@ -66,10 +64,10 @@ public class FileHandler {
                     fin.close();
                 }
             } catch (IOException ie) {
+                System.out.println("Cannot close.");
+                throw ie;
             }
-
         }
-
         savedScore = highscoreString;
 
     }
@@ -88,7 +86,6 @@ public class FileHandler {
         try {
             fw = new FileWriter(PATH);
             fout = new PrintWriter(new BufferedWriter(fw));
-            // Writing to file...
             fout.println(savedScore + highscoresString);
         } finally {
             if (fout != null) {

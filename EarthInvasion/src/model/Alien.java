@@ -40,29 +40,29 @@ public class Alien extends GameObject {
 
     }
     /**
-     * 
-     * @return 
+     * Returns the value of reloadCounter.
+     * @return  the value of reloadCounter.
      */
     public int getReloadCounter() {
         return reloadCounter;
     }
     /**
-    * 
-    * @param reloadCounter 
+    * Sets the reloadCounter.
+    * @param reloadCounter sets the reloadCounter.
     */
     public void reloadCounter(int reloadCounter) {
         this.reloadCounter = reloadCounter;
     }
     /**
-     * 
-     * @return 
+     * Return if the player is allowed to fire.
+     * @return if the player is allowed to fire.
      */
     public boolean canFire() {
         return canFire;
     }
     /**
-     * 
-     * @param canFire 
+     * Sets if the player is allowed to fire.
+     * @param canFire, sets if the player is allowed to fire.
      */
     public void setCanFire(boolean canFire) {
         this.canFire = canFire;

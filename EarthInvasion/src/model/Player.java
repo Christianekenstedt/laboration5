@@ -14,17 +14,19 @@ import javafx.scene.text.Font;
 public class Player extends GameObject {
 
     private int hp;
-    private Image image;
-    private final String path;
+    private int reloadCounter;
     private static int playerNo = 0;
     private int uniqeNo;
+    
+    private Image image;
+    private final String path;
+    
     private double velX;
     private double velY;
+    
     private boolean left;
     private boolean right;
     private boolean canFire;
-    private int reloadCounter;
-
     private boolean dead;
 
     /**
@@ -42,27 +44,21 @@ public class Player extends GameObject {
         super(x, y, width, height);
         this.hp = hp;
         this.path = path;
-        velX = 4;
-        velY = 0;
-
         this.left = false;
         this.right = false;
-
-        loadImage();
-
         dead = false;
         canFire = true;
-
         reloadCounter = 0;
-
         uniqeNo = playerNo;
-        System.out.println("created player: " + playerNo++);
-
+        velX = 4;
+        velY = 0;
+        
+        loadImage();
     }
 
     /**
      *
-     * @return vet ej.
+     * @return the value of reloadCounter.
      */
     public int getReloadCounter() {
         return reloadCounter;
@@ -70,7 +66,7 @@ public class Player extends GameObject {
 
     /**
      *
-     * @param reloadCounter, vet ej.
+     * @param reloadCounter, sets the reloadCounter.
      */
     public void reloadCounter(int reloadCounter) {
         this.reloadCounter = reloadCounter;

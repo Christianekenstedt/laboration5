@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.FileHandler;
@@ -21,7 +16,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author Christian
+ * @author Christian Ekenstedt and Gustaf Holmström
  */
 public class MainMenu {
 
@@ -96,15 +91,14 @@ public class MainMenu {
     }
     
     public void showWindow() {
-        menuStage.setTitle("Warning!");
+        menuStage.setTitle("Earth Invasion!");
         menuStage.setScene(scene);
         menuStage.setResizable(false);
         menuStage.setAlwaysOnTop(false);
         menuStage.toFront();
         menuStage.initStyle(StageStyle.UNDECORATED);
-
+        menuStage.getIcons().add(new Image("resources/alien_icon.png"));
         menuStage.showAndWait();
-        //Här borde vi lägga någon typ av return
     }
     
     public static int getNoOfPlayers(){

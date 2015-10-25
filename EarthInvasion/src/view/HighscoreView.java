@@ -19,55 +19,49 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author Chrille
+ * @author Christian Ekenstedt and Gustaf Holmström
  */
 public class HighscoreView {
+
     private Stage highStage;
     private BorderPane highPane;
     private Scene scene;
     private FileHandler file;
-    
-    public HighscoreView(FileHandler file) throws Exception{
+
+    public HighscoreView(FileHandler file) throws Exception {
         this.file = file;
         highStage = new Stage();
         highPane = new BorderPane();
         scene = new Scene(highPane, 300, 300);
         highPane.setPadding(new Insets(10, 10, 10, 10));
-        
+
         initHighscoreWindow();
     }
-    
+
     private void initHighscoreWindow() throws Exception {
         file.read();
         String highscoreString = file.getSavedScore();
         String highscoreLevel = file.getSavedLevel();
-        // eventuellt reada varja gång oxå
         Label title = new Label("Highscores");
-        title.setFont(Font.font("Helvetica",FontWeight.BOLD, 20));
+        title.setFont(Font.font("Helvetica", FontWeight.BOLD, 20));
         title.setUnderline(true);
         Label border = new Label("\nName\t\tLevel\tScore\n");
-        border.setFont(Font.font("Helvetica",FontWeight.BOLD,15));
+        border.setFont(Font.font("Helvetica", FontWeight.BOLD, 15));
         Label info = new Label(highscoreString);
         info.setFont(Font.font("Helvetica", 15));
-        
+
         Button okButton = new Button("Thanks, now i will try to beat that!");
         okButton.autosize();
-        
+
         HBox buttons = new HBox(5);
         buttons.getChildren().add(okButton);
         buttons.setAlignment(Pos.BOTTOM_CENTER);
-        
         VBox texts = new VBox(5);
-        texts.getChildren().addAll(border,info);
-        
-        
-        
-        
-        
+        texts.getChildren().addAll(border, info);
         highPane.setBottom(buttons);
         highPane.setTop(title);
         highPane.setCenter(texts);
-        highPane.setAlignment(title,Pos.TOP_CENTER);
+        highPane.setAlignment(title, Pos.TOP_CENTER);
 
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -75,9 +69,7 @@ public class HighscoreView {
                 //Ropa på spara funktioner osv..
                 highStage.close();
             }
-
         });
-
     }
 
     public void showWindow() {
@@ -88,11 +80,7 @@ public class HighscoreView {
         highStage.setAlwaysOnTop(false);
         highStage.toFront();
         highStage.initStyle(StageStyle.UNDECORATED);
-        
-
         highStage.showAndWait();
-        //Här borde vi lägga någon typ av return
     }
-    
-    
+
 }

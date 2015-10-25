@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 
 /**
- * This class ....
+ * This class represents information, data in the game and are handled by the 
+ * controller.
  * @author Christian Ekenstedt and Gustaf Holmström.
  */
 public class GameModel {
@@ -14,10 +15,8 @@ public class GameModel {
     private ArrayList<GameObject> shot;
 
     private int score;
-    private int ticker;
     private int noOfPlayers;
     private int levelCounter;
-    private int playerReloadCounter;
 
     /**
      *
@@ -47,7 +46,6 @@ public class GameModel {
         block = new ArrayList<>();
         shot = new ArrayList<>();
         score = 0;
-        playerReloadCounter = 0;
         levelCounter = 1;
 
         addPlayers(noOfPlayers);
@@ -77,7 +75,6 @@ public class GameModel {
         addPlayers(noOfPlayers);
         addAliens();
         addBlocks();
-        //addPlayers(2);
         Alien.setVelocity(Alien.getVelocity() * levelCounter);
     }
 
@@ -85,7 +82,7 @@ public class GameModel {
      * Makes the player to shoot, given by the parameter.
      * @param index, the player to shoot.
      */
-    public void PlayerShot(int index) {
+    public void playerShot(int index) {
         if (((Player) player.get(index - 1)).canFire()) {
             shot.add(new Shot(player.get(index - 1).getX() + 29, player.get(index - 1).getY(), 7, 25, true));
             ((Player) player.get(index - 1)).setCanFire(false);
@@ -99,7 +96,6 @@ public class GameModel {
      * @return true/false if the alien shots.
      */
     public boolean alienShot(int index) {
-       
         if(((Alien) alien.get(index)).canFire()){
             shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
             ((Alien) alien.get(index)).setCanFire(false);
@@ -192,7 +188,6 @@ public class GameModel {
         } else if (o instanceof Block) {
             this.block.remove(o);
         } else if (o instanceof Player) {
-            //this.player.remove(o);
             for (int i = 0; i < player.size(); i++) {
                 if (player.get(i) == o) {
                     System.out.println("Player: " + i + " is dead!");
@@ -210,15 +205,6 @@ public class GameModel {
      */
     public int getScore() {
         return score;
-    }
-
-    /**
-     *
-     * @param playerNo, the player to get the return from.
-     * @return returns the uniqe number of the given player.
-     */
-    public int getUniqePlayerNo(int playerNo) {
-        return ((Player) player.get(getNoOfPlayers() - playerNo)).getUniqeNo();
     }
 
     /**
