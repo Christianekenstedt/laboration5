@@ -96,15 +96,14 @@ public class MainMenu {
     }
     
     public void showWindow() {
-        menuStage.setTitle("Warning!");
+        menuStage.setTitle("Earth Invasion!");
         menuStage.setScene(scene);
         menuStage.setResizable(false);
         menuStage.setAlwaysOnTop(false);
         menuStage.toFront();
         menuStage.initStyle(StageStyle.UNDECORATED);
-
+        menuStage.getIcons().add(new Image("resources/alien_icon.png"));
         menuStage.showAndWait();
-        //Här borde vi lägga någon typ av return
     }
     
     public static int getNoOfPlayers(){

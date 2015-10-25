@@ -60,15 +60,16 @@ public class EarthInvasionController {
         } else if (rightOrLeft == 4) {
             ((Player) getPlayer().get(index - 1)).setRight(false);
         }
-
     }
-
+    /**
+     * This method checks for collision between all GameObjects.
+     */
     public void checkForCollision() {
         collisionWithObjects();
         moveAlienDown();
     }
     
-    public void movePlayers() {
+    private void movePlayers() {
         if (model.getNoOfPlayers() == 1) {
             ((Player) getPlayer().get(0)).tick();
         } else if (model.getNoOfPlayers() == 2) {
@@ -85,19 +86,16 @@ public class EarthInvasionController {
 
         for (int i = 0; i < getAlien().size(); i++) {
             for (int j = 0; j < getAlien().size(); j++) {
-                if (getAlien().get(i).getX() == getAlien().get(j).getX()) { // Kollar om getAlien() i har samma x-varde som getAlien() j
-                    // for i so fall so ligger bada pa samma kolummn.
-                    // Da maste vi kolla om getAlien() j har starre y-varde, om den har de sa far inte getAlien() i skjuta.
-                    //Ifall den inte har de maste vi kolla om tills arrayen ar slut av aliens, och den absolut sista getAlien() for skjuta. for varje rad.
-                    if (getAlien().get(i).getY() < getAlien().get(j).getY()) { // Om getAlien() i:s, y-varde ar mindre an getAlien() j:s, da betyder det att getAlien() i, ej far skjuta.
-                        counter = j;                               // Da sparar vi undan tillfalligt den getAlien() som finns langst ner far varje kolummn.
+                if (getAlien().get(i).getX() == getAlien().get(j).getX()) {
+                    if (getAlien().get(i).getY() < getAlien().get(j).getY()) {
+                        counter = j;
                     }
                 }
-                
             }
             for(int k = 0; k < getPlayer().size(); k++){
-                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) && ((Player) getPlayer().get(k)).isDead() == false){
-                    
+                if(getPlayer().get(k).getX()+ getPlayer().get(k).getWidth()/2 > getAlien().get(counter).getX() 
+                        && getPlayer().get(k).getX() < (getAlien().get(counter).getX() + getAlien().get(counter).getWidth()) 
+                            && ((Player) getPlayer().get(k)).isDead() == false){
                    if(model.alienShot(counter)) audio.alienShoot();
                 }
             }
@@ -132,7 +130,7 @@ public class EarthInvasionController {
         }
     }
 
-    public void checkForConstrain() {
+    private void checkForConstrain() {
 
         for (GameObject p : getPlayer()) {
             p.constrain();
@@ -167,11 +165,9 @@ public class EarthInvasionController {
 
                         if (((Player) getPlayer().get(j)).getHp() <= 0) {
                             Player.setPlayerNo(Player.getPlayerNo()-1);
-                            model.removeObject(getPlayer().get(j)); //TAGIT BORT ATT PLAYERN FoRSVINNER ATM
+                            model.removeObject(getPlayer().get(j));
                             model.removeObject(getShot().get(i));
                             audio.playerKilled();
-
-                            //j--;
                         } else {
                             model.removeObject(getShot().get(i));
                         }
@@ -183,7 +179,7 @@ public class EarthInvasionController {
         }
     }
 
-    public void shotCheckCollisionWithAlien() {
+    private void shotCheckCollisionWithAlien() {
         for (int i = 0; i < getShot().size(); i++) {
             for (int j = 0; j < getAlien().size(); j++) {
                 if (((Shot) getShot().get(i)).isFiredFromPlayer() && getShot().get(i).intersectsArea(getAlien().get(j).getX(), getAlien().get(j).getY(), getAlien().get(j).getWidth(), getAlien().get(j).getHeight())) {
@@ -202,7 +198,7 @@ public class EarthInvasionController {
 
     }
 
-    public void shotCheckCollisionWithBlock() {
+    private void shotCheckCollisionWithBlock() {
 
         for (int i = 0; i < getShot().size(); i++) {
 
@@ -241,7 +237,7 @@ public class EarthInvasionController {
                 break;
             case COMMA:
                 if(((Player) model.getPlayerSpecific(1)).isDead() == false && ((Player) model.getPlayerSpecific(1)).canFire()){
-                    model.PlayerShot(1);
+                    model.playerShot(1);
                     Audio.playBullet();
                 }
                 
@@ -260,7 +256,7 @@ public class EarthInvasionController {
             case SPACE:
                 if (model.getNoOfPlayers()==2) {
                     if(((Player) model.getPlayerSpecific(2)).isDead() == false && ((Player) model.getPlayerSpecific(2)).canFire()){
-                        model.PlayerShot(2);
+                        model.playerShot(2);
                         Audio.playBullet();
                     }
                     
@@ -373,8 +369,6 @@ public class EarthInvasionController {
             if(((Alien)go).isAtBottom()) gameOver = true;
         }
         
-        //if(getPlayer().isEmpty()) gameOver = true;
-        
         if(model.getNoOfPlayers() == 2){
             for(int i=0; i<getPlayer().size(); i++){
                 if(((Player)getPlayer().get(i)).isDead()){
@@ -430,7 +424,7 @@ public class EarthInvasionController {
             if (previousNs == 0) {
                 previousNs = nowNs;
             }
-            // paint the background, info and objects
+            
             view.drawBackground();
             view.drawInfo();
             view.drawGameObjects();
