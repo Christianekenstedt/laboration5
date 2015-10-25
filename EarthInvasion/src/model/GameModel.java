@@ -46,7 +46,6 @@ public class GameModel {
         alien = new ArrayList<>();
         block = new ArrayList<>();
         shot = new ArrayList<>();
-        ticker = 0;
         score = 0;
         playerReloadCounter = 0;
         levelCounter = 1;
@@ -106,17 +105,6 @@ public class GameModel {
             return true;
         }
         return false;
-        /*
-        ticker ++;    
-        if(ticker == 10){
-            shot.add(new Shot(getAlien().get(index).getX() + (getAlien().get(index).getWidth() / 2), getAlien().get(index).getY() + getAlien().get(index).getHeight(), 7, 25, false));
-            return true;
-        }
-        if (ticker > 300 / (1 + (levelCounter / 10))) {
-            ticker = 0;
-        }
-        return false;
-        */
     }
 
     /**

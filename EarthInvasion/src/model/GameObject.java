@@ -4,8 +4,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * This class represent a object that can be renderd in the game, a Player, Alien, Block or a shot.
- * 
+ * This class represent a object that can be renderd in the game, a Player,
+ * Alien, Block or a shot.
+ *
  * @author Gustaf Holmström and Christian Ekenstedt
  */
 abstract public class GameObject {
@@ -27,8 +28,9 @@ abstract public class GameObject {
     }
 
     /**
+     * Returns the x-coordinate of the GameObject.
      *
-     * @return the x-coordinate of the object.
+     * @return the x-coordinate of the GameObject.
      */
     public double getX() {
         return x;
@@ -36,7 +38,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @param x sets  the x-coordinate of the object.
+     * @param x sets the x-coordinate of the GameObject.
      */
     public void setX(double x) {
         this.x = x;
@@ -44,7 +46,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return the y-coordinate of the object.
+     * @return the y-coordinate of the GameObject.
      */
     public double getY() {
         return y;
@@ -52,7 +54,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @param y sets the y-coordinate of the object.
+     * @param y sets the y-coordinate of the GameObject.
      */
     public void setY(double y) {
         this.y = y;
@@ -60,7 +62,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return the width of the object.
+     * @return the width of the GameObject.
      */
     public double getWidth() {
         return width;
@@ -68,7 +70,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @return the height of the object.
+     * @return the height of the GameObject.
      */
     public double getHeight() {
         return height;
@@ -76,7 +78,7 @@ abstract public class GameObject {
 
     /**
      *
-     * @param gc, the GraaphicsContext
+     * @param gc, the GraphicsContext
      */
     abstract public void drawObject(GraphicsContext gc);
 

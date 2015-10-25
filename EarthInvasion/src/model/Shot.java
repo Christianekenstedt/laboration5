@@ -31,8 +31,7 @@ public class Shot extends GameObject {
         this.firedFromPlayer = firedFromPlayer;
         this.inFrame = true;
         loadImage();
-        
-        
+
     }
 
     /**

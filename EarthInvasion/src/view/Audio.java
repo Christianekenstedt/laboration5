@@ -39,7 +39,7 @@ public class Audio {
         alienKilled = new AudioClip(getClass().getResource("/resources/audio/invaderkilled.wav").toExternalForm());
         playerKilled = new AudioClip(getClass().getResource("/resources/audio/playerDie.wav").toExternalForm());
         alienShoot = new AudioClip(getClass().getResource("/resources/audio/alienShoot.wav").toExternalForm());
-        setSoundEffectsVolume(0.5);
+        setSoundEffectsVolume(0.3);
 
     }
 
@@ -54,7 +54,7 @@ public class Audio {
     }
 
     public void alienKilled() {
-        alienKilled.setVolume(Audio.getSoundEffectsVolume() - 0.3);
+        alienKilled.setVolume(Audio.getSoundEffectsVolume() - 0.2);
         alienKilled.play();
     }
     

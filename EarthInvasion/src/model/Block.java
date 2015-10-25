@@ -53,7 +53,7 @@ public class Block extends GameObject {
     }
 
     /**
-     * This method load all the image of the block (Sprite). 
+     * This method load all the image of the block (Sprite).
      */
     private void loadImages() {
         Image temp = new Image("resources/newBlock.png");
@@ -65,6 +65,7 @@ public class Block extends GameObject {
 
     /**
      * This method draws the object on the GraphicsContext.
+     *
      * @param gc, the GraphicsContext.
      */
     @Override
